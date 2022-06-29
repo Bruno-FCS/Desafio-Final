@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center mb-4">
+<div class="d-flex justify-content-center mb-3">
   <img
     class="img-width"
     src="../../../assets/img/ford.png"
@@ -8,91 +8,114 @@
 
 <h4 class="text-center text-color">Faça seu registro!</h4>
 
-<form class="form mt-4 width" (ngSubmit)="register()" #registerForm="ngForm">
-  <div class="form-group mb-4">
+<app-mensagem *ngIf="error == 1" mensagem="Usuário ou e-mail já cadastrados"></app-mensagem>
+
+<form
+  class="form mt-3 width"
+  [formGroup]="registerForm"
+  *ngIf="registerForm"
+  (ngSubmit)="register()"
+>
+  <div class="form-group mb-3">
     <input
       class="form-control"
       placeholder="Usuário"
-      [(ngModel)]="user_name"
-      name="user_name"
-      #campoUsuario="ngModel"
-      required
-      minlength="5"
+      formControlName="user_name"
     />
     <app-mensagem
-      *ngIf="campoUsuario.invalid && campoUsuario.touched"
+      *ngIf="
+        registerForm.get('user_name')?.errors?.['required'] &&
+        registerForm.get('user_name')?.touched
+      "
       mensagem="Campo usuário obrigatório"
     ></app-mensagem>
     <app-mensagem
-      *ngIf="campoUsuario.value.length < 5 && campoUsuario.touched"
-      mensagem="Usuário deve conter pelo menos 5 caracteres"
+      *ngIf="
+        registerForm.get('user_name')?.errors?.['minlength'] &&
+        registerForm.get('user_name')?.touched
+      "
+      mensagem="Campo usuário deve ter ao menos 5 caracteres"
     ></app-mensagem>
   </div>
 
-  <div class="form-group mb-4">
+  <div class="form-group mb-3">
     <input
       class="form-control"
       placeholder="E-mail"
-      type="email"
-      [(ngModel)]="user_email"
-      name="user_email"
-      #campoEmail="ngModel"
-      required
+      formControlName="user_email"
     />
     <app-mensagem
-      *ngIf="campoEmail.invalid && campoEmail.touched"
-      mensagem="Campo email obrigatório"
+      *ngIf="
+        registerForm.get('user_email')?.errors?.['required'] &&
+        registerForm.get('user_email')?.touched
+      "
+      mensagem="Campo e-mail obrigatório"
+    ></app-mensagem>
+    <app-mensagem
+      *ngIf="
+        registerForm.get('user_email')?.errors?.['email'] &&
+        registerForm.get('user_email')?.touched
+      "
+      mensagem="E-mail inválido"
     ></app-mensagem>
   </div>
 
-  <div class="form-group mb-4">
+  <div class="form-group mb-3">
     <input
       class="form-control"
       placeholder="Nome completo"
-      [(ngModel)]="user_full_name"
-      name="user_full_name"
-      #campoNome="ngModel"
-      required
+      formControlName="user_full_name"
     />
     <app-mensagem
-      *ngIf="campoNome.invalid && campoNome.touched"
+      *ngIf="
+        registerForm.get('user_full_name')?.errors &&
+        registerForm.get('user_full_name')?.touched
+      "
       mensagem="Campo nome completo obrigatório"
     ></app-mensagem>
   </div>
 
-  <div class="form-group mb-4">
+  <div class="form-group mb-3">
     <input
       class="form-control"
       placeholder="Senha"
       type="password"
-      [(ngModel)]="user_password"
-      name="user_password"
-      #campoSenha="ngModel"
-      required
+      formControlName="user_password"
     />
     <app-mensagem
-      *ngIf="campoSenha.invalid && campoSenha.touched"
+      *ngIf="
+        registerForm.get('user_password')?.errors?.['required'] &&
+        registerForm.get('user_password')?.touched
+      "
       mensagem="Campo senha obrigatório"
+    ></app-mensagem>
+    <app-mensagem
+      *ngIf="
+        registerForm.get('user_password')?.errors?.['minlength'] &&
+        registerForm.get('user_password')?.touched
+      "
+      mensagem="Campo senha deve ter ao menos 6 caracteres"
     ></app-mensagem>
   </div>
 
-  <div class="form-group mb-4">
+  <div class="form-group mb-3">
     <input
       class="form-control"
-      placeholder="Confirme a senha"
+      placeholder="Confirmar senha"
       type="password"
-      [(ngModel)]="user_password_confirm"
-      name="user_password_confirm"
-      #campoConfirmaSenha="ngModel"
-      required
+      formControlName="user_password_confirm"
     />
     <app-mensagem
-      *ngIf="campoConfirmaSenha.value != campoSenha.value && campoConfirmaSenha.touched"
+      *ngIf="
+        registerForm.get('user_password_confirm')?.errors?.['equalsTo']
+      "
       mensagem="Senhas não coincidem"
     ></app-mensagem>
   </div>
 
-  <div class="mb-4">Já possui cadastro? <a [routerLink]="['']">Faça login</a></div>
+  <div class="mb-3">
+    Já possui cadastro? <a [routerLink]="['']">Faça login</a>
+  </div>
 
-  <button type="submit" class="btn btn-secondary width" [disabled]="registerForm.invalid">Registrar</button>
+  <button class="btn btn-secondary width" [disabled]="registerForm.invalid">Registrar</button>
 </form>

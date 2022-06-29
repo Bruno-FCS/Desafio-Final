@@ -8,9 +8,9 @@ import { AutenticacaoService } from 'src/app/autenticacao/autenticacao.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  usuario = '';
-  senha = '';
-  erro = 0;
+  user_name = '';
+  user_password = '';
+  error = 0;
 
   constructor(
     private autenticacaoService: AutenticacaoService,
@@ -20,12 +20,12 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   logar() {
-    this.autenticacaoService.autenticar(this.usuario, this.senha).subscribe(
+    this.autenticacaoService.autenticar(this.user_name, this.user_password).subscribe(
       () => {
         this.router.navigate(['home']);
       },
       () => {
-        this.erro = 1;
+        this.error = 1;
       }
     );
   }

@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center mb-4">
+<div class="d-flex justify-content-center mb-3">
   <img
     class="img-width"
     src="../../../assets/img/ford.png"
@@ -8,15 +8,15 @@
 
 <h4 class="text-center text-color">Bem vindo!</h4>
 
-<app-mensagem *ngIf="erro == 1" mensagem="Usuário ou senha inválido"></app-mensagem>
+<app-mensagem *ngIf="error == 1" mensagem="Usuário ou senha inválido"></app-mensagem>
 
-<form class="form mt-4 width" (ngSubmit)="logar()" #loginForm="ngForm">
-  <div class="form-group mb-4">
+<form class="form mt-3 width" (ngSubmit)="logar()" #loginForm="ngForm">
+  <div class="form-group mb-3">
     <input
       class="form-control"
       placeholder="Insira seu usuário"
-      [(ngModel)]="usuario"
-      name="usuario"
+      [(ngModel)]="user_name"
+      name="user_name"
       #campoUsuario="ngModel"
       required
     />
@@ -26,13 +26,13 @@
     ></app-mensagem>
   </div>
 
-  <div class="form-group mb-4">
+  <div class="form-group mb-3">
     <input
       class="form-control"
       placeholder="Insira sua senha"
       type="password"
-      [(ngModel)]="senha"
-      name="senha"
+      [(ngModel)]="user_password"
+      name="user_password"
       #campoSenha="ngModel"
       required
     />
@@ -42,7 +42,7 @@
     ></app-mensagem>
   </div>
 
-  <div class="mb-4">Ainda não possui cadastro? <a [routerLink]="['register']">Registre-se</a></div>
+  <div class="mb-3">Ainda não possui cadastro? <a [routerLink]="['register']">Registre-se</a></div>
 
   <button type="submit" class="btn btn-secondary width" [disabled]="loginForm.invalid">Entrar</button>
 </form>

@@ -9,10 +9,12 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class UsuarioService {
   private usuarioSubject = new BehaviorSubject<Usuario>({
-    id: '',
-    name: '',
-    password: '',
-    email: '',
+    user_id: '',
+    user_name: '',
+    user_password: '',
+    user_email: '',
+    user_full_name: '',
+    user_join_date: '',
   });
 
   constructor(private tokenService: TokenService) {
@@ -39,10 +41,12 @@ export class UsuarioService {
   logout() {
     this.tokenService.excluirToken();
     this.usuarioSubject.next({
-      id: '',
-      name: '',
-      password: '',
-      email: '',
+      user_id: '',
+      user_name: '',
+      user_password: '',
+      user_email: '',
+      user_full_name: '',
+      user_join_date: '',
     });
   }
 
