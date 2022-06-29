@@ -13,7 +13,7 @@ public class VehicleData implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long vehicledata_id;
 
 	@Column(nullable = false)
@@ -23,16 +23,16 @@ public class VehicleData implements Serializable {
 	private String vehicledata_odometer;
 
 	@Column(nullable = false)
-	private String vehicledata_tirePressure;
+	private String vehicledata_tire_pressure;
 
 	@Column(nullable = false)
 	private String vehicledata_status;
 
 	@Column(nullable = false)
-	private String vehicledata_batteryStatus;
+	private String vehicledata_battery_status;
 
 	@Column(nullable = false)
-	private String vehicledata_fuelLevel;
+	private String vehicledata_fuel_level;
 
 	@Column(nullable = false)
 	private String vehicledata_lat;
@@ -44,16 +44,16 @@ public class VehicleData implements Serializable {
 	}
 
 	public VehicleData(Long vehicledata_id, String vehicledata_vin, String vehicledata_odometer,
-			String vehicledata_tirePressure, String vehicledata_status, String vehicledata_batteryStatus,
-			String vehicledata_fuelLevel, String vehicledata_lat, String vehicledata_long) {
+			String vehicledata_tire_pressure, String vehicledata_status, String vehicledata_battery_status,
+			String vehicledata_fuel_level, String vehicledata_lat, String vehicledata_long) {
 		super();
 		this.vehicledata_id = vehicledata_id;
 		this.vehicledata_vin = vehicledata_vin;
 		this.vehicledata_odometer = vehicledata_odometer;
-		this.vehicledata_tirePressure = vehicledata_tirePressure;
+		this.vehicledata_tire_pressure = vehicledata_tire_pressure;
 		this.vehicledata_status = vehicledata_status;
-		this.vehicledata_batteryStatus = vehicledata_batteryStatus;
-		this.vehicledata_fuelLevel = vehicledata_fuelLevel;
+		this.vehicledata_battery_status = vehicledata_battery_status;
+		this.vehicledata_fuel_level = vehicledata_fuel_level;
 		this.vehicledata_lat = vehicledata_lat;
 		this.vehicledata_long = vehicledata_long;
 	}
@@ -82,12 +82,12 @@ public class VehicleData implements Serializable {
 		this.vehicledata_odometer = vehicledata_odometer;
 	}
 
-	public String getVehicledata_tirePressure() {
-		return vehicledata_tirePressure;
+	public String getVehicledata_tire_pressure() {
+		return vehicledata_tire_pressure;
 	}
 
-	public void setVehicledata_tirePressure(String vehicledata_tirePressure) {
-		this.vehicledata_tirePressure = vehicledata_tirePressure;
+	public void setVehicledata_tire_pressure(String vehicledata_tire_pressure) {
+		this.vehicledata_tire_pressure = vehicledata_tire_pressure;
 	}
 
 	public String getVehicledata_status() {
@@ -98,20 +98,20 @@ public class VehicleData implements Serializable {
 		this.vehicledata_status = vehicledata_status;
 	}
 
-	public String getVehicledata_batteryStatus() {
-		return vehicledata_batteryStatus;
+	public String getVehicledata_battery_status() {
+		return vehicledata_battery_status;
 	}
 
-	public void setVehicledata_batteryStatus(String vehicledata_batteryStatus) {
-		this.vehicledata_batteryStatus = vehicledata_batteryStatus;
+	public void setVehicledata_battery_status(String vehicledata_battery_status) {
+		this.vehicledata_battery_status = vehicledata_battery_status;
 	}
 
-	public String getVehicledata_fuelLevel() {
-		return vehicledata_fuelLevel;
+	public String getVehicledata_fuel_level() {
+		return vehicledata_fuel_level;
 	}
 
-	public void setVehicledata_fuelLevel(String vehicledata_fuelLevel) {
-		this.vehicledata_fuelLevel = vehicledata_fuelLevel;
+	public void setVehicledata_fuel_level(String vehicledata_fuel_level) {
+		this.vehicledata_fuel_level = vehicledata_fuel_level;
 	}
 
 	public String getVehicledata_lat() {

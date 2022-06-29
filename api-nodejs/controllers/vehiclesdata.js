@@ -2,7 +2,7 @@ const connection = require("../infra/connection");
 
 module.exports = (app) => {
   app.get("/vehiclesdata", (req, res) => {
-    connection.query("SELECT * FROM Vehicles_Data", (error, result) => {
+    connection.query("SELECT * FROM Vehicle_Data", (error, result) => {
       if (error) {
         res.status(400).json(error);
       } else {
@@ -13,7 +13,7 @@ module.exports = (app) => {
 
   app.get("/vehiclesdata/:vehicledata_id", (req, res) => {
     connection.query(
-      `SELECT * FROM Vehicles_Data WHERE vehicledata_id = "${req.params.vehicledata_id}"`,
+      `SELECT * FROM Vehicle_Data WHERE vehicledata_id = "${req.params.vehicledata_id}"`,
       (error, result) => {
         const vehicledata = result[0];
         if (error) {
@@ -28,7 +28,7 @@ module.exports = (app) => {
   app.post("/vehiclesdata", (req, res) => {
     const vehicledata = req.body;
     connection.query(
-      "SELECT * FROM Vehicles_Data WHERE vehicledata_vin = ?",
+      "SELECT * FROM Vehicle_Data WHERE vehicledata_vin = ?",
       [vehicledata.vehicledata_vin],
       (error, result) => {
         if (error) {
@@ -36,7 +36,7 @@ module.exports = (app) => {
         }
         if (result.length == 0) {
           connection.query(
-            "INSERT INTO Vehicles_Data (vehicledata_vin, vehicledata_odometer, vehicledata_tire_pressure, vehicledata_status, vehicledata_battery_status, vehicledata_fuel_level, vehicledata_lat, vehicledata_long) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+            "INSERT INTO Vehicle_Data (vehicledata_vin, vehicledata_odometer, vehicledata_tire_pressure, vehicledata_status, vehicledata_battery_status, vehicledata_fuel_level, vehicledata_lat, vehicledata_long) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
             [
               vehicledata.vehicledata_vin,
               vehicledata.vehicledata_odometer,
@@ -61,11 +61,11 @@ module.exports = (app) => {
     );
   });
 
-  app.patch("/vehiclesdata/:vehicledata_id", (req, res) => {
+  app.put("/vehiclesdata/:vehicledata_id", (req, res) => {
     const vehicledata = req.body;
     const vehicledata_id = parseInt(req.params.vehicledata_id);
     connection.query(
-      "SELECT * FROM Vehicles_Data WHERE vehicledata_vin = ?",
+      "SELECT * FROM Vehicle_Data WHERE vehicledata_vin = ?",
       [vehicledata.vehicledata_vin],
       (error, result) => {
         if (error) {
@@ -73,7 +73,7 @@ module.exports = (app) => {
         }
         if (result.length == 0) {
           connection.query(
-            "UPDATE Vehicles_Data SET ? WHERE vehicledata_id = ?",
+            "UPDATE Vehicle_Data SET ? WHERE vehicledata_id = ?",
             [req.body, vehicledata_id],
             (error) => {
               if (error) {
@@ -86,7 +86,7 @@ module.exports = (app) => {
         } else if (result.length == 1) {
           if (result[0].vehicledata_id == vehicledata_id) {
             connection.query(
-              "UPDATE Vehicles_Data SET ? WHERE vehicledata_id = ?",
+              "UPDATE Vehicle_Data SET ? WHERE vehicledata_id = ?",
               [req.body, vehicledata_id],
               (error) => {
                 if (error) {
@@ -109,7 +109,7 @@ module.exports = (app) => {
   app.delete("/vehiclesdata/:vehicledata_id", (req, res) => {
     const vehicledata_id = parseInt(req.params.vehicledata_id);
     connection.query(
-      "DELETE FROM Vehicles_Data WHERE vehicledata_id = ?",
+      "DELETE FROM Vehicle_Data WHERE vehicledata_id = ?",
       [vehicledata_id],
       (error) => {
         if (error) {

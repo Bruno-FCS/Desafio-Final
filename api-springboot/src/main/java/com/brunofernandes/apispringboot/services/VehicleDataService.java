@@ -30,6 +30,12 @@ public class VehicleDataService {
 	}
 
 	public VehicleData insert(VehicleData obj) {
+		List<VehicleData> list = this.findAll();
+		for (VehicleData vd : list) {
+			if (vd.getVehicledata_vin().equals(obj.getVehicledata_vin())) {
+				throw new DatabaseException("VIN already registered");
+			}
+		}
 		return repository.save(obj);
 	}
 
@@ -66,10 +72,10 @@ public class VehicleDataService {
 	private void UpdateData(VehicleData entity, VehicleData obj) {
 		entity.setVehicledata_vin(obj.getVehicledata_vin());
 		entity.setVehicledata_odometer(obj.getVehicledata_odometer());
-		entity.setVehicledata_tirePressure(obj.getVehicledata_tirePressure());
+		entity.setVehicledata_tire_pressure(obj.getVehicledata_tire_pressure());
 		entity.setVehicledata_status(obj.getVehicledata_status());
-		entity.setVehicledata_batteryStatus(obj.getVehicledata_batteryStatus());
-		entity.setVehicledata_fuelLevel(obj.getVehicledata_fuelLevel());
+		entity.setVehicledata_battery_status(obj.getVehicledata_battery_status());
+		entity.setVehicledata_fuel_level(obj.getVehicledata_fuel_level());
 		entity.setVehicledata_lat(obj.getVehicledata_lat());
 		entity.setVehicledata_long(obj.getVehicledata_long());
 	}

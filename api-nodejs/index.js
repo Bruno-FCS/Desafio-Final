@@ -1,6 +1,6 @@
 const customExpress = require("./config/customExpress");
 const connection = require("./infra/connection");
-const Tables = require('./infra/tables')
+const Tables = require("./infra/tables");
 
 const PORT = 3001;
 
@@ -10,7 +10,7 @@ connection.connect((error) => {
   } else {
     console.log("Successfully connected");
 
-    Tables.init(connection)
+    Tables.init(connection);
 
     const app = customExpress();
 

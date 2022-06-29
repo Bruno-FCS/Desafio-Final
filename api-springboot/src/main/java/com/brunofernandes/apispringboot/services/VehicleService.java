@@ -30,6 +30,12 @@ public class VehicleService {
 	}
 
 	public Vehicle insert(Vehicle obj) {
+		List<Vehicle> list = this.findAll();
+		for (Vehicle v : list) {
+			if (v.getVehicle_model().equals(obj.getVehicle_model())) {
+				throw new DatabaseException("Model already registered");
+			}
+		}
 		return repository.save(obj);
 	}
 
@@ -65,8 +71,8 @@ public class VehicleService {
 
 	private void UpdateData(Vehicle entity, Vehicle obj) {
 		entity.setVehicle_model(obj.getVehicle_model());
-		entity.setVehicle_totalVolume(obj.getVehicle_totalVolume());
+		entity.setVehicle_total_volume(obj.getVehicle_total_volume());
 		entity.setVehicle_connected(obj.getVehicle_connected());
-		entity.setVehicle_softwareUpdates(obj.getVehicle_softwareUpdates());
+		entity.setVehicle_software_updates(obj.getVehicle_software_updates());
 	}
 }

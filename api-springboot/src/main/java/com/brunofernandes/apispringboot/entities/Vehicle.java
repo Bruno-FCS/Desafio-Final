@@ -13,32 +13,32 @@ public class Vehicle implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long vehicle_id;
 
 	@Column(nullable = false)
 	private String vehicle_model;
 
 	@Column(nullable = false)
-	private Integer vehicle_totalVolume;
+	private Integer vehicle_total_volume;
 
 	@Column(nullable = false)
 	private Integer vehicle_connected;
 
 	@Column(nullable = false)
-	private Integer vehicle_softwareUpdates;
+	private Integer vehicle_software_updates;
 
 	public Vehicle() {
 	}
 
-	public Vehicle(Long vehicle_id, String vehicle_model, Integer vehicle_totalVolume, Integer vehicle_connected,
-			Integer vehicle_softwareUpdates) {
+	public Vehicle(Long vehicle_id, String vehicle_model, Integer vehicle_total_volume, Integer vehicle_connected,
+			Integer vehicle_software_updates) {
 		super();
 		this.vehicle_id = vehicle_id;
 		this.vehicle_model = vehicle_model;
-		this.vehicle_totalVolume = vehicle_totalVolume;
+		this.vehicle_total_volume = vehicle_total_volume;
 		this.vehicle_connected = vehicle_connected;
-		this.vehicle_softwareUpdates = vehicle_softwareUpdates;
+		this.vehicle_software_updates = vehicle_software_updates;
 	}
 
 	public Long getVehicle_id() {
@@ -57,12 +57,12 @@ public class Vehicle implements Serializable {
 		this.vehicle_model = vehicle_model;
 	}
 
-	public Integer getVehicle_totalVolume() {
-		return vehicle_totalVolume;
+	public Integer getVehicle_total_volume() {
+		return vehicle_total_volume;
 	}
 
-	public void setVehicle_totalVolume(Integer vehicle_totalVolume) {
-		this.vehicle_totalVolume = vehicle_totalVolume;
+	public void setVehicle_total_volume(Integer vehicle_total_volume) {
+		this.vehicle_total_volume = vehicle_total_volume;
 	}
 
 	public Integer getVehicle_connected() {
@@ -73,12 +73,12 @@ public class Vehicle implements Serializable {
 		this.vehicle_connected = vehicle_connected;
 	}
 
-	public Integer getVehicle_softwareUpdates() {
-		return vehicle_softwareUpdates;
+	public Integer getVehicle_software_updates() {
+		return vehicle_software_updates;
 	}
 
-	public void setVehicle_softwareUpdates(Integer vehicle_softwareUpdates) {
-		this.vehicle_softwareUpdates = vehicle_softwareUpdates;
+	public void setVehicle_software_updates(Integer vehicle_software_updates) {
+		this.vehicle_software_updates = vehicle_software_updates;
 	}
 
 	@Override

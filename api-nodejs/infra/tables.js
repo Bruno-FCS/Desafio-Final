@@ -9,7 +9,7 @@ class Tables {
 
   createUserTable() {
     const sql =
-      "CREATE TABLE IF NOT EXISTS Users (user_id int NOT NULL AUTO_INCREMENT," +
+      "CREATE TABLE IF NOT EXISTS User (user_id int NOT NULL AUTO_INCREMENT," +
       "user_name varchar(20) NOT NULL, user_email varchar(50) NOT NULL," +
       "user_password varchar(20) NOT NULL, user_full_name varchar(50) NOT NULL," +
       "user_join_date datetime NOT NULL, PRIMARY KEY(user_id))";
@@ -25,7 +25,7 @@ class Tables {
 
   createVehicleTable() {
     const sql =
-      "CREATE TABLE IF NOT EXISTS Vehicles (vehicle_id int NOT NULL AUTO_INCREMENT," +
+      "CREATE TABLE IF NOT EXISTS Vehicle (vehicle_id int NOT NULL AUTO_INCREMENT," +
       "vehicle_model varchar(20) NOT NULL, vehicle_total_volume int NOT NULL," +
       "vehicle_connected int NOT NULL, vehicle_software_updates int NOT NULL, PRIMARY KEY(vehicle_id))";
 
@@ -40,7 +40,7 @@ class Tables {
 
   createVehicleDataTable() {
     const sql =
-      "CREATE TABLE IF NOT EXISTS Vehicles_Data (vehicledata_id int NOT NULL AUTO_INCREMENT," +
+      "CREATE TABLE IF NOT EXISTS Vehicle_Data (vehicledata_id int NOT NULL AUTO_INCREMENT," +
       "vehicledata_vin varchar(20) NOT NULL, vehicledata_odometer varchar(10) NOT NULL," +
       "vehicledata_tire_pressure varchar(20) NOT NULL, vehicledata_status varchar(5) NOT NULL," +
       "vehicledata_battery_status varchar(5) NOT NULL, vehicledata_fuel_level varchar(5) NOT NULL," +

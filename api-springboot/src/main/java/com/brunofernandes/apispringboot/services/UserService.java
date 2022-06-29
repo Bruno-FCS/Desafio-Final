@@ -30,6 +30,12 @@ public class UserService {
 	}
 
 	public User insert(User obj) {
+		List<User> list = this.findAll();
+		for (User u : list) {
+			if (u.getUser_email().equals(obj.getUser_email()) || u.getUser_name().equals(obj.getUser_name())) {
+				throw new DatabaseException("Email or username already registered");
+			}
+		}
 		return repository.save(obj);
 	}
 
@@ -67,6 +73,6 @@ public class UserService {
 		entity.setUser_name(obj.getUser_name());
 		entity.setUser_email(obj.getUser_email());
 		entity.setUser_password(obj.getUser_password());
-		entity.setUser_fullName(obj.getUser_fullName());
+		entity.setUser_full_name(obj.getUser_full_name());
 	}
 }

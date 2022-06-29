@@ -16,7 +16,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long user_id;
 
 	@Column(nullable = false)
@@ -29,21 +29,21 @@ public class User implements Serializable {
 	private String user_password;
 
 	@Column(nullable = false)
-	private String user_fullName;
+	private String user_full_name;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-	private Instant user_joinDate = Instant.now();
+	private Instant user_join_date = Instant.now();
 
 	public User() {
 	}
 
-	public User(Long user_id, String user_name, String user_email, String user_password, String user_fullName) {
+	public User(Long user_id, String user_name, String user_email, String user_password, String user_full_name) {
 		super();
 		this.user_id = user_id;
 		this.user_name = user_name;
 		this.user_email = user_email;
 		this.user_password = user_password;
-		this.user_fullName = user_fullName;
+		this.user_full_name = user_full_name;
 	}
 
 	public Long getUser_id() {
@@ -78,20 +78,20 @@ public class User implements Serializable {
 		this.user_password = user_password;
 	}
 
-	public String getUser_fullName() {
-		return user_fullName;
+	public String getUser_full_name() {
+		return user_full_name;
 	}
 
-	public void setUser_fullName(String user_fullName) {
-		this.user_fullName = user_fullName;
+	public void setUser_full_name(String user_full_name) {
+		this.user_full_name = user_full_name;
 	}
 
-	public Instant getUser_joinDate() {
-		return user_joinDate;
+	public Instant getUser_join_date() {
+		return user_join_date;
 	}
 
-	public void setUser_joinDate(Instant user_joinDate) {
-		this.user_joinDate = user_joinDate;
+	public void setUser_join_date(Instant user_join_date) {
+		this.user_join_date = user_join_date;
 	}
 
 	@Override

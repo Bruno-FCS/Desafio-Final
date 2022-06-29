@@ -2,7 +2,7 @@ const connection = require("../infra/connection");
 
 module.exports = (app) => {
   app.get("/users", (req, res) => {
-    connection.query("SELECT * FROM Users", (error, result) => {
+    connection.query("SELECT * FROM User", (error, result) => {
       if (error) {
         res.status(400).json(error);
       } else {
@@ -11,9 +11,9 @@ module.exports = (app) => {
     });
   });
 
-  app.get("/users/:user_name", (req, res) => {
+  app.get("/users/:user_id", (req, res) => {
     connection.query(
-      `SELECT * FROM Users WHERE user_name = "${req.params.user_name}"`,
+      `SELECT * FROM User WHERE user_name = "${req.params.user_id}"`,
       (error, result) => {
         const user = result[0];
         if (error) {
@@ -30,7 +30,7 @@ module.exports = (app) => {
     const user_join_date = new Date();
     const userWithDate = { ...user, user_join_date };
     connection.query(
-      "SELECT * FROM Users WHERE user_name = ? OR user_email = ?",
+      "SELECT * FROM User WHERE user_name = ? OR user_email = ?",
       [userWithDate.user_name, userWithDate.user_email],
       (error, result) => {
         if (error) {
@@ -38,7 +38,7 @@ module.exports = (app) => {
         }
         if (result.length == 0) {
           connection.query(
-            "INSERT INTO Users (user_name, user_email, user_password, user_full_name, user_join_date) VALUES (?, ?, ?, ?, ?)",
+            "INSERT INTO User (user_name, user_email, user_password, user_full_name, user_join_date) VALUES (?, ?, ?, ?, ?)",
             [
               userWithDate.user_name,
               userWithDate.user_email,
@@ -50,7 +50,7 @@ module.exports = (app) => {
               if (error) {
                 res.status(400).json(error);
               }
-              res.status(201).json(user);
+              res.status(201).json(result);
             }
           );
         } else {
@@ -60,11 +60,11 @@ module.exports = (app) => {
     );
   });
 
-  app.patch("/users/:user_id", (req, res) => {
+  app.put("/users/:user_id", (req, res) => {
     const user = req.body;
     const user_id = parseInt(req.params.user_id);
     connection.query(
-      "SELECT * FROM Users WHERE user_name = ? OR user_email = ?",
+      "SELECT * FROM User WHERE user_name = ? OR user_email = ?",
       [user.user_name, user.user_email],
       (error, result) => {
         if (error) {
@@ -72,7 +72,7 @@ module.exports = (app) => {
         }
         if (result.length == 0) {
           connection.query(
-            "UPDATE Users SET ? WHERE user_id = ?",
+            "UPDATE User SET ? WHERE user_id = ?",
             [req.body, user_id],
             (error) => {
               if (error) {
@@ -85,7 +85,7 @@ module.exports = (app) => {
         } else if (result.length == 1) {
           if (result[0].user_id == user_id) {
             connection.query(
-              "UPDATE Users SET ? WHERE user_id = ?",
+              "UPDATE User SET ? WHERE user_id = ?",
               [req.body, user_id],
               (error) => {
                 if (error) {
@@ -108,7 +108,7 @@ module.exports = (app) => {
   app.delete("/users/:user_id", (req, res) => {
     const user_id = parseInt(req.params.user_id);
     connection.query(
-      "DELETE FROM Users WHERE user_id = ?",
+      "DELETE FROM User WHERE user_id = ?",
       [user_id],
       (error) => {
         if (error) {

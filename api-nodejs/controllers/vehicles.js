@@ -2,7 +2,7 @@ const connection = require("../infra/connection");
 
 module.exports = (app) => {
   app.get("/vehicles", (req, res) => {
-    connection.query("SELECT * FROM Vehicles", (error, result) => {
+    connection.query("SELECT * FROM Vehicle", (error, result) => {
       if (error) {
         res.status(400).json(error);
       } else {
@@ -13,7 +13,7 @@ module.exports = (app) => {
 
   app.get("/vehicles/:vehicle_id", (req, res) => {
     connection.query(
-      `SELECT * FROM Vehicles WHERE vehicle_id = "${req.params.vehicle_id}"`,
+      `SELECT * FROM Vehicle WHERE vehicle_id = "${req.params.vehicle_id}"`,
       (error, result) => {
         const vehicle = result[0];
         if (error) {
@@ -28,7 +28,7 @@ module.exports = (app) => {
   app.post("/vehicles", (req, res) => {
     const vehicle = req.body;
     connection.query(
-      "SELECT * FROM Vehicles WHERE vehicle_model = ?",
+      "SELECT * FROM Vehicle WHERE vehicle_model = ?",
       [vehicle.vehicle_model],
       (error, result) => {
         if (error) {
@@ -36,7 +36,7 @@ module.exports = (app) => {
         }
         if (result.length == 0) {
           connection.query(
-            "INSERT INTO Vehicles (vehicle_model, vehicle_total_volume, vehicle_connected, vehicle_software_updates) VALUES (?, ?, ?, ?)",
+            "INSERT INTO Vehicle (vehicle_model, vehicle_total_volume, vehicle_connected, vehicle_software_updates) VALUES (?, ?, ?, ?)",
             [
               vehicle.vehicle_model,
               vehicle.vehicle_total_volume,
@@ -57,11 +57,11 @@ module.exports = (app) => {
     );
   });
 
-  app.patch("/vehicles/:vehicle_id", (req, res) => {
+  app.put("/vehicles/:vehicle_id", (req, res) => {
     const vehicle = req.body;
     const vehicle_id = parseInt(req.params.vehicle_id);
     connection.query(
-      "SELECT * FROM Vehicles WHERE vehicle_model = ?",
+      "SELECT * FROM Vehicle WHERE vehicle_model = ?",
       [vehicle.vehicle_model],
       (error, result) => {
         if (error) {
@@ -69,7 +69,7 @@ module.exports = (app) => {
         }
         if (result.length == 0) {
           connection.query(
-            "UPDATE Vehicles SET ? WHERE vehicle_id = ?",
+            "UPDATE Vehicle SET ? WHERE vehicle_id = ?",
             [req.body, vehicle_id],
             (error) => {
               if (error) {
@@ -82,7 +82,7 @@ module.exports = (app) => {
         } else if (result.length == 1) {
           if (result[0].vehicle_id == vehicle_id) {
             connection.query(
-              "UPDATE Vehicles SET ? WHERE vehicle_id = ?",
+              "UPDATE Vehicle SET ? WHERE vehicle_id = ?",
               [req.body, vehicle_id],
               (error) => {
                 if (error) {
@@ -105,7 +105,7 @@ module.exports = (app) => {
   app.delete("/vehicles/:vehicle_id", (req, res) => {
     const vehicle_id = parseInt(req.params.vehicle_id);
     connection.query(
-      "DELETE FROM Vehicles WHERE vehicle_id = ?",
+      "DELETE FROM Vehicle WHERE vehicle_id = ?",
       [vehicle_id],
       (error) => {
         if (error) {
