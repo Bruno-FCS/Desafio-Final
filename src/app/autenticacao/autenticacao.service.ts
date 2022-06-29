@@ -18,7 +18,7 @@ export class AutenticacaoService {
   autenticar(user_name: string, user_password: string): Observable<HttpResponse<any>> {
     return this.httpClient
       .post(
-        `${API}/user/login`,
+        `${API}/users/login`,
         {
           user_name: user_name,
           user_password: user_password,
@@ -33,4 +33,11 @@ export class AutenticacaoService {
         })
       );
   }
+
+  // autenticar(user_name: string, user_password: string) {
+  //   return this.httpClient.post(`${API}/users/login`, {
+  //     user_name: user_name,
+  //     user_password: user_password,
+  //   });
+  // }
 }

@@ -60,6 +60,26 @@ module.exports = (app) => {
     );
   });
 
+  app.post("/users/login", (req, res) => {
+    const user_name = req.body.user_name;
+    const user_password = req.body.user_password;
+    connection.query(
+      "SELECT * FROM User WHERE user_name = ? AND user_password = ?",
+      [user_name, user_password],
+      (error, result) => {
+        if (error) {
+          res.status(400).json(error);
+        } else {
+          if (result.length == 0) {
+            res.status(400).json("Username or password invalid");
+          } else {
+            res.status(200).json(result[0]);
+          }
+        }
+      }
+    );
+  });
+
   app.put("/users/:user_id", (req, res) => {
     const user = req.body;
     const user_id = parseInt(req.params.user_id);
