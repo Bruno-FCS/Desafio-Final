@@ -1,0 +1,98 @@
+<div class="d-flex justify-content-center mb-4">
+  <img
+    class="img-width"
+    src="../../../assets/img/ford.png"
+    alt="Logo da Ford"
+  />
+</div>
+
+<h4 class="text-center text-color">Faça seu registro!</h4>
+
+<form class="form mt-4 width" (ngSubmit)="register()" #registerForm="ngForm">
+  <div class="form-group mb-4">
+    <input
+      class="form-control"
+      placeholder="Usuário"
+      [(ngModel)]="user_name"
+      name="user_name"
+      #campoUsuario="ngModel"
+      required
+      minlength="5"
+    />
+    <app-mensagem
+      *ngIf="campoUsuario.invalid && campoUsuario.touched"
+      mensagem="Campo usuário obrigatório"
+    ></app-mensagem>
+    <app-mensagem
+      *ngIf="campoUsuario.value.length < 5 && campoUsuario.touched"
+      mensagem="Usuário deve conter pelo menos 5 caracteres"
+    ></app-mensagem>
+  </div>
+
+  <div class="form-group mb-4">
+    <input
+      class="form-control"
+      placeholder="E-mail"
+      type="email"
+      [(ngModel)]="user_email"
+      name="user_email"
+      #campoEmail="ngModel"
+      required
+    />
+    <app-mensagem
+      *ngIf="campoEmail.invalid && campoEmail.touched"
+      mensagem="Campo email obrigatório"
+    ></app-mensagem>
+  </div>
+
+  <div class="form-group mb-4">
+    <input
+      class="form-control"
+      placeholder="Nome completo"
+      [(ngModel)]="user_full_name"
+      name="user_full_name"
+      #campoNome="ngModel"
+      required
+    />
+    <app-mensagem
+      *ngIf="campoNome.invalid && campoNome.touched"
+      mensagem="Campo nome completo obrigatório"
+    ></app-mensagem>
+  </div>
+
+  <div class="form-group mb-4">
+    <input
+      class="form-control"
+      placeholder="Senha"
+      type="password"
+      [(ngModel)]="user_password"
+      name="user_password"
+      #campoSenha="ngModel"
+      required
+    />
+    <app-mensagem
+      *ngIf="campoSenha.invalid && campoSenha.touched"
+      mensagem="Campo senha obrigatório"
+    ></app-mensagem>
+  </div>
+
+  <div class="form-group mb-4">
+    <input
+      class="form-control"
+      placeholder="Confirme a senha"
+      type="password"
+      [(ngModel)]="user_password_confirm"
+      name="user_password_confirm"
+      #campoConfirmaSenha="ngModel"
+      required
+    />
+    <app-mensagem
+      *ngIf="campoConfirmaSenha.value != campoSenha.value && campoConfirmaSenha.touched"
+      mensagem="Senhas não coincidem"
+    ></app-mensagem>
+  </div>
+
+  <div class="mb-4">Já possui cadastro? <a [routerLink]="['']">Faça login</a></div>
+
+  <button type="submit" class="btn btn-secondary width" [disabled]="registerForm.invalid">Registrar</button>
+</form>
