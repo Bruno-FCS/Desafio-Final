@@ -1,4 +1,7 @@
 const connection = require("../infra/connection");
+const jwt = require("jsonwebtoken");
+
+const SECRET = "brunofernandes";
 
 module.exports = (app) => {
   app.get("/users", (req, res) => {
@@ -73,7 +76,24 @@ module.exports = (app) => {
           if (result.length == 0) {
             res.status(400).json("Username or password invalid");
           } else {
-            res.status(200).json(result[0]);
+            const token = jwt.sign(
+              {
+                user_id: result[0].user_id,
+                user_name: result[0].user_name,
+                user_email: result[0].user_email,
+              },
+              SECRET,
+              { expiresIn: 86400 }
+            );
+            res.set("x-access-token", token);
+            res.setHeader("Access-Control-Expose-Headers", "x-access-token");
+            res
+              .status(200)
+              .json({
+                user_id: result[0].user_id,
+                user_name: result[0].user_name,
+                user_email: result[0].user_email,
+              });
           }
         }
       }

@@ -15,7 +15,10 @@ export class AutenticacaoService {
     private usuarioService: UsuarioService
   ) {}
 
-  autenticar(user_name: string, user_password: string): Observable<HttpResponse<any>> {
+  autenticar(
+    user_name: string,
+    user_password: string
+  ): Observable<HttpResponse<any>> {
     return this.httpClient
       .post(
         `${API}/users/login`,
@@ -28,16 +31,9 @@ export class AutenticacaoService {
       .pipe(
         tap((response) => {
           const autenticacaoToken =
-            response.headers.get('x-access-token') ?? '';
+            response.headers.get("x-access-token") ?? '';
           this.usuarioService.salvarToken(autenticacaoToken);
         })
       );
   }
-
-  // autenticar(user_name: string, user_password: string) {
-  //   return this.httpClient.post(`${API}/users/login`, {
-  //     user_name: user_name,
-  //     user_password: user_password,
-  //   });
-  // }
 }
