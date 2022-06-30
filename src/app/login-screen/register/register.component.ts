@@ -28,8 +28,9 @@ export class RegisterComponent implements OnInit {
       user_password: [null, [Validators.required, Validators.minLength(6)]],
       user_password_confirm: [
         null,
-        [FormValidations.equalsTo('user_password')],
+        [Validators.required, FormValidations.equalsTo('user_password')],
       ],
+      checkbox: [false, Validators.requiredTrue]
     });
   }
 

@@ -1,48 +1,61 @@
-<div class="d-flex justify-content-center mb-3">
-  <img
-    class="img-width"
-    src="../../../assets/img/ford.png"
-    alt="Logo da Ford"
-  />
+<div class="form-container">
+  <div class="d-flex justify-content-center mb-2">
+    <img
+      class="img-width"
+      src="../../../assets/img/ford.png"
+      alt="Logo da Ford"
+    />
+  </div>
+
+  <h4 class="text-center text-color">Bem vindo!</h4>
+
+  <app-mensagem
+    *ngIf="error == 1"
+    mensagem="Usuário ou senha inválido"
+  ></app-mensagem>
+
+  <form class="form mt-3 width" (ngSubmit)="logar()" #loginForm="ngForm">
+    <div class="form-group mb-3">
+      <input
+        class="form-control"
+        placeholder="Insira seu usuário"
+        [(ngModel)]="user_name"
+        name="user_name"
+        #campoUsuario="ngModel"
+        required
+      />
+      <app-mensagem
+        *ngIf="campoUsuario.invalid && campoUsuario.touched"
+        mensagem="Campo usuário obrigatório"
+      ></app-mensagem>
+    </div>
+
+    <div class="form-group mb-2">
+      <input
+        class="form-control"
+        placeholder="Insira sua senha"
+        type="password"
+        [(ngModel)]="user_password"
+        name="user_password"
+        #campoSenha="ngModel"
+        required
+      />
+      <app-mensagem
+        *ngIf="campoSenha.invalid && campoSenha.touched"
+        mensagem="Campo senha obrigatório"
+      ></app-mensagem>
+    </div>
+
+    <div class="mb-2">
+      Ainda não possui cadastro? <a [routerLink]="['register']">Registre-se</a>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-secondary width"
+      [disabled]="loginForm.invalid"
+    >
+      Entrar
+    </button>
+  </form>
 </div>
-
-<h4 class="text-center text-color">Bem vindo!</h4>
-
-<app-mensagem *ngIf="error == 1" mensagem="Usuário ou senha inválido"></app-mensagem>
-
-<form class="form mt-3 width" (ngSubmit)="logar()" #loginForm="ngForm">
-  <div class="form-group mb-3">
-    <input
-      class="form-control"
-      placeholder="Insira seu usuário"
-      [(ngModel)]="user_name"
-      name="user_name"
-      #campoUsuario="ngModel"
-      required
-    />
-    <app-mensagem
-      *ngIf="campoUsuario.invalid && campoUsuario.touched"
-      mensagem="Campo usuário obrigatório"
-    ></app-mensagem>
-  </div>
-
-  <div class="form-group mb-3">
-    <input
-      class="form-control"
-      placeholder="Insira sua senha"
-      type="password"
-      [(ngModel)]="user_password"
-      name="user_password"
-      #campoSenha="ngModel"
-      required
-    />
-    <app-mensagem
-      *ngIf="campoSenha.invalid && campoSenha.touched"
-      mensagem="Campo senha obrigatório"
-    ></app-mensagem>
-  </div>
-
-  <div class="mb-3">Ainda não possui cadastro? <a [routerLink]="['register']">Registre-se</a></div>
-
-  <button type="submit" class="btn btn-secondary width" [disabled]="loginForm.invalid">Entrar</button>
-</form>

@@ -1,121 +1,143 @@
-<div class="d-flex justify-content-center mb-3">
-  <img
-    class="img-width"
-    src="../../../assets/img/ford.png"
-    alt="Logo da Ford"
-  />
-</div>
-
-<h4 class="text-center text-color">Faça seu registro!</h4>
-
-<app-mensagem *ngIf="error == 1" mensagem="Usuário ou e-mail já cadastrados"></app-mensagem>
-
-<form
-  class="form mt-3 width"
-  [formGroup]="registerForm"
-  *ngIf="registerForm"
-  (ngSubmit)="register()"
->
-  <div class="form-group mb-3">
-    <input
-      class="form-control"
-      placeholder="Usuário"
-      formControlName="user_name"
+<div class="form-container">
+  <div class="d-flex justify-content-center mb-2">
+    <img
+      class="img-width"
+      src="../../../assets/img/ford.png"
+      alt="Logo da Ford"
     />
-    <app-mensagem
-      *ngIf="
+  </div>
+
+  <h4 class="text-center text-color">Faça seu registro!</h4>
+
+  <app-mensagem
+    *ngIf="error == 1"
+    mensagem="Usuário ou e-mail já cadastrados"
+  ></app-mensagem>
+
+  <form
+    class="form mt-3 width"
+    [formGroup]="registerForm"
+    *ngIf="registerForm"
+    (ngSubmit)="register()"
+  >
+    <div class="form-group mb-3">
+      <input
+        class="form-control"
+        placeholder="Usuário"
+        formControlName="user_name"
+      />
+      <app-mensagem
+        *ngIf="
         registerForm.get('user_name')?.errors?.['required'] &&
         registerForm.get('user_name')?.touched
       "
-      mensagem="Campo usuário obrigatório"
-    ></app-mensagem>
-    <app-mensagem
-      *ngIf="
+        mensagem="Campo usuário obrigatório"
+      ></app-mensagem>
+      <app-mensagem
+        *ngIf="
         registerForm.get('user_name')?.errors?.['minlength'] &&
         registerForm.get('user_name')?.touched
       "
-      mensagem="Campo usuário deve ter ao menos 5 caracteres"
-    ></app-mensagem>
-  </div>
+        mensagem="Campo usuário deve ter ao menos 5 caracteres"
+      ></app-mensagem>
+    </div>
 
-  <div class="form-group mb-3">
-    <input
-      class="form-control"
-      placeholder="E-mail"
-      formControlName="user_email"
-    />
-    <app-mensagem
-      *ngIf="
+    <div class="form-group mb-3">
+      <input
+        class="form-control"
+        placeholder="E-mail"
+        formControlName="user_email"
+      />
+      <app-mensagem
+        *ngIf="
         registerForm.get('user_email')?.errors?.['required'] &&
         registerForm.get('user_email')?.touched
       "
-      mensagem="Campo e-mail obrigatório"
-    ></app-mensagem>
-    <app-mensagem
-      *ngIf="
+        mensagem="Campo e-mail obrigatório"
+      ></app-mensagem>
+      <app-mensagem
+        *ngIf="
         registerForm.get('user_email')?.errors?.['email'] &&
         registerForm.get('user_email')?.touched
       "
-      mensagem="E-mail inválido"
-    ></app-mensagem>
-  </div>
+        mensagem="E-mail inválido"
+      ></app-mensagem>
+    </div>
 
-  <div class="form-group mb-3">
-    <input
-      class="form-control"
-      placeholder="Nome completo"
-      formControlName="user_full_name"
-    />
-    <app-mensagem
-      *ngIf="
-        registerForm.get('user_full_name')?.errors &&
-        registerForm.get('user_full_name')?.touched
-      "
-      mensagem="Campo nome completo obrigatório"
-    ></app-mensagem>
-  </div>
+    <div class="form-group mb-3">
+      <input
+        class="form-control"
+        placeholder="Nome completo"
+        formControlName="user_full_name"
+      />
+      <app-mensagem
+        *ngIf="
+          registerForm.get('user_full_name')?.errors &&
+          registerForm.get('user_full_name')?.touched
+        "
+        mensagem="Campo nome completo obrigatório"
+      ></app-mensagem>
+    </div>
 
-  <div class="form-group mb-3">
-    <input
-      class="form-control"
-      placeholder="Senha"
-      type="password"
-      formControlName="user_password"
-    />
-    <app-mensagem
-      *ngIf="
+    <div class="form-group mb-3">
+      <input
+        class="form-control"
+        placeholder="Senha"
+        type="password"
+        formControlName="user_password"
+      />
+      <app-mensagem
+        *ngIf="
         registerForm.get('user_password')?.errors?.['required'] &&
         registerForm.get('user_password')?.touched
       "
-      mensagem="Campo senha obrigatório"
-    ></app-mensagem>
-    <app-mensagem
-      *ngIf="
+        mensagem="Campo senha obrigatório"
+      ></app-mensagem>
+      <app-mensagem
+        *ngIf="
         registerForm.get('user_password')?.errors?.['minlength'] &&
         registerForm.get('user_password')?.touched
       "
-      mensagem="Campo senha deve ter ao menos 6 caracteres"
-    ></app-mensagem>
-  </div>
+        mensagem="Campo senha deve ter ao menos 6 caracteres"
+      ></app-mensagem>
+    </div>
 
-  <div class="form-group mb-3">
-    <input
-      class="form-control"
-      placeholder="Confirmar senha"
-      type="password"
-      formControlName="user_password_confirm"
-    />
-    <app-mensagem
-      *ngIf="
+    <div class="form-group mb-2">
+      <input
+        class="form-control"
+        placeholder="Confirmar senha"
+        type="password"
+        formControlName="user_password_confirm"
+      />
+      <app-mensagem
+        *ngIf="
         registerForm.get('user_password_confirm')?.errors?.['equalsTo']
       "
-      mensagem="Senhas não coincidem"
-    ></app-mensagem>
-  </div>
+        mensagem="Senhas não coincidem"
+      ></app-mensagem>
+    </div>
 
-  <div class="mb-3">
-    Já possui cadastro? <a [routerLink]="['']">Faça login</a>
-  </div>
+    <div class="form-group mb-2">
+      <input
+        class="form-control"
+        type="checkbox"
+        class="checkbox"
+        formControlName="checkbox"
+      />
+      <span>
+        Li e concordo com os
+        <a href="https://www.ford.com.br/politica-de-privacidade/"
+          >termos e condições</a
+        >.</span
+      >
+    </div>
 
-  <button class="btn btn-secondary width" [disabled]="registerForm.invalid">Registrar</button>
-</form>
+    <div class="mb-2">
+      Já possui cadastro? <a [routerLink]="['']">Faça login</a>
+    </div>
+
+    <button class="btn btn-secondary width" [disabled]="registerForm.invalid">
+      Registrar
+    </button>
+  </form>
+</div>
