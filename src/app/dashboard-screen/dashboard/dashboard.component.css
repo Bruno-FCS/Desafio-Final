@@ -46,3 +46,15 @@
 .max-height{
   max-height: 280px;
 }
+
+.percentage{
+  text-align: center;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.title{
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+}
