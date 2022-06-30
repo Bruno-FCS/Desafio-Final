@@ -6,7 +6,7 @@ module.exports = (app) => {
       if (error) {
         res.status(400).json(error);
       } else {
-        res.status(200).json(result);
+        res.status(200).json({vehicles: result});
       }
     });
   });

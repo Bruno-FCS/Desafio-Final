@@ -16,11 +16,11 @@ export class VeiculoService {
 
   buscaVeiculos() {
     return this.httpClient
-      .get<VeiculosAPI>(`${API}/vehicle`)
+      .get<VeiculosAPI>(`${API}/vehicles`)
       .pipe(pluck('vehicles'));
   }
 
-  buscaVeiculoId(id: string) {
-    return this.httpClient.get<Veiculo>(`${API}/vehicle/${id}`);
+  buscaVeiculoId(vehicle_id: string) {
+    return this.httpClient.get<Veiculo>(`${API}/vehicles/${vehicle_id}`);
   }
 }
