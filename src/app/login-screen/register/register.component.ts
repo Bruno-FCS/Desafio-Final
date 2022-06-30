@@ -41,7 +41,6 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(['']);
         },
         (error) => {
-          console.log(error.status)
           if(error.status == 400){
             this.error = 1
           }

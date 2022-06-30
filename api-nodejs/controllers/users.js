@@ -81,6 +81,7 @@ module.exports = (app) => {
                 user_id: result[0].user_id,
                 user_name: result[0].user_name,
                 user_email: result[0].user_email,
+                user_full_name: result[0].user_full_name
               },
               SECRET,
               { expiresIn: 86400 }
@@ -93,6 +94,7 @@ module.exports = (app) => {
                 user_id: result[0].user_id,
                 user_name: result[0].user_name,
                 user_email: result[0].user_email,
+                user_full_name: result[0].user_full_name
               });
           }
         }

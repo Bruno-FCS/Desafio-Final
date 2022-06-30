@@ -31,7 +31,13 @@
     <div class="card card-dimension">
       <div class="card-header">Sistema de dados FORD</div>
       <div class="card-body">
-        <h5 class="card-title text-color">Seja bem vindo(a)!</h5>
+        <h5 class="card-title text-color">
+          Seja bem vindo(a),
+          <span *ngIf="usuario$ | async as usuario">{{
+            usuario.user_full_name
+          }}</span
+          >!
+        </h5>
       </div>
     </div>
   </div>

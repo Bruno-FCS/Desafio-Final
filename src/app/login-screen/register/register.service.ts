@@ -12,7 +12,6 @@ export class RegisterService {
   constructor(private httpClient: HttpClient) {}
 
   cadastrar(usuario: Usuario) {
-    console.log(usuario)
     return this.httpClient.post(`${API}/users`, usuario);
   }
 }
