@@ -61,7 +61,7 @@ export class DashboardComponent implements OnInit {
         google.charts.setOnLoadCallback(
           this.exibirChart('chart_2', this.updatedDados)
         );
-      }, 100);
+      }, 400);
     }
   }
 
