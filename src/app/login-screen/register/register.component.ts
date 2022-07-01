@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
       this.registerService.cadastrar(user).subscribe(
         () => {
           this.registerService.setarCadastro();
-          this.router.navigate(['/register-success']);
+          this.router.navigate(['login/register-success']);
         },
         (error) => {
           if(error.status == 400){

@@ -12,7 +12,7 @@ const routes: Routes = [
     component: LoginScreenComponent,
     children: [
       {
-        path: 'login',
+        path: '',
         component: LoginComponent,
       },
       {
