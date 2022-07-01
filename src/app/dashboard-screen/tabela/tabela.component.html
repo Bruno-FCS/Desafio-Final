@@ -25,28 +25,28 @@
           <div *ngIf="inputValue.length == 20; else elseblock">
             <td>
               <div class="width-2" *ngFor="let veiculoData of veiculosData">
-                <span class="font-weight">{{ veiculoData.odometer }} Km</span>
+                <span class="font-weight">{{ veiculoData.vehicledata_odometer }} Km</span>
               </div>
             </td>
 
             <td>
               <div class="width-2" *ngFor="let veiculoData of veiculosData">
-                <span class="font-weight">{{ veiculoData.fuelLevel }}%</span>
+                <span class="font-weight">{{ veiculoData.vehicledata_fuel_level }}%</span>
               </div>
             </td>
             <td>
               <div class="width-2" *ngFor="let veiculoData of veiculosData">
-                <span class="font-weight">{{ veiculoData.status }}</span>
+                <span class="font-weight">{{ veiculoData.vehicledata_status }}</span>
               </div>
             </td>
             <td>
               <div class="width-2" *ngFor="let veiculoData of veiculosData">
-                <span class="font-weight">{{ veiculoData.lat }}</span>
+                <span class="font-weight">{{ veiculoData.vehicledata_lat }}</span>
               </div>
             </td>
             <td>
               <div class="width-2" *ngFor="let veiculoData of veiculosData">
-                <span class="font-weight">{{ veiculoData.long }}</span>
+                <span class="font-weight">{{ veiculoData.vehicledata_long }}</span>
               </div>
             </td>
           </div>

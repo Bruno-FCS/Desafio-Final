@@ -15,11 +15,9 @@ export class VeiculoDataService {
   ) {}
 
   buscaVeiculosData(valor?: string) {
-    const params = valor ? new HttpParams().append('valor', valor) : undefined;
+    // const params = valor ? new HttpParams().append('vehicledata_vin', valor) : undefined;
     return this.httpClient
-      .get<VeiculosDataAPI>(`${API}/vehicleData`, {
-        params,
-      })
+      .get<VeiculosDataAPI>(`${API}/vehiclesdata/${valor}`)
       .pipe(pluck('vehicleData'));
   }
 }

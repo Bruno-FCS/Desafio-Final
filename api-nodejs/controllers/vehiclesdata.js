@@ -6,9 +6,22 @@ module.exports = (app) => {
       if (error) {
         res.status(400).json(error);
       } else {
-        res.status(200).json(result);
+        res.status(200).json({vehicleData: result});
       }
     });
+  });
+
+  app.get("/vehiclesdata/:vehicledata_vin", (req, res) => {
+    connection.query(
+      `SELECT * FROM Vehicle_Data WHERE vehicledata_vin = "${req.params.vehicledata_vin}"`,
+      (error, result) => {
+        if (error) {
+          res.status(400).json(error);
+        } else {
+          res.status(200).json({vehicleData: result});
+        }
+      }
+    );
   });
 
   app.get("/vehiclesdata/:vehicledata_id", (req, res) => {
