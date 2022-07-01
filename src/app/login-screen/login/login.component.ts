@@ -1,3 +1,4 @@
+import { RegisterService } from './../register/register.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AutenticacaoService } from 'src/app/autenticacao/autenticacao.service';
@@ -14,19 +15,24 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private autenticacaoService: AutenticacaoService,
+    private registerService: RegisterService,
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.registerService.limparCadastro();
+  }
 
   logar() {
-    this.autenticacaoService.autenticar(this.user_name, this.user_password).subscribe(
-      () => {
-        this.router.navigate(['home']);
-      },
-      () => {
-        this.error = 1;
-      }
-    );
+    this.autenticacaoService
+      .autenticar(this.user_name, this.user_password)
+      .subscribe(
+        () => {
+          this.router.navigate(['home']);
+        },
+        () => {
+          this.error = 1;
+        }
+      );
   }
 }

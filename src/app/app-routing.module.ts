@@ -6,7 +6,7 @@ import { AutenticacaoGuard } from './autenticacao/autenticacao.guard';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   {
-    path: 'login',
+    path: '',
     loadChildren: () =>
       import('./login-screen/login-screen.module').then(
         (m) => m.LoginScreenModule

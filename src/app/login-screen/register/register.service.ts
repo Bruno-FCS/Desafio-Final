@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 const API = environment.apiURL;
+const KEY = 'success';
 
 @Injectable({
   providedIn: 'root',
@@ -13,5 +14,17 @@ export class RegisterService {
 
   cadastrar(usuario: Usuario) {
     return this.httpClient.post(`${API}/users`, usuario);
+  }
+
+  setarCadastro() {
+    localStorage.setItem(KEY, 'true');
+  }
+
+  retornarCadastro() {
+    return localStorage.getItem(KEY);
+  }
+
+  limparCadastro() {
+    localStorage.removeItem(KEY);
   }
 }

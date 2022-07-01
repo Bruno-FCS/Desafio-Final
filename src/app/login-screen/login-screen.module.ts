@@ -8,9 +8,10 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MensagemModule } from '../componentes/mensagem/mensagem.module';
 import { RegisterComponent } from './register/register.component';
+import { SuccessComponent } from './success/success.component';
 
 @NgModule({
-  declarations: [LoginScreenComponent, LoginComponent, RegisterComponent],
+  declarations: [LoginScreenComponent, LoginComponent, RegisterComponent, SuccessComponent],
   imports: [
     CommonModule,
     LoginScreenRoutingModule,

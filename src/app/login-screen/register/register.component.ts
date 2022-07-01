@@ -21,6 +21,8 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.registerService.limparCadastro();
+
     this.registerForm = this.formBuilder.group({
       user_name: [null, [Validators.required, Validators.minLength(5)]],
       user_email: [null, [Validators.required, Validators.email]],
@@ -39,7 +41,8 @@ export class RegisterComponent implements OnInit {
       const user = this.registerForm.getRawValue() as Usuario;
       this.registerService.cadastrar(user).subscribe(
         () => {
-          this.router.navigate(['']);
+          this.registerService.setarCadastro();
+          this.router.navigate(['/register-success']);
         },
         (error) => {
           if(error.status == 400){
