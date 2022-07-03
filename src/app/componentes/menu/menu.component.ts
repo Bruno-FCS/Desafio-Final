@@ -17,12 +17,4 @@ export class MenuComponent implements OnInit {
   abrirMenu(){
     this.mostraMenu = !this.mostraMenu
   }
-
-  paraHome(){
-    this.router.navigate(['home'])
-  }
-
-  paraDashboard(){
-    this.router.navigate(['dashboard'])
-  }
 }

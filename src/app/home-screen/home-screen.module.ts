@@ -6,16 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { MenuModule } from '../componentes/menu/menu.module';
 import { SettingsModule } from '../componentes/settings/settings.module';
 
-
 @NgModule({
-  declarations: [
-    HomeComponent
-  ],
-  imports: [
-    CommonModule,
-    HomeScreenRoutingModule,
-    MenuModule,
-    SettingsModule
-  ]
+  declarations: [HomeComponent],
+  imports: [CommonModule, HomeScreenRoutingModule, MenuModule, SettingsModule],
 })
-export class HomeScreenModule { }
+export class HomeScreenModule {}

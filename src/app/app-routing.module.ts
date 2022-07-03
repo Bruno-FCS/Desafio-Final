@@ -29,6 +29,14 @@ const routes: Routes = [
       ),
     canLoad: [AutenticacaoGuard],
   },
+  {
+    path: 'profile',
+    loadChildren: () =>
+      import('./profile-screen/profile-screen.module').then(
+        (m) => m.ProfileScreenModule
+      ),
+    canLoad: [AutenticacaoGuard],
+  },
 ];
 
 @NgModule({

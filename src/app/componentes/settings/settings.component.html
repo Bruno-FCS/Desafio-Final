@@ -11,6 +11,12 @@
       </li>
       <li
         class="list-group-item list-group-item-action menu-item"
+        [routerLink]="['/profile']"
+      >
+        Meu perfil
+      </li>
+      <li
+        class="list-group-item list-group-item-action menu-item"
         (click)="logout()"
       >
         Logout
