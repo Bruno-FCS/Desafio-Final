@@ -34,9 +34,14 @@
 
 .input-field{
   display: inline-block;
-  width: 150px;
+  width: 200px;
 }
 
 .input-container{
   width: 400px;
+}
+
+.img-settings{
+  margin: auto;
+  width: 130px;
 }
