@@ -45,3 +45,8 @@
   margin: auto;
   width: 130px;
 }
+
+nav{
+  background-color: rgb(220, 220, 220);
+  border-bottom: 2px rgb(190, 190, 190) solid;
+}
