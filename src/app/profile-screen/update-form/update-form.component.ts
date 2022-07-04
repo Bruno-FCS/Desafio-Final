@@ -1,6 +1,6 @@
 import { ProfileService } from './../profile/profile.service';
 import { Usuario } from './../../autenticacao/usuario/usuario';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from 'src/app/autenticacao/usuario/usuario.service';
 
@@ -13,7 +13,10 @@ export class UpdateFormComponent implements OnInit {
   usuario$ = this.usuarioService.retornarUsuario();
 
   updateForm!: FormGroup;
-  error = 0;
+  error = false;
+
+  @Output() changedEvent = new EventEmitter<boolean>();
+  changed = false;
 
   user_id!: any;
   user_name!: string;
@@ -40,11 +43,12 @@ export class UpdateFormComponent implements OnInit {
       const user = this.updateForm.getRawValue() as Usuario;
       this.profileService.atualizarDados(user).subscribe(
         () => {
-          console.log('Dados alterados com sucesso!');
+          this.changed = true;
+          this.changedEvent.emit(this.changed);
         },
         (error) => {
           if (error.status == 400) {
-            this.error = 1;
+            this.error = true;
           }
         }
       );

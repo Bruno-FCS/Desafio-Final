@@ -11,7 +11,7 @@ import { AutenticacaoService } from 'src/app/autenticacao/autenticacao.service';
 export class LoginComponent implements OnInit {
   user_name = '';
   user_password = '';
-  error = 0;
+  error = false;
 
   constructor(
     private autenticacaoService: AutenticacaoService,
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['home']);
         },
         () => {
-          this.error = 1;
+          this.error = true;
         }
       );
   }

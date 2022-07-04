@@ -1,16 +1,16 @@
-*{
+* {
   box-sizing: border-box;
 }
 
-.full-height{
+.full-height {
   height: 90vh;
 }
 
-.text-color{
+.text-color {
   color: rgb(40, 97, 159);
 }
 
-.left-icon{
+.left-icon {
   border: solid 2px black;
   border-radius: 25%;
   margin-top: 20px;
@@ -21,7 +21,7 @@
   padding: 10px;
 }
 
-.right-icon{
+.right-icon {
   border: solid 2px black;
   border-radius: 25%;
   margin-top: 20px;
@@ -32,12 +32,43 @@
   padding: 10px;
 }
 
-.img-settings{
+.img-settings {
   margin: auto;
   width: 130px;
 }
 
-nav{
+nav {
   background-color: rgb(220, 220, 220);
   border-bottom: 2px rgb(190, 190, 190) solid;
+}
+
+.btn-close-config {
+  font-weight: 800;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.font-size {
+  font-size: 20px;
+}
+
+.text-align {
+  text-align: end;
+}
+
+.fade-out {
+  animation: fadeOut ease 1s;
+  -webkit-animation: fadeOut ease 1s;
+  -moz-animation: fadeOut ease 1s;
+  -o-animation: fadeOut ease 1s;
+  -ms-animation: fadeOut ease 1s;
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
 }

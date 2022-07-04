@@ -113,17 +113,17 @@ module.exports = (app) => {
         if (result.length == 0) {
           connection.query(
             "UPDATE User SET ? WHERE user_id = ?",
-            [req.body, user_id],
+            [user, user_id],
             (error) => {
               if (error) {
                 res.status(400).json(error);
               } else {
                 const token = jwt.sign(
                   {
-                    user_id: result[0].user_id,
-                    user_name: result[0].user_name,
-                    user_email: result[0].user_email,
-                    user_full_name: result[0].user_full_name,
+                    user_id: user.user_id,
+                    user_name: user.user_name,
+                    user_email: user.user_email,
+                    user_full_name: user.user_full_name,
                   },
                   SECRET,
                   { expiresIn: 86400 }
@@ -134,10 +134,10 @@ module.exports = (app) => {
                   "x-access-token"
                 );
                 res.status(200).json({
-                  user_id: result[0].user_id,
-                  user_name: result[0].user_name,
-                  user_email: result[0].user_email,
-                  user_full_name: result[0].user_full_name,
+                  user_id: user.user_id,
+                  user_name: user.user_name,
+                  user_email: user.user_email,
+                  user_full_name: user.user_full_name,
                 });
               }
             }
@@ -146,7 +146,7 @@ module.exports = (app) => {
           if (result[0].user_id == user_id) {
             connection.query(
               "UPDATE User SET ? WHERE user_id = ?",
-              [req.body, user_id],
+              [user, user_id],
               (error) => {
                 if (error) {
                   res.status(400).json(error);

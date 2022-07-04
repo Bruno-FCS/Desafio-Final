@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
-  error = 0;
+  error = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
         null,
         [Validators.required, FormValidations.equalsTo('user_password')],
       ],
-      checkbox: [false, Validators.requiredTrue]
+      checkbox: [false, Validators.requiredTrue],
     });
   }
 
@@ -45,8 +45,8 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(['login/register-success']);
         },
         (error) => {
-          if(error.status == 400){
-            this.error = 1
+          if (error.status == 400) {
+            this.error = true;
           }
         }
       );
