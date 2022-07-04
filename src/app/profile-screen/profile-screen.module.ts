@@ -7,9 +7,11 @@ import { MenuModule } from '../componentes/menu/menu.module';
 import { SettingsModule } from '../componentes/settings/settings.module';
 import { MensagemModule } from '../componentes/mensagem/mensagem.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UpdateFormComponent } from './update-form/update-form.component';
+import { PasswordFormComponent } from './password-form/password-form.component';
 
 @NgModule({
-  declarations: [ProfileComponent],
+  declarations: [ProfileComponent, UpdateFormComponent, PasswordFormComponent],
   imports: [
     CommonModule,
     ProfileScreenRoutingModule,
