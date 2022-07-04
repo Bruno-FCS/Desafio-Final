@@ -15,8 +15,8 @@ export class UpdateFormComponent implements OnInit {
   updateForm!: FormGroup;
   error = false;
 
-  @Output() changedEvent = new EventEmitter<boolean>();
-  changed = false;
+  @Output() updatedEvent = new EventEmitter<boolean>();
+  updated = false;
 
   user_id!: any;
   user_name!: string;
@@ -43,8 +43,9 @@ export class UpdateFormComponent implements OnInit {
       const user = this.updateForm.getRawValue() as Usuario;
       this.profileService.atualizarDados(user).subscribe(
         () => {
-          this.changed = true;
-          this.changedEvent.emit(this.changed);
+          this.updated = true;
+          this.updatedEvent.emit(this.updated);
+          this.error = false;
         },
         (error) => {
           if (error.status == 400) {

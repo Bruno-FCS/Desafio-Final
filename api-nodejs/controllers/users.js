@@ -185,6 +185,35 @@ module.exports = (app) => {
     );
   });
 
+  app.put("/users/change-password/:user_id", (req, res) => {
+    const user_former_password = req.body.user_former_password;
+    const user_password = req.body.user_password;
+    const user_id = parseInt(req.params.user_id);
+    connection.query(
+      "SELECT * FROM User WHERE user_id = ? AND user_password = ?",
+      [user_id, user_former_password],
+      (error, result) => {
+        if (error) {
+          res.status(400).json(error);
+        } else if (result.length <= 0) {
+          res.status(400).json("Invalid former password");
+        } else {
+          connection.query(
+            "UPDATE User SET user_password = ? WHERE user_id = ?",
+            [user_password, user_id],
+            (error) => {
+              if (error) {
+                res.status(400).json(error);
+              } else {
+                res.status(204).end();
+              }
+            }
+          );
+        }
+      }
+    );
+  });
+
   app.delete("/users/:user_id", (req, res) => {
     const user_id = parseInt(req.params.user_id);
     connection.query(

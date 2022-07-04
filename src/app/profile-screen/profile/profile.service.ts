@@ -24,4 +24,9 @@ export class ProfileService {
         })
       );
   }
+
+  alterarSenha(usuario: Usuario){
+    return this.httpClient
+      .put(`${API}/users/change-password/${usuario.user_id}`, usuario)
+  }
 }

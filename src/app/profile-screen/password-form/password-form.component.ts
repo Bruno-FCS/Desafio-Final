@@ -1,8 +1,9 @@
 import { Usuario } from './../../autenticacao/usuario/usuario';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from 'src/app/autenticacao/usuario/usuario.service';
 import { FormValidations } from 'src/app/login-screen/register/form.validator';
+import { ProfileService } from '../profile/profile.service';
 
 @Component({
   selector: 'app-password-form',
@@ -13,14 +14,19 @@ export class PasswordFormComponent implements OnInit {
   usuario$ = this.usuarioService.retornarUsuario();
 
   passwordForm!: FormGroup;
-  error = 0;
+  error = false;
 
+  @Output() changedEvent = new EventEmitter<boolean>();
+  changed = false;
+
+  user_id!: any;
   user_former_password!: string;
   user_password!: string;
   user_password_confirm!: string;
 
   constructor(
     private usuarioService: UsuarioService,
+    private profileService: ProfileService,
     private formBuilder: FormBuilder
   ) {}
 
@@ -28,7 +34,7 @@ export class PasswordFormComponent implements OnInit {
     this.passwordForm = this.formBuilder.group({
       user_id: [null],
       user_former_password: [
-        null,
+        '',
         [Validators.required, Validators.minLength(6)],
       ],
       user_password: [null, [Validators.required, Validators.minLength(6)]],
@@ -42,7 +48,25 @@ export class PasswordFormComponent implements OnInit {
   changePassword() {
     if (this.passwordForm.valid) {
       const user = this.passwordForm.getRawValue() as Usuario;
-      console.log(user);
+      this.profileService.alterarSenha(user).subscribe(
+        () => {
+          this.changed = true;
+          this.changedEvent.emit(this.changed);
+          this.resetFields();
+          this.error = false;
+        },
+        (error) => {
+          if (error.status == 400) {
+            this.error = true;
+          }
+        }
+      );
     }
+  }
+
+  resetFields() {
+    this.passwordForm.get('user_former_password')?.reset();
+    this.passwordForm.get('user_password')?.reset();
+    this.passwordForm.get('user_password_confirm')?.reset();
   }
 }
