@@ -15,12 +15,12 @@
   ></app-mensagem>
 
   <form
-    class="form mt-3 width"
+    class="form mt-3 form-width"
     [formGroup]="registerForm"
     *ngIf="registerForm"
     (ngSubmit)="register()"
   >
-    <div class="form-group mb-3">
+    <div class="form-group mb-3 field-width m-auto">
       <input
         class="form-control"
         placeholder="Usuário"
@@ -42,7 +42,7 @@
       ></app-mensagem>
     </div>
 
-    <div class="form-group mb-3">
+    <div class="form-group mb-3 field-width m-auto">
       <input
         class="form-control"
         placeholder="E-mail"
@@ -64,7 +64,7 @@
       ></app-mensagem>
     </div>
 
-    <div class="form-group mb-3">
+    <div class="form-group mb-3 field-width m-auto">
       <input
         class="form-control"
         placeholder="Nome completo"
@@ -79,7 +79,7 @@
       ></app-mensagem>
     </div>
 
-    <div class="form-group mb-3">
+    <div class="form-group mb-3 field-width m-auto">
       <input
         class="form-control"
         placeholder="Senha"
@@ -102,7 +102,7 @@
       ></app-mensagem>
     </div>
 
-    <div class="form-group mb-2">
+    <div class="form-group mb-2 field-width m-auto">
       <input
         class="form-control"
         placeholder="Confirmar senha"
@@ -117,7 +117,7 @@
       ></app-mensagem>
     </div>
 
-    <div class="form-group mb-2">
+    <div class="form-group mb-2 field-width m-auto">
       <input
         class="form-control"
         type="checkbox"
@@ -132,11 +132,15 @@
       >
     </div>
 
-    <div class="mb-2">
+    <div class="mb-2 margin">
       Já possui cadastro? <a [routerLink]="['']">Faça login</a>
     </div>
 
-    <button class="btn btn-secondary width" [disabled]="registerForm.invalid">
+    <button
+      type="submit"
+      class="btn btn-secondary field-width margin"
+      [disabled]="registerForm.invalid"
+    >
       Registrar
     </button>
   </form>

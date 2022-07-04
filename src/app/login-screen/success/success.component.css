@@ -1,5 +1,5 @@
 .width{
-  width: 380px;
+  width: 361px;
 }
 
 .img-width{
@@ -8,4 +8,8 @@
 
 .text-color{
   color: rgb(40, 97, 159);
+}
+
+.margin{
+  margin-left: 9.5px;
 }

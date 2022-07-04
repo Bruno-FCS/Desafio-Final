@@ -7,8 +7,12 @@
   overflow-y: auto;
 }
 
-.width{
+.form-width{
   width: 380px;
+}
+
+.field-width{
+  width: 95%;
 }
 
 .img-width{
@@ -21,4 +25,8 @@
 
 a{
   text-decoration: none;
+}
+
+.margin{
+  margin-left: 9.5px;
 }

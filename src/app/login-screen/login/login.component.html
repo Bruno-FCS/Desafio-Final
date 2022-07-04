@@ -14,8 +14,8 @@
     mensagem="Usuário ou senha inválido"
   ></app-mensagem>
 
-  <form class="form mt-3 width" (ngSubmit)="logar()" #loginForm="ngForm">
-    <div class="form-group mb-3">
+  <form class="form mt-3 form-width" (ngSubmit)="logar()" #loginForm="ngForm">
+    <div class="form-group mb-3 field-width m-auto">
       <input
         class="form-control"
         placeholder="Insira seu usuário"
@@ -30,7 +30,7 @@
       ></app-mensagem>
     </div>
 
-    <div class="form-group mb-2">
+    <div class="form-group mb-2 field-width m-auto">
       <input
         class="form-control"
         placeholder="Insira sua senha"
@@ -46,13 +46,13 @@
       ></app-mensagem>
     </div>
 
-    <div class="mb-2">
+    <div class="mb-2 margin">
       Ainda não possui cadastro? <a [routerLink]="['register']">Registre-se</a>
     </div>
 
     <button
       type="submit"
-      class="btn btn-secondary width"
+      class="btn btn-secondary field-width margin"
       [disabled]="loginForm.invalid"
     >
       Entrar
