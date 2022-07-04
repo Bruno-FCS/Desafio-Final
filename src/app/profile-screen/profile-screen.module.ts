@@ -5,6 +5,8 @@ import { ProfileScreenRoutingModule } from './profile-screen-routing.module';
 import { ProfileComponent } from './profile/profile.component';
 import { MenuModule } from '../componentes/menu/menu.module';
 import { SettingsModule } from '../componentes/settings/settings.module';
+import { MensagemModule } from '../componentes/mensagem/mensagem.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ProfileComponent],
@@ -13,6 +15,8 @@ import { SettingsModule } from '../componentes/settings/settings.module';
     ProfileScreenRoutingModule,
     MenuModule,
     SettingsModule,
+    MensagemModule,
+    ReactiveFormsModule,
   ],
 })
 export class ProfileScreenModule {}
