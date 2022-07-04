@@ -1,3 +1,4 @@
+import { ProfileService } from './../profile/profile.service';
 import { Usuario } from './../../autenticacao/usuario/usuario';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -21,6 +22,7 @@ export class UpdateFormComponent implements OnInit {
 
   constructor(
     private usuarioService: UsuarioService,
+    private profileService: ProfileService,
     private formBuilder: FormBuilder
   ) {}
 
@@ -36,7 +38,16 @@ export class UpdateFormComponent implements OnInit {
   update() {
     if (this.updateForm.valid) {
       const user = this.updateForm.getRawValue() as Usuario;
-      console.log(user);
+      this.profileService.atualizarDados(user).subscribe(
+        () => {
+          console.log('Dados alterados com sucesso!');
+        },
+        (error) => {
+          if (error.status == 400) {
+            this.error = 1;
+          }
+        }
+      );
     }
   }
 }

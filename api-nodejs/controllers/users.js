@@ -81,21 +81,19 @@ module.exports = (app) => {
                 user_id: result[0].user_id,
                 user_name: result[0].user_name,
                 user_email: result[0].user_email,
-                user_full_name: result[0].user_full_name
+                user_full_name: result[0].user_full_name,
               },
               SECRET,
               { expiresIn: 86400 }
             );
             res.set("x-access-token", token);
             res.setHeader("Access-Control-Expose-Headers", "x-access-token");
-            res
-              .status(200)
-              .json({
-                user_id: result[0].user_id,
-                user_name: result[0].user_name,
-                user_email: result[0].user_email,
-                user_full_name: result[0].user_full_name
-              });
+            res.status(200).json({
+              user_id: result[0].user_id,
+              user_name: result[0].user_name,
+              user_email: result[0].user_email,
+              user_full_name: result[0].user_full_name,
+            });
           }
         }
       }
@@ -120,7 +118,27 @@ module.exports = (app) => {
               if (error) {
                 res.status(400).json(error);
               } else {
-                res.status(200).json({ ...req.body, user_id });
+                const token = jwt.sign(
+                  {
+                    user_id: result[0].user_id,
+                    user_name: result[0].user_name,
+                    user_email: result[0].user_email,
+                    user_full_name: result[0].user_full_name,
+                  },
+                  SECRET,
+                  { expiresIn: 86400 }
+                );
+                res.set("x-access-token", token);
+                res.setHeader(
+                  "Access-Control-Expose-Headers",
+                  "x-access-token"
+                );
+                res.status(200).json({
+                  user_id: result[0].user_id,
+                  user_name: result[0].user_name,
+                  user_email: result[0].user_email,
+                  user_full_name: result[0].user_full_name,
+                });
               }
             }
           );
@@ -133,7 +151,27 @@ module.exports = (app) => {
                 if (error) {
                   res.status(400).json(error);
                 } else {
-                  res.status(200).json({ ...req.body, user_id });
+                  const token = jwt.sign(
+                    {
+                      user_id: user.user_id,
+                      user_name: user.user_name,
+                      user_email: user.user_email,
+                      user_full_name: user.user_full_name,
+                    },
+                    SECRET,
+                    { expiresIn: 86400 }
+                  );
+                  res.set("x-access-token", token);
+                  res.setHeader(
+                    "Access-Control-Expose-Headers",
+                    "x-access-token"
+                  );
+                  res.status(200).json({
+                    user_id: user.user_id,
+                    user_name: user.user_name,
+                    user_email: user.user_email,
+                    user_full_name: user.user_full_name,
+                  });
                 }
               }
             );

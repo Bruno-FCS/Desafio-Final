@@ -15,7 +15,9 @@ export class TokenService {
   }
 
   excluirToken() {
-    localStorage.removeItem(KEY);
+    if (this.possuiToken()) {
+      localStorage.removeItem(KEY);
+    }
   }
 
   possuiToken(): boolean {

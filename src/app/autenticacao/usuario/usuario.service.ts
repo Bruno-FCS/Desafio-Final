@@ -34,6 +34,7 @@ export class UsuarioService {
   }
 
   salvarToken(token: string) {
+    this.tokenService.excluirToken();
     this.tokenService.salvarToken(token);
     this.decodificarJWT();
   }
