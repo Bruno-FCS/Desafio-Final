@@ -20,9 +20,9 @@
   />
 </nav>
 
-<h2 class="mt-4 text-center text-color">Dashboard Ford</h2>
+<h2 class="mt-3 text-center text-color">Dashboard Ford</h2>
 
-<div class="container mt-4" *ngIf="veiculos$ | async as veiculos">
+<div class="container mt-3" *ngIf="veiculos$ | async as veiculos">
   <div class="row">
     <app-cartao class="col-3" [titulo]="'Veículo'">
       <select
@@ -60,7 +60,7 @@
   </div>
 </div>
 
-<div class="container mt-4 mb-4">
+<div class="container mt-3 mb-3">
   <div class="row justify-content-center align-items-center">
     <div class="col-6">
       <img
@@ -92,7 +92,11 @@
   </div>
 </div>
 
-<app-tabela></app-tabela>
+<div class="container">
+  <div class="row justify-content-center align-items-center">
+    <app-tabela></app-tabela>
+  </div>
+</div>
 
 <app-menu #menu></app-menu>
 <app-settings #settings></app-settings>

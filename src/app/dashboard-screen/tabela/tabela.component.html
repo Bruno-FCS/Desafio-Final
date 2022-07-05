@@ -1,62 +1,90 @@
-<div class="container">
-  <table class="table">
-    <thead>
-      <tr class="bg-color">
-        <th class="width">Código - Vin</th>
-        <div>
-          <th class="width">Odômetro</th>
-          <th class="width">Nível de Combustível</th>
-          <th class="width">Status</th>
-          <th class="width">Lat.</th>
-          <th class="width">Long.</th>
-        </div>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <input
-            type="text"
-            [formControl]="tabelaInput"
-            [(ngModel)]="inputValue"
-          />
-        </td>
-        <div *ngIf="veiculosData$ | async as veiculosData; else elseblock">
-          <div *ngIf="inputValue.length == 20; else elseblock">
-            <td>
-              <div class="width-2" *ngFor="let veiculoData of veiculosData">
-                <span class="font-weight">{{ veiculoData.vehicledata_odometer }} Km</span>
-              </div>
-            </td>
-
-            <td>
-              <div class="width-2" *ngFor="let veiculoData of veiculosData">
-                <span class="font-weight">{{ veiculoData.vehicledata_fuel_level }}%</span>
-              </div>
-            </td>
-            <td>
-              <div class="width-2" *ngFor="let veiculoData of veiculosData">
-                <span class="font-weight">{{ veiculoData.vehicledata_status }}</span>
-              </div>
-            </td>
-            <td>
-              <div class="width-2" *ngFor="let veiculoData of veiculosData">
-                <span class="font-weight">{{ veiculoData.vehicledata_lat }}</span>
-              </div>
-            </td>
-            <td>
-              <div class="width-2" *ngFor="let veiculoData of veiculosData">
-                <span class="font-weight">{{ veiculoData.vehicledata_long }}</span>
-              </div>
-            </td>
-          </div>
-        </div>
-      </tr>
-      <tr class="bg-color">
-        <td colspan="6"></td>
-      </tr>
-    </tbody>
-  </table>
+<div class="col-2 cell-2">
+  <div class="bg-color cell-header-2 font-weight">
+    Código - Vin
+    <button>+</button>
+    <button>+</button>
+    <button>+</button>
+  </div>
+  <input
+    class="mt-2"
+    type="text"
+    [formControl]="tabelaInput"
+    [(ngModel)]="inputValue"
+  />
 </div>
 
-<ng-template #elseblock></ng-template>
+<div *ngIf="veiculosData$ | async as veiculosData; else elseblock">
+  <div *ngIf="inputValue.length == 20; else elseblock">
+    <div class="col-2 cell-1">
+      <div class="cell-header-1 bg-color font-weight">Odômetro</div>
+      <div
+        class="d-flex justify-content-center"
+        *ngFor="let veiculoData of veiculosData"
+      >
+        <span class="mt-2">{{ veiculoData.vehicledata_odometer }} Km</span>
+      </div>
+    </div>
+
+    <div class="col-2 cell-1">
+      <div class="cell-header-1 bg-color font-weight">Nível de Combustível</div>
+      <div
+        class="d-flex justify-content-center"
+        *ngFor="let veiculoData of veiculosData"
+      >
+        <span class="mt-2">{{ veiculoData.vehicledata_fuel_level }}%</span>
+      </div>
+    </div>
+
+    <div class="col-2 cell-1">
+      <div class="cell-header-1 bg-color font-weight">Status</div>
+      <div
+        class="d-flex justify-content-center"
+        *ngFor="let veiculoData of veiculosData"
+      >
+        <span class="mt-2">{{ veiculoData.vehicledata_status }}</span>
+      </div>
+    </div>
+
+    <div class="col-2 cell-1">
+      <div class="cell-header-1 bg-color font-weight">Lat.</div>
+      <div
+        class="d-flex justify-content-center"
+        *ngFor="let veiculoData of veiculosData"
+      >
+        <span class="mt-2">{{ veiculoData.vehicledata_lat }}</span>
+      </div>
+    </div>
+
+    <div class="col-2 cell-3">
+      <div class="cell-header-3 bg-color font-weight">Long.</div>
+      <div
+        class="d-flex justify-content-center"
+        *ngFor="let veiculoData of veiculosData"
+      >
+        <span class="mt-2">{{ veiculoData.vehicledata_long }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #elseblock>
+  <div class="col-2 cell-1">
+    <div class="cell-header-1 bg-color font-weight">Odômetro</div>
+  </div>
+
+  <div class="col-2 cell-1">
+    <div class="cell-header-1 bg-color font-weight">Nível de Combustível</div>
+  </div>
+
+  <div class="col-2 cell-1">
+    <div class="cell-header-1 bg-color font-weight">Status</div>
+  </div>
+
+  <div class="col-2 cell-1">
+    <div class="cell-header-1 bg-color font-weight">Lat.</div>
+  </div>
+
+  <div class="col-2 cell-3">
+    <div class="cell-header-3 bg-color font-weight">Long.</div>
+  </div>
+</ng-template>
