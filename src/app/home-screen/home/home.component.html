@@ -32,16 +32,28 @@
   <div
     class="position-absolute d-flex align-items-center justify-content-center full"
   >
-    <div class="card card-dimension">
-      <div class="card-header">Sistema de dados FORD</div>
+    <div class="card col-6 card-dimension">
+      <div class="card-header text-align-center">
+        <b>Sistema de Dados Ford</b>
+      </div>
       <div class="card-body">
-        <h5 class="card-title text-color">
+        <h5 class="card-title text-color text-align-center">
           Seja bem vindo(a),
           <span *ngIf="usuario$ | async as usuario">{{
             usuario.user_full_name
           }}</span
           >!
         </h5>
+        <p class="mt-3 text-align-justify">
+          O Sistema de Dados Ford é uma plataforma desenvolvida para fornecer
+          acesso rápido e simples às informações que dizem respeito aos veículos
+          que possuem nossa tecnologia de integração.
+        </p>
+        <p class="text-align-justify">
+          Através do Dashboard Ford, é possível obter informações da frota de um
+          determinado modelo, ou ainda, informações mais aprofundadas de um
+          determinado veículo, por meio do seu Código VIN.
+        </p>
       </div>
     </div>
   </div>
