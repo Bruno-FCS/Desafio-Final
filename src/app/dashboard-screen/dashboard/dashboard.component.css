@@ -15,12 +15,6 @@
   color: rgb(40, 97, 159);
 }
 
-.card-dimension{
-  width: 35vw;
-  height: 70vh;
-  background-color: rgba(255, 255, 255, 0.9);
-}
-
 .left-icon{
   border: solid 2px black;
   border-radius: 25%;
@@ -67,4 +61,14 @@
 nav{
   background-color: rgb(220, 220, 220);
   border-bottom: 2px rgb(190, 190, 190) solid;
+}
+
+.chart{
+  width: 100%;
+}
+
+.card-color{
+  background-color: rgb(40, 97, 159);
+  color: white;
+  text-align: center;
 }

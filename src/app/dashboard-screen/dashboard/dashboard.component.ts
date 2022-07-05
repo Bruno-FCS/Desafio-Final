@@ -1,5 +1,5 @@
 import { Veiculo } from './../veiculo/veiculo';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { VeiculoService } from '../veiculo/veiculo.service';
 
 declare var google: any;
@@ -10,6 +10,12 @@ declare var google: any;
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+  @HostListener('window:resize', ['$event'])
+  sizeChange() {
+    this.exibirChart('chart_1', this.connectedDados);
+    this.exibirChart('chart_2', this.updatedDados);
+  }
+
   veiculos$ = this.veiculoService.buscaVeiculos();
   veiculoId!: string;
   veiculoEscolhido!: Veiculo;
@@ -84,14 +90,13 @@ export class DashboardComponent implements OnInit {
 
   obterOpcoes(): any {
     return {
-      width: 305,
       height: 180,
       legend: 'none',
       pieSliceText: 'none',
       pieHole: 0.6,
       slices: {
-        0: { color: '#28619f'},
-        1: { color: '#e6e6e6'},
+        0: { color: '#28619f' },
+        1: { color: '#e6e6e6' },
       },
     };
   }
