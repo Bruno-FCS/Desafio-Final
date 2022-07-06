@@ -2,8 +2,9 @@
   <div class="bg-color cell-header-2 font-weight">
     Código - Vin
     <button>+</button>
-    <button>+</button>
-    <button>+</button>
+    <button (click)="modalAtualizar.abrirModalAtualizar()"
+    (keyup.space)="modalAtualizar.abrirModalAtualizar()">+</button>
+    <button (click)="deletar()">+</button>
   </div>
   <input
     class="mt-2"
@@ -88,3 +89,5 @@
     <div class="cell-header-3 bg-color font-weight">Long.</div>
   </div>
 </ng-template>
+
+<app-modal-atualizar #modalAtualizar></app-modal-atualizar>

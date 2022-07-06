@@ -20,4 +20,8 @@ export class TabelaComponent {
   );
 
   constructor(private veiculoDataService: VeiculoDataService) {}
+
+  deletar(){
+    console.log(this.tabelaInput.value)
+  }
 }
