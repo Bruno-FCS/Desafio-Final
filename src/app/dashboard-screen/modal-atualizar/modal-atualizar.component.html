@@ -19,7 +19,7 @@
       <form
         class="form mt-3 form-width"
         [formGroup]="updateForm"
-        *ngIf="updateForm"
+        *ngIf="veiculoData$ | async as veiculoData; else elseblock"
         (ngSubmit)="update()"
       >
         <div class="form-group mb-3 field-width m-auto">
@@ -27,6 +27,8 @@
             class="form-control"
             placeholder="Código VIN"
             formControlName="vehicledata_vin"
+            [ngModel]="veiculoData.vehicledata_vin"
+            readonly
           />
           <app-mensagem
             *ngIf="
@@ -56,6 +58,7 @@
             class="form-control"
             placeholder="Odômetro"
             formControlName="vehicledata_odometer"
+            [ngModel]="veiculoData.vehicledata_odometer"
           />
           <app-mensagem
             *ngIf="
@@ -71,6 +74,7 @@
             class="form-control"
             placeholder="Nível de Combustível"
             formControlName="vehicledata_fuel_level"
+            [ngModel]="veiculoData.vehicledata_fuel_level"
           />
           <app-mensagem
             *ngIf="
@@ -86,6 +90,7 @@
             class="form-control"
             placeholder="Status"
             formControlName="vehicledata_status"
+            [ngModel]="veiculoData.vehicledata_status"
           />
           <app-mensagem
             *ngIf="
@@ -101,6 +106,7 @@
             class="form-control"
             placeholder="Latitude"
             formControlName="vehicledata_lat"
+            [ngModel]="veiculoData.vehicledata_lat"
           />
           <app-mensagem
             *ngIf="
@@ -116,6 +122,7 @@
             class="form-control"
             placeholder="Longitude"
             formControlName="vehicledata_long"
+            [ngModel]="veiculoData.vehicledata_long"
           />
           <app-mensagem
             *ngIf="
@@ -131,6 +138,7 @@
             class="form-control"
             placeholder="Status da Bateria"
             formControlName="vehicledata_battery_status"
+            [ngModel]="veiculoData.vehicledata_battery_status"
           />
           <app-mensagem
             *ngIf="
@@ -146,6 +154,7 @@
             class="form-control"
             placeholder="Pressão dos pneus"
             formControlName="vehicledata_tire_pressure"
+            [ngModel]="veiculoData.vehicledata_tire_pressure"
           />
           <app-mensagem
             *ngIf="
@@ -169,3 +178,153 @@
 
   <div class="overlay" (click)="abrirModalAtualizar()"></div>
 </div>
+
+<ng-template #elseblock>
+  <form
+    class="form mt-3 form-width"
+    [formGroup]="updateForm"
+    (ngSubmit)="update()"
+  >
+    <div class="form-group mb-3 field-width m-auto">
+      <input
+        class="form-control"
+        placeholder="Código VIN"
+        formControlName="vehicledata_vin"
+      />
+      <app-mensagem
+        *ngIf="
+  updateForm.get('vehicledata_vin')?.errors?.['required'] &&
+  updateForm.get('vehicledata_vin')?.touched
+"
+        mensagem="Campo código VIN obrigatório"
+      ></app-mensagem>
+      <app-mensagem
+        *ngIf="
+  updateForm.get('vehicledata_vin')?.errors?.['minlength'] &&
+  updateForm.get('vehicledata_vin')?.touched
+"
+        mensagem="O código VIN deve possuir 20 caracteres"
+      ></app-mensagem>
+      <app-mensagem
+        *ngIf="
+  updateForm.get('vehicledata_vin')?.errors?.['maxlength'] &&
+  updateForm.get('vehicledata_vin')?.touched
+"
+        mensagem="O código VIN deve possuir 20 caracteres"
+      ></app-mensagem>
+    </div>
+
+    <div class="form-group mb-3 field-width m-auto">
+      <input
+        class="form-control"
+        placeholder="Odômetro"
+        formControlName="vehicledata_odometer"
+      />
+      <app-mensagem
+        *ngIf="
+          updateForm.get('vehicledata_odometer')?.errors &&
+          updateForm.get('vehicledata_odometer')?.touched
+        "
+        mensagem="Campo odômetro obrigatório"
+      ></app-mensagem>
+    </div>
+
+    <div class="form-group mb-3 field-width m-auto">
+      <input
+        class="form-control"
+        placeholder="Nível de Combustível"
+        formControlName="vehicledata_fuel_level"
+      />
+      <app-mensagem
+        *ngIf="
+          updateForm.get('vehicledata_fuel_level')?.errors &&
+          updateForm.get('vehicledata_fuel_level')?.touched
+        "
+        mensagem="Campo nível de combustível obrigatório"
+      ></app-mensagem>
+    </div>
+
+    <div class="form-group mb-3 field-width m-auto">
+      <input
+        class="form-control"
+        placeholder="Status"
+        formControlName="vehicledata_status"
+      />
+      <app-mensagem
+        *ngIf="
+          updateForm.get('vehicledata_status')?.errors &&
+          updateForm.get('vehicledata_status')?.touched
+        "
+        mensagem="Campo status obrigatório"
+      ></app-mensagem>
+    </div>
+
+    <div class="form-group mb-3 field-width m-auto">
+      <input
+        class="form-control"
+        placeholder="Latitude"
+        formControlName="vehicledata_lat"
+      />
+      <app-mensagem
+        *ngIf="
+          updateForm.get('vehicledata_lat')?.errors &&
+          updateForm.get('vehicledata_lat')?.touched
+        "
+        mensagem="Campo latitude obrigatório"
+      ></app-mensagem>
+    </div>
+
+    <div class="form-group mb-3 field-width m-auto">
+      <input
+        class="form-control"
+        placeholder="Longitude"
+        formControlName="vehicledata_long"
+      />
+      <app-mensagem
+        *ngIf="
+          updateForm.get('vehicledata_long')?.errors &&
+          updateForm.get('vehicledata_long')?.touched
+        "
+        mensagem="Campo longitude obrigatório"
+      ></app-mensagem>
+    </div>
+
+    <div class="form-group mb-3 field-width m-auto">
+      <input
+        class="form-control"
+        placeholder="Status da Bateria"
+        formControlName="vehicledata_battery_status"
+      />
+      <app-mensagem
+        *ngIf="
+          updateForm.get('vehicledata_battery_status')?.errors &&
+          updateForm.get('vehicledata_battery_status')?.touched
+        "
+        mensagem="Campo status da bateria obrigatório"
+      ></app-mensagem>
+    </div>
+
+    <div class="form-group mb-3 field-width m-auto">
+      <input
+        class="form-control"
+        placeholder="Pressão dos pneus"
+        formControlName="vehicledata_tire_pressure"
+      />
+      <app-mensagem
+        *ngIf="
+          updateForm.get('vehicledata_tire_pressure')?.errors &&
+          updateForm.get('vehicledata_tire_pressure')?.touched
+        "
+        mensagem="Campo pressão dos pneus obrigatório"
+      ></app-mensagem>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-secondary field-width margin"
+      [disabled]="updateForm.invalid"
+    >
+      Atualizar
+    </button>
+  </form>
+</ng-template>

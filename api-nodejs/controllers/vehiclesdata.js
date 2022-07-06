@@ -6,7 +6,7 @@ module.exports = (app) => {
       if (error) {
         res.status(400).json(error);
       } else {
-        res.status(200).json({vehicleData: result});
+        res.status(200).json({ vehicleData: result });
       }
     });
   });
@@ -18,7 +18,7 @@ module.exports = (app) => {
         if (error) {
           res.status(400).json(error);
         } else {
-          res.status(200).json({vehicleData: result});
+          res.status(200).json({ vehicleData: result });
         }
       }
     );
@@ -69,6 +69,34 @@ module.exports = (app) => {
           );
         } else {
           res.status(400).json("VIN already registered");
+        }
+      }
+    );
+  });
+
+  app.put("/vehiclesdata/update", (req, res) => {
+    const vehicledata = req.body;
+    connection.query(
+      "SELECT * FROM Vehicle_Data WHERE vehicledata_vin = ?",
+      [vehicledata.vehicledata_vin],
+      (error, result) => {
+        if (error) {
+          res.status(400).json(error);
+        }
+        if (result.length == 1) {
+          connection.query(
+            "UPDATE Vehicle_Data SET ? WHERE vehicledata_vin = ?",
+            [req.body, vehicledata.vehicledata_vin],
+            (error) => {
+              if (error) {
+                res.status(400).json(error);
+              } else {
+                res.status(200).json({ ...req.body });
+              }
+            }
+          );
+        } else {
+          res.status(400).json("VIN code invalid");
         }
       }
     );

@@ -10,6 +10,7 @@
     </button>
     <button
       (click)="modalAtualizar.abrirModalAtualizar()"
+      (click)="atualizarVeiculoDataSubject()"
       (keyup.space)="modalAtualizar.abrirModalAtualizar()"
     >
       <img
@@ -138,4 +139,7 @@
   </div>
 </ng-template>
 
-<app-modal-atualizar #modalAtualizar></app-modal-atualizar>
+<app-modal-atualizar
+  (windowClosed)="atualizarSelecao()"
+  #modalAtualizar
+></app-modal-atualizar>

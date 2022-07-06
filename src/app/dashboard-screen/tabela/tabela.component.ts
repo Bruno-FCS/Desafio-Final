@@ -13,7 +13,6 @@ export class TabelaComponent {
   tabelaInput = new FormControl();
   veiculosData$ = this.tabelaInput.valueChanges.pipe(
     filter((valorDigitado) => valorDigitado.length == 20),
-    distinctUntilChanged(),
     switchMap((valorDigitado) =>
       this.veiculoDataService.buscaVeiculosData(valorDigitado)
     )
@@ -21,7 +20,16 @@ export class TabelaComponent {
 
   constructor(private veiculoDataService: VeiculoDataService) {}
 
-  deletar(){
-    console.log(this.tabelaInput.value)
+  deletar() {
+    console.log(this.tabelaInput.value);
+  }
+
+  atualizarVeiculoDataSubject() {
+    this.veiculoDataService.limparVeiculoDataSubject();
+    this.veiculoDataService.guardarVeiculoData(this.inputValue);
+  }
+
+  atualizarSelecao() {
+    this.tabelaInput.setValue('');
   }
 }

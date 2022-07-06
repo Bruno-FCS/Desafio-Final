@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { VeiculoDataService } from './../veiculo/veiculo-data.service';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VeiculoData } from '../veiculo/veiculo-data';
 
@@ -8,11 +9,26 @@ import { VeiculoData } from '../veiculo/veiculo-data';
   styleUrls: ['./modal-atualizar.component.css'],
 })
 export class ModalAtualizarComponent implements OnInit {
-  mostraModalAtualizar = false;
+  veiculoData$ = this.veiculoDataService.retornarVeiculoData();
+
   updateForm!: FormGroup;
+  mostraModalAtualizar = false;
   error = false;
 
-  constructor(private formBuilder: FormBuilder) {}
+  @Output() windowClosed = new EventEmitter();
+
+  vehicledata_odometer!: string;
+  vehicledata_fuel_level!: string;
+  vehicledata_status!: string;
+  vehicledata_lat!: string;
+  vehicledata_long!: string;
+  vehicledata_battery_status!: string;
+  vehicledata_tire_pressure!: string;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private veiculoDataService: VeiculoDataService
+  ) {}
 
   ngOnInit(): void {
     this.updateForm = this.formBuilder.group({
@@ -35,13 +51,25 @@ export class ModalAtualizarComponent implements OnInit {
   }
 
   abrirModalAtualizar() {
+    this.updateForm.reset();
     this.mostraModalAtualizar = !this.mostraModalAtualizar;
+    this.error = false;
   }
 
   update() {
     if (this.updateForm.valid) {
       const vehicleData = this.updateForm.getRawValue() as VeiculoData;
-      console.log(vehicleData)
+      this.veiculoDataService.update(vehicleData).subscribe(
+        () => {
+          this.abrirModalAtualizar();
+          this.windowClosed.emit();
+        },
+        (error) => {
+          if (error.status == 400) {
+            this.error = true;
+          }
+        }
+      );
     }
   }
 }
