@@ -1,7 +1,11 @@
 <div class="col-2 cell-2">
   <div class="bg-color cell-header-2 font-weight">
     Código VIN
-    <button>
+    <button
+      (click)="modalInserir.abrirModalInserir()"
+      (click)="atualizarVeiculoDataSubject()"
+      (keyup.space)="modalInserir.abrirModalInserir()"
+    >
       <img
         class="img-settings"
         src="../../../assets/img/plus-icon.PNG"
@@ -19,7 +23,11 @@
         alt="Ícone de editar"
       />
     </button>
-    <button (click)="deletar()">
+    <button
+      (click)="modalDeletar.abrirModalDeletar()"
+      (click)="atualizarVeiculoDataSubject()"
+      (keyup.space)="modalDeletar.abrirModalDeletar()"
+    >
       <img
         class="img-settings"
         src="../../../assets/img/trash-icon.PNG"
@@ -139,7 +147,15 @@
   </div>
 </ng-template>
 
+<app-modal-inserir
+  (windowClosed)="atualizarSelecao()"
+  #modalInserir
+></app-modal-inserir>
 <app-modal-atualizar
   (windowClosed)="atualizarSelecao()"
   #modalAtualizar
 ></app-modal-atualizar>
+<app-modal-deletar
+  (windowClosed)="atualizarSelecao()"
+  #modalDeletar
+></app-modal-deletar>

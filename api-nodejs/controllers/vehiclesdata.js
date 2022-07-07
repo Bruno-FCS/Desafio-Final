@@ -147,6 +147,34 @@ module.exports = (app) => {
     );
   });
 
+  app.delete("/vehiclesdata/:vehicledata_vin", (req, res) => {
+    const vehicledata_vin = req.params.vehicledata_vin;
+    connection.query(
+      "SELECT * FROM Vehicle_Data WHERE vehicledata_vin = ?",
+      [vehicledata_vin],
+      (error, result) => {
+        if (error) {
+          res.status(400).json(error);
+        } else if (result.length == 1) {
+          const vehicledata_id = result[0].vehicledata_id;
+          connection.query(
+            "DELETE FROM Vehicle_Data WHERE vehicledata_id = ?",
+            [vehicledata_id],
+            (error) => {
+              if (error) {
+                res.status(400).json(error);
+              } else {
+                res.status(200).json({ vehicledata_id });
+              }
+            }
+          );
+        } else {
+          res.status(400).json(error);
+        }
+      }
+    );
+  });
+
   app.delete("/vehiclesdata/:vehicledata_id", (req, res) => {
     const vehicledata_id = parseInt(req.params.vehicledata_id);
     connection.query(

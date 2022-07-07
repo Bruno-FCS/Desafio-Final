@@ -30,7 +30,13 @@ export class VeiculoDataService {
       .pipe(pluck('vehicleData'));
   }
 
-  register() {}
+  insert(veiculoData: VeiculoData) {
+    return this.httpClient.post(`${API}/vehiclesdata`, veiculoData);
+  }
+
+  delete(veiculoData: VeiculoData) {
+    return this.httpClient.delete(`${API}/vehiclesdata/${veiculoData.vehicledata_vin}`);
+  }
 
   update(veiculoData: VeiculoData) {
     return this.httpClient.put(`${API}/vehiclesdata/update`, veiculoData);

@@ -20,10 +20,6 @@ export class TabelaComponent {
 
   constructor(private veiculoDataService: VeiculoDataService) {}
 
-  deletar() {
-    console.log(this.tabelaInput.value);
-  }
-
   atualizarVeiculoDataSubject() {
     this.veiculoDataService.limparVeiculoDataSubject();
     this.veiculoDataService.guardarVeiculoData(this.inputValue);

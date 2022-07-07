@@ -9,14 +9,18 @@ import { CartaoComponent } from './cartao/cartao.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TabelaComponent } from './tabela/tabela.component';
 import { ModalAtualizarComponent } from './modal-atualizar/modal-atualizar.component';
+import { ModalInserirComponent } from './modal-inserir/modal-inserir.component';
 import { MensagemModule } from '../componentes/mensagem/mensagem.module';
+import { ModalDeletarComponent } from './modal-deletar/modal-deletar.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     CartaoComponent,
     TabelaComponent,
-    ModalAtualizarComponent
+    ModalAtualizarComponent,
+    ModalInserirComponent,
+    ModalDeletarComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +29,7 @@ import { MensagemModule } from '../componentes/mensagem/mensagem.module';
     SettingsModule,
     MensagemModule,
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
-export class DashboardScreenModule { }
+export class DashboardScreenModule {}
