@@ -18,6 +18,9 @@
 .card-dimension{
   max-height: 70vh;
   background-color: rgba(255, 255, 255, 0.9);
+}
+
+.scroll{
   overflow-y: auto;
 }
 
