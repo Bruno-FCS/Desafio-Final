@@ -26,12 +26,12 @@ export class ProfileComponent implements OnInit {
     if (fieldId == 'alert-1') {
       setTimeout(() => {
         this.updated = false;
-      }, 900);
+      }, 500);
     }
     if (fieldId == 'alert-2') {
       setTimeout(() => {
         this.changed = false;
-      }, 900);
+      }, 500);
     }
   }
 }
