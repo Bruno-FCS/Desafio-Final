@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.brunofernandes.apispringboot.entities.VehicleData;
+import com.brunofernandes.apispringboot.entities.VehiclesData;
 import com.brunofernandes.apispringboot.services.VehicleDataService;
 
 @RestController
@@ -26,9 +27,10 @@ public class VehicleDataResource {
 	private VehicleDataService service;
 
 	@GetMapping
-	public ResponseEntity<List<VehicleData>> findAll() {
+	public ResponseEntity<VehiclesData> findAll() {
 		List<VehicleData> list = service.findAll();
-		return ResponseEntity.ok().body(list);
+		VehiclesData vehiclesData = new VehiclesData(list);
+		return ResponseEntity.ok().body(vehiclesData);
 	}
 
 	@GetMapping(value = "/{id}")

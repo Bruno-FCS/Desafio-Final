@@ -6,7 +6,7 @@ module.exports = (app) => {
       if (error) {
         res.status(400).json(error);
       } else {
-        res.status(200).json({ vehicleData: result });
+        res.status(200).json({ vehicledata: result });
       }
     });
   });
@@ -18,7 +18,7 @@ module.exports = (app) => {
         if (error) {
           res.status(400).json(error);
         } else {
-          res.status(200).json({ vehicleData: result });
+          res.status(200).json({ vehicledata: result });
         }
       }
     );

@@ -27,7 +27,7 @@ export class VeiculoDataService {
   buscaVeiculosData(valor?: string) {
     return this.httpClient
       .get<VeiculosDataAPI>(`${API}/vehiclesdata/${valor}`)
-      .pipe(pluck('vehicleData'));
+      .pipe(pluck('vehicledata'));
   }
 
   insert(veiculoData: VeiculoData) {

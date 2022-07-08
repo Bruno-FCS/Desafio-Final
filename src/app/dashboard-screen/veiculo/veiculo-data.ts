@@ -13,5 +13,5 @@ export interface VeiculoData{
 }
 
 export interface VeiculosDataAPI {
-  vehicleData: VeiculosData;
+  vehicledata: VeiculosData;
 }
