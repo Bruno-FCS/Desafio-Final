@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.brunofernandes.apispringboot.entities.User;
+import com.brunofernandes.apispringboot.entities.UserResponse;
+import com.brunofernandes.apispringboot.services.TokenService;
 import com.brunofernandes.apispringboot.services.UserService;
 
 @RestController
@@ -24,6 +26,9 @@ public class UserResource {
 
 	@Autowired
 	private UserService service;
+
+	@Autowired
+	private TokenService tokenService;
 
 	@GetMapping
 	public ResponseEntity<List<User>> findAll() {
@@ -45,10 +50,12 @@ public class UserResource {
 		return ResponseEntity.created(uri).body(obj);
 	}
 
-	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> delete(@PathVariable Long id) {
-		service.delete(id);
-		return ResponseEntity.noContent().build();
+	@PostMapping(value = "/login")
+	public ResponseEntity<UserResponse> findByNameAndPassword(@RequestBody User obj) {
+		User user = service.findByNameAndPassword(obj.getUser_name(), obj.getUser_password());
+		UserResponse resp = new UserResponse(user.getUser_id(), user.getUser_name(), user.getUser_email(),
+				user.getUser_full_name());
+		return ResponseEntity.ok().body(resp);
 	}
 
 	@PutMapping(value = "/{id}")
@@ -56,4 +63,11 @@ public class UserResource {
 		obj = service.update(id, obj);
 		return ResponseEntity.ok().body(obj);
 	}
+
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Long id) {
+		service.delete(id);
+		return ResponseEntity.noContent().build();
+	}
+
 }

@@ -29,6 +29,11 @@ public class UserService {
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 
+	public User findByNameAndPassword(String user_name, String user_password) {
+		Optional<User> obj = repository.findByNameAndPassword(user_name, user_password);
+		return obj.orElseThrow(() -> new ResourceNotFoundException(user_name));
+	}
+
 	public User insert(User obj) {
 		List<User> list = this.findAll();
 		for (User u : list) {
