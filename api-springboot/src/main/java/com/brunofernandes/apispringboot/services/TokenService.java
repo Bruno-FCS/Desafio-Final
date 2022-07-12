@@ -3,11 +3,7 @@ package com.brunofernandes.apispringboot.services;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.brunofernandes.apispringboot.entities.UserResponse;
 
@@ -23,14 +19,10 @@ public class TokenService {
 	private String secret;
 
 	public String generateToken(UserResponse user) {
-		return Jwts.builder()
-				.claim("user_id", user.getUser_id())
-				.claim("user_name", user.getUser_name())
-				.claim("user_email", user.getUser_email())
-				.claim("user_full_name", user.getUser_full_name())
+		return Jwts.builder().claim("user_id", user.getUser_id()).claim("user_name", user.getUser_name())
+				.claim("user_email", user.getUser_email()).claim("user_full_name", user.getUser_full_name())
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY))
-				.signWith(SignatureAlgorithm.HS256, secret)
-				.compact();
+				.signWith(SignatureAlgorithm.HS256, secret).compact();
 	}
 }

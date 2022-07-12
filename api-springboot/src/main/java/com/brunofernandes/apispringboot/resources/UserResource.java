@@ -56,16 +56,16 @@ public class UserResource {
 		UserResponse resp = new UserResponse(user.getUser_id(), user.getUser_name(), user.getUser_email(),
 				user.getUser_full_name());
 		String token = tokenService.generateToken(resp);
-		return ResponseEntity.ok()
-				.header("x-access-token", token)
-				.header("Access-Control-Expose-Headers", "x-access-token")
-				.body(resp);
+		return ResponseEntity.ok().header("x-access-token", token)
+				.header("Access-Control-Expose-Headers", "x-access-token").body(resp);
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User obj) {
-		obj = service.update(id, obj);
-		return ResponseEntity.ok().body(obj);
+	public ResponseEntity<UserResponse> update(@PathVariable Long id, @RequestBody UserResponse obj) {
+		UserResponse resp = service.update(id, obj);
+		String token = tokenService.generateToken(resp);
+		return ResponseEntity.ok().header("x-access-token", token)
+				.header("Access-Control-Expose-Headers", "x-access-token").body(resp);
 	}
 
 	@DeleteMapping(value = "/{id}")

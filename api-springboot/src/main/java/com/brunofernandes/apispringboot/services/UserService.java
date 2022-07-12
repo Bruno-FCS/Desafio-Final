@@ -10,6 +10,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.brunofernandes.apispringboot.entities.User;
+import com.brunofernandes.apispringboot.entities.UserResponse;
 import com.brunofernandes.apispringboot.repositories.UserRepository;
 import com.brunofernandes.apispringboot.services.exceptions.DatabaseException;
 import com.brunofernandes.apispringboot.services.exceptions.ResourceNotFoundException;
@@ -53,31 +54,42 @@ public class UserService {
 	}
 
 	@SuppressWarnings("deprecation")
-	public User update(Long id, User obj) {
+	public UserResponse update(Long id, UserResponse obj) {
 		try {
 			User entity = repository.getOne(id);
+			UserResponse resp = new UserResponse(entity.getUser_id(), entity.getUser_name(), entity.getUser_email(),
+					entity.getUser_full_name());
 			List<User> list = this.findAll();
 			for (User u : list) {
 				if (u.getUser_email().equals(obj.getUser_email()) || u.getUser_name().equals(obj.getUser_name())) {
 					if (u.getUser_id() == id) {
-						UpdateData(entity, obj);
-						return repository.save(entity);
+						UpdateDataU(entity, obj);
+						UpdateDataUR(resp, obj);
+						repository.save(entity);
+						return resp;
 					} else {
 						throw new DatabaseException("Email or username already registered");
 					}
 				}
 			}
-			UpdateData(entity, obj);
-			return repository.save(entity);
+			UpdateDataU(entity, obj);
+			UpdateDataUR(resp, obj);
+			repository.save(entity);
+			return resp;
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException(id);
 		}
 	}
 
-	private void UpdateData(User entity, User obj) {
+	private void UpdateDataU(User entity , UserResponse obj) {
 		entity.setUser_name(obj.getUser_name());
 		entity.setUser_email(obj.getUser_email());
-		entity.setUser_password(obj.getUser_password());
+		entity.setUser_full_name(obj.getUser_full_name());
+	}
+	
+	private void UpdateDataUR(UserResponse entity , UserResponse obj) {
+		entity.setUser_name(obj.getUser_name());
+		entity.setUser_email(obj.getUser_email());
 		entity.setUser_full_name(obj.getUser_full_name());
 	}
 }
