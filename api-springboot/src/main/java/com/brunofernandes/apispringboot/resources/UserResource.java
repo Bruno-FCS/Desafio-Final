@@ -55,7 +55,11 @@ public class UserResource {
 		User user = service.findByNameAndPassword(obj.getUser_name(), obj.getUser_password());
 		UserResponse resp = new UserResponse(user.getUser_id(), user.getUser_name(), user.getUser_email(),
 				user.getUser_full_name());
-		return ResponseEntity.ok().body(resp);
+		String token = tokenService.generateToken(resp);
+		return ResponseEntity.ok()
+				.header("x-access-token", token)
+				.header("Access-Control-Expose-Headers", "x-access-token")
+				.body(resp);
 	}
 
 	@PutMapping(value = "/{id}")

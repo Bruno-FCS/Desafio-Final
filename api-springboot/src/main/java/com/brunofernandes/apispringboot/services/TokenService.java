@@ -3,7 +3,11 @@ package com.brunofernandes.apispringboot.services;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.brunofernandes.apispringboot.entities.UserResponse;
 
@@ -29,5 +33,4 @@ public class TokenService {
 				.signWith(SignatureAlgorithm.HS256, secret)
 				.compact();
 	}
-
 }
