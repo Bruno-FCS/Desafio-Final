@@ -49,7 +49,7 @@ export class VeiculoDataService {
     this.httpClient
       .get<any>(`${API}/vehiclesdata/${vehicledata_vin}`)
       .subscribe((value) => {
-        this.veiculoDataSubject.next(value.vehicleData[0]);
+        this.veiculoDataSubject.next(value.vehicledata[0]);
       });
   }
 

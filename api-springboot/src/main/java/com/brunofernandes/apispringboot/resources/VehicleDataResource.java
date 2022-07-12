@@ -1,6 +1,7 @@
 package com.brunofernandes.apispringboot.resources;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,11 +34,26 @@ public class VehicleDataResource {
 		return ResponseEntity.ok().body(vehiclesData);
 	}
 
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<VehicleData> findById(@PathVariable Long id) {
-		VehicleData obj = service.findById(id);
-		return ResponseEntity.ok().body(obj);
+	@GetMapping(value = "/{vehicledata_vin}")
+	public ResponseEntity<VehiclesData> findByVin(@PathVariable String vehicledata_vin) {
+		VehicleData obj = service.findByVin(vehicledata_vin);
+		if (obj.getVehicledata_id() != null) {
+			List<VehicleData> list = new ArrayList<VehicleData>();
+			list.add(obj);
+			VehiclesData vehiclesData = new VehiclesData(list);
+			return ResponseEntity.ok().body(vehiclesData);
+		} else {
+			List<VehicleData> list = new ArrayList<VehicleData>();
+			VehiclesData vehiclesData = new VehiclesData(list);
+			return ResponseEntity.ok().body(vehiclesData);
+		}
 	}
+
+	/*
+	 * @GetMapping(value = "/{id}") public ResponseEntity<VehicleData>
+	 * findById(@PathVariable Long id) { VehicleData obj = service.findById(id);
+	 * return ResponseEntity.ok().body(obj); }
+	 */
 
 	@PostMapping
 	public ResponseEntity<VehicleData> insert(@RequestBody VehicleData obj) {
@@ -47,10 +63,10 @@ public class VehicleDataResource {
 		return ResponseEntity.created(uri).body(obj);
 	}
 
-	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> delete(@PathVariable Long id) {
-		service.delete(id);
-		return ResponseEntity.noContent().build();
+	@PutMapping(value = "/update")
+	public ResponseEntity<VehicleData> updateVehicleData(@RequestBody VehicleData obj) {
+		obj = service.updateVehicleData(obj);
+		return ResponseEntity.ok().body(obj);
 	}
 
 	@PutMapping(value = "/{id}")
@@ -58,4 +74,16 @@ public class VehicleDataResource {
 		obj = service.update(id, obj);
 		return ResponseEntity.ok().body(obj);
 	}
+
+	@DeleteMapping(value = "/{vehicledata_vin}")
+	public ResponseEntity<Void> deleteByVin(@PathVariable String vehicledata_vin) {
+		service.deleteByVin(vehicledata_vin);
+		return ResponseEntity.noContent().build();
+	}
+
+	/*
+	 * @DeleteMapping(value = "/{id}") public ResponseEntity<Void>
+	 * delete(@PathVariable Long id) { service.delete(id); return
+	 * ResponseEntity.noContent().build(); }
+	 */
 }
