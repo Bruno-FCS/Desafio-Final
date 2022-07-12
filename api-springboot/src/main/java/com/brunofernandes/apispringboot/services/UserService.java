@@ -81,15 +81,28 @@ public class UserService {
 		}
 	}
 
-	private void UpdateDataU(User entity , UserResponse obj) {
+	private void UpdateDataU(User entity, UserResponse obj) {
 		entity.setUser_name(obj.getUser_name());
 		entity.setUser_email(obj.getUser_email());
 		entity.setUser_full_name(obj.getUser_full_name());
 	}
-	
-	private void UpdateDataUR(UserResponse entity , UserResponse obj) {
+
+	private void UpdateDataUR(UserResponse entity, UserResponse obj) {
 		entity.setUser_name(obj.getUser_name());
 		entity.setUser_email(obj.getUser_email());
 		entity.setUser_full_name(obj.getUser_full_name());
+	}
+
+	public void changePassword(Long id, String user_former_password, String user_password) {
+		try {
+			Optional<User> obj = repository.findByIdAndPassword(id, user_former_password);
+			if (!obj.isEmpty()) {
+				repository.updatePassword(id, user_password);
+			} else {
+				throw new DatabaseException("Invalid former password");
+			}
+		} catch (EntityNotFoundException e) {
+			throw new DatabaseException("Invalid former password");
+		}
 	}
 }

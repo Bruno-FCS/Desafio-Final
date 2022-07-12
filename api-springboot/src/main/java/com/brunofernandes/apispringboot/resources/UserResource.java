@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.brunofernandes.apispringboot.entities.PasswordChange;
 import com.brunofernandes.apispringboot.entities.User;
 import com.brunofernandes.apispringboot.entities.UserResponse;
 import com.brunofernandes.apispringboot.services.TokenService;
@@ -66,6 +67,12 @@ public class UserResource {
 		String token = tokenService.generateToken(resp);
 		return ResponseEntity.ok().header("x-access-token", token)
 				.header("Access-Control-Expose-Headers", "x-access-token").body(resp);
+	}
+	
+	@PutMapping(value = "/change-password/{id}")
+	public ResponseEntity<Void> changePassword(@PathVariable Long id, @RequestBody PasswordChange obj){
+		service.changePassword(id, obj.getUser_former_password(), obj.getUser_password());
+		return ResponseEntity.noContent().build();
 	}
 
 	@DeleteMapping(value = "/{id}")
