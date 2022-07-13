@@ -2,44 +2,8 @@
   box-sizing: border-box;
 }
 
-.full-height {
-  height: 90vh;
-}
-
 .text-color {
   color: rgb(40, 97, 159);
-}
-
-.left-icon {
-  border: solid 2px black;
-  border-radius: 25%;
-  margin-top: 20px;
-  left: 40px;
-  width: 50px;
-  cursor: pointer;
-  margin: 0;
-  padding: 10px;
-}
-
-.right-icon {
-  border: solid 2px black;
-  border-radius: 25%;
-  margin-top: 20px;
-  right: 40px;
-  width: 50px;
-  cursor: pointer;
-  margin: 0;
-  padding: 10px;
-}
-
-.img-settings {
-  margin: auto;
-  width: 130px;
-}
-
-nav {
-  background-color: rgb(220, 220, 220);
-  border-bottom: 2px rgb(190, 190, 190) solid;
 }
 
 .btn-close-config {
