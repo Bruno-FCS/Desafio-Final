@@ -1,14 +1,15 @@
-import { LoginGuard } from './autenticacao/login.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AutenticacaoGuard } from './autenticacao/autenticacao.guard';
+
+import { AutenticacaoGuard } from './guards';
+import { LoginGuard } from './guards';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   {
     path: 'login',
     loadChildren: () =>
-      import('./login-screen/login-screen.module').then(
+      import('./login-screen').then(
         (m) => m.LoginScreenModule
       ),
     canLoad: [LoginGuard],
@@ -16,7 +17,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () =>
-      import('./home-screen/home-screen.module').then(
+      import('./home-screen').then(
         (m) => m.HomeScreenModule
       ),
     canLoad: [AutenticacaoGuard],
@@ -24,7 +25,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () =>
-      import('./dashboard-screen/dashboard-screen.module').then(
+      import('./dashboard-screen').then(
         (m) => m.DashboardScreenModule
       ),
     canLoad: [AutenticacaoGuard],
@@ -32,7 +33,7 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () =>
-      import('./profile-screen/profile-screen.module').then(
+      import('./profile-screen').then(
         (m) => m.ProfileScreenModule
       ),
     canLoad: [AutenticacaoGuard],

@@ -1,7 +1,8 @@
-import { VeiculoDataService } from './../veiculo/veiculo-data.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { VeiculoData } from '../veiculo/veiculo-data';
+
+import { VeiculoData } from '../../models';
+import { VeiculoDataService } from '../../services';
 
 @Component({
   selector: 'app-modal-atualizar',

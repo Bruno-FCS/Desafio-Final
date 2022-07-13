@@ -1,9 +1,10 @@
 import { Observable, tap } from 'rxjs';
-import { Usuario } from './../../autenticacao/usuario/usuario';
-import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { UsuarioService } from 'src/app/autenticacao/usuario/usuario.service';
+
+import { environment } from '../../environments/environment';
+import { Usuario } from '../models';
+import { UsuarioService } from './usuario.service';
 
 const API = environment.apiURL;
 

@@ -1,7 +1,8 @@
-import { RegisterService } from './../register/register.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AutenticacaoService } from 'src/app/autenticacao/autenticacao.service';
+
+import { AutenticacaoService } from '../../services';
+import { RegisterService } from '../../services';
 
 @Component({
   selector: 'app-login',

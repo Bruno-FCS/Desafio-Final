@@ -1,8 +1,9 @@
-import { VeiculoData, VeiculosDataAPI } from './veiculo-data';
 import { BehaviorSubject, pluck } from 'rxjs';
-import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
+import { environment } from '../../environments/environment';
+import { VeiculoData, VeiculosDataAPI } from '../models';
 
 const API = environment.apiURL;
 

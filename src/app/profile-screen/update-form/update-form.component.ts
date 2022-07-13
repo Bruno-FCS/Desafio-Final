@@ -1,8 +1,9 @@
-import { ProfileService } from './../profile/profile.service';
-import { Usuario } from './../../autenticacao/usuario/usuario';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UsuarioService } from 'src/app/autenticacao/usuario/usuario.service';
+
+import { ProfileService } from '../../services';
+import { Usuario } from '../../models';
+import { UsuarioService } from '../../services';
 
 @Component({
   selector: 'app-update-form',

@@ -1,8 +1,9 @@
-import { Usuario } from './usuario';
 import { Injectable } from '@angular/core';
 import jwtDecode from 'jwt-decode';
-import { TokenService } from '../token.service';
 import { BehaviorSubject } from 'rxjs';
+
+import { TokenService } from './token.service';
+import { Usuario } from '../models';
 
 @Injectable({
   providedIn: 'root',

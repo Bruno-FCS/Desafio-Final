@@ -1,9 +1,10 @@
-import { Usuario } from './../../autenticacao/usuario/usuario';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RegisterService } from './register.service';
-import { FormValidations } from './form.validator';
 import { Router } from '@angular/router';
+
+import { FormValidations } from '../../validators';
+import { RegisterService } from '../../services';
+import { Usuario } from '../../models';
 
 @Component({
   selector: 'app-register',

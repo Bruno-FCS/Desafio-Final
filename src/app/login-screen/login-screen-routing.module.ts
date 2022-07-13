@@ -1,10 +1,11 @@
-import { LoginScreenComponent } from './login-screen.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { SuccessComponent } from './success/success.component';
-import { SuccessGuard } from './success/success.guard';
+
+import { LoginScreenComponent } from './login-screen.component';
+import { LoginComponent } from './login';
+import { RegisterComponent } from './register';
+import { SuccessComponent } from './success';
+import { SuccessGuard } from '../guards';
 
 const routes: Routes = [
   {

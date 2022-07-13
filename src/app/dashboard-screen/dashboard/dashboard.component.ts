@@ -1,6 +1,7 @@
-import { Veiculo } from './../veiculo/veiculo';
 import { Component, HostListener, OnInit } from '@angular/core';
-import { VeiculoService } from '../veiculo/veiculo.service';
+
+import { Veiculo } from '../../models';
+import { VeiculoService } from '../../services';
 
 declare var google: any;
 

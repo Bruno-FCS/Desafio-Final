@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { UsuarioService } from 'src/app/autenticacao/usuario/usuario.service';
+
+import { UsuarioService } from '../../services';
 
 @Component({
   selector: 'app-home',

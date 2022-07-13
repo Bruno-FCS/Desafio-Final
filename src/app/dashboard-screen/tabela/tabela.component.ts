@@ -1,7 +1,8 @@
 import { filter, switchMap } from 'rxjs';
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { VeiculoDataService } from '../veiculo/veiculo-data.service';
+
+import { VeiculoDataService } from '../../services';
 
 @Component({
   selector: 'app-tabela',

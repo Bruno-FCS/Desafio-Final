@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UsuarioService } from 'src/app/autenticacao/usuario/usuario.service';
+
+import { UsuarioService } from '../../services';
 
 @Component({
   selector: 'app-settings',

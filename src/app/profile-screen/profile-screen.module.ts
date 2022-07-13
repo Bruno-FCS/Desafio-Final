@@ -1,15 +1,15 @@
-import { HeaderModule } from './../componentes/header/header.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { ProfileScreenRoutingModule } from './profile-screen-routing.module';
-import { ProfileComponent } from './profile/profile.component';
-import { MenuModule } from '../componentes/menu/menu.module';
-import { SettingsModule } from '../componentes/settings/settings.module';
-import { MensagemModule } from '../componentes/mensagem/mensagem.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UpdateFormComponent } from './update-form/update-form.component';
-import { PasswordFormComponent } from './password-form/password-form.component';
+
+import { HeaderModule } from '../componentes';
+import { ProfileScreenRoutingModule } from './profile-screen-routing.module';
+import { ProfileComponent } from './profile';
+import { MenuModule } from '../componentes';
+import { SettingsModule } from '../componentes';
+import { MensagemModule } from '../componentes';
+import { UpdateFormComponent } from './update-form';
+import { PasswordFormComponent } from './password-form';
 
 @NgModule({
   declarations: [ProfileComponent, UpdateFormComponent, PasswordFormComponent],

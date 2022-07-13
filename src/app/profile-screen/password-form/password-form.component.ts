@@ -1,9 +1,10 @@
-import { Usuario } from './../../autenticacao/usuario/usuario';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UsuarioService } from 'src/app/autenticacao/usuario/usuario.service';
-import { FormValidations } from 'src/app/login-screen/register/form.validator';
-import { ProfileService } from '../profile/profile.service';
+
+import { FormValidations } from '../../validators';
+import { ProfileService } from '../../services';
+import { Usuario } from '../../models';
+import { UsuarioService } from '../../services';
 
 @Component({
   selector: 'app-password-form',

@@ -1,7 +1,8 @@
-import { environment } from './../../../environments/environment';
-import { Usuario } from './../../autenticacao/usuario/usuario';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+import { environment } from '../../environments/environment';
+import { Usuario } from '../models';
 
 const API = environment.apiURL;
 const KEY = 'success';

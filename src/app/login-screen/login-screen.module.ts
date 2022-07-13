@@ -1,14 +1,14 @@
-import { AutenticacaoModule } from './../autenticacao/autenticacao.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { AutenticacaoModule } from '../autenticacao';
 import { LoginScreenRoutingModule } from './login-screen-routing.module';
 import { LoginScreenComponent } from './login-screen.component';
-import { LoginComponent } from './login/login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MensagemModule } from '../componentes/mensagem/mensagem.module';
-import { RegisterComponent } from './register/register.component';
-import { SuccessComponent } from './success/success.component';
+import { LoginComponent } from './login';
+import { MensagemModule } from '../componentes';
+import { RegisterComponent } from './register';
+import { SuccessComponent } from './success';
 
 @NgModule({
   declarations: [LoginScreenComponent, LoginComponent, RegisterComponent, SuccessComponent],

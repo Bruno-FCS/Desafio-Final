@@ -1,0 +1,7 @@
+export * from './autenticacao.service'
+export * from './profile.service'
+export * from './register.service'
+export * from './token.service'
+export * from './usuario.service'
+export * from './veiculo-data.service'
+export * from './veiculo.service'

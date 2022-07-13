@@ -1,8 +1,9 @@
 import { pluck } from 'rxjs';
-import { environment } from './../../../environments/environment';
-import { Veiculo, VeiculosAPI } from './veiculo';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+import { environment } from '../../environments/environment';
+import { Veiculo, VeiculosAPI } from '../models';
 
 const API = environment.apiURL;
 
