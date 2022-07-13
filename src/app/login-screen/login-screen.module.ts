@@ -1,3 +1,4 @@
+import { NgxCaptchaModule } from 'ngx-captcha';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,6 +20,7 @@ import { SuccessComponent } from './success';
     MensagemModule,
     AutenticacaoModule,
     ReactiveFormsModule,
+    NgxCaptchaModule
   ],
   exports: [LoginScreenComponent],
 })

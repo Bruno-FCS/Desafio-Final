@@ -14,6 +14,7 @@ import { Usuario } from '../../models';
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   error = false;
+  siteKey: string = "6Lcf7esgAAAAACeLx5S-HlLsWUfr_7CUhB7SW1Y-";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,6 +35,7 @@ export class RegisterComponent implements OnInit {
         [Validators.required, FormValidations.equalsTo('user_password')],
       ],
       checkbox: [false, Validators.requiredTrue],
+      recaptcha: ['', Validators.required]
     });
   }
 

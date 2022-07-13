@@ -132,6 +132,15 @@
       >
     </div>
 
+    <div class="form-group mb-2 field-width m-auto">
+      <ngx-recaptcha2
+        #captchaElem
+        [siteKey]="siteKey"
+        formControlName="recaptcha"
+      >
+      </ngx-recaptcha2>
+    </div>
+
     <div class="mb-2 margin">
       Já possui cadastro? <a [routerLink]="['']">Faça login</a>
     </div>
