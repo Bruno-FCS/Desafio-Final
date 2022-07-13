@@ -1,14 +1,14 @@
-import { filter, switchMap } from 'rxjs';
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { filter, switchMap } from 'rxjs';
 import { VeiculoDataService } from '../veiculo/veiculo-data.service';
 
 @Component({
-  selector: 'app-tabela',
-  templateUrl: './tabela.component.html',
-  styleUrls: ['./tabela.component.css'],
+  selector: 'app-tabela-vertical',
+  templateUrl: './tabela-vertical.component.html',
+  styleUrls: ['./tabela-vertical.component.css']
 })
-export class TabelaComponent {
+export class TabelaVerticalComponent {
   inputValue!: string;
   tabelaInput = new FormControl();
   veiculosData$ = this.tabelaInput.valueChanges.pipe(

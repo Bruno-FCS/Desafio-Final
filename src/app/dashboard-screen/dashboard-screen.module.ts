@@ -12,6 +12,7 @@ import { ModalAtualizarComponent } from './modal-atualizar/modal-atualizar.compo
 import { ModalInserirComponent } from './modal-inserir/modal-inserir.component';
 import { MensagemModule } from '../componentes/mensagem/mensagem.module';
 import { ModalDeletarComponent } from './modal-deletar/modal-deletar.component';
+import { TabelaVerticalComponent } from './tabela-vertical/tabela-vertical.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ModalDeletarComponent } from './modal-deletar/modal-deletar.component';
     TabelaComponent,
     ModalAtualizarComponent,
     ModalInserirComponent,
-    ModalDeletarComponent
+    ModalDeletarComponent,
+    TabelaVerticalComponent
   ],
   imports: [
     CommonModule,

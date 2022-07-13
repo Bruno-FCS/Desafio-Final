@@ -72,3 +72,17 @@ nav{
   color: white;
   text-align: center;
 }
+
+app-tabela-vertical{
+  display: none;
+}
+
+@media screen and (max-width: 1400px){
+  app-tabela{
+    display: none;
+  }
+
+  app-tabela-vertical{
+    display: flex;
+  }
+}

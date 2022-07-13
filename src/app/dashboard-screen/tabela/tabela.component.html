@@ -45,73 +45,77 @@
 
 <div *ngIf="veiculosData$ | async as veiculosData; else elseblock">
   <div *ngIf="inputValue.length == 20; else elseblock">
-    <div class="col-1 cell-1">
-      <div class="cell-header-1 bg-color font-weight">Odômetro</div>
-      <div
-        class="d-flex justify-content-center"
-        *ngFor="let veiculoData of veiculosData"
-      >
-        <span class="mt-2">{{ veiculoData.vehicledata_odometer }} Km</span>
+    <div *ngIf="veiculosData.length > 0; else elseblock">
+      <div class="col-1 cell-1">
+        <div class="cell-header-1 bg-color font-weight">Odômetro</div>
+        <div
+          class="d-flex justify-content-center"
+          *ngFor="let veiculoData of veiculosData"
+        >
+          <span class="mt-2">{{ veiculoData.vehicledata_odometer }} Km</span>
+        </div>
       </div>
-    </div>
 
-    <div class="col-2 cell-1">
-      <div class="cell-header-1 bg-color font-weight">Nível de Combustível</div>
-      <div
-        class="d-flex justify-content-center"
-        *ngFor="let veiculoData of veiculosData"
-      >
-        <span class="mt-2">{{ veiculoData.vehicledata_fuel_level }}%</span>
+      <div class="col-2 cell-1">
+        <div class="cell-header-1 bg-color font-weight">
+          Nível de Combustível
+        </div>
+        <div
+          class="d-flex justify-content-center"
+          *ngFor="let veiculoData of veiculosData"
+        >
+          <span class="mt-2">{{ veiculoData.vehicledata_fuel_level }}%</span>
+        </div>
       </div>
-    </div>
 
-    <div class="col-1 cell-1">
-      <div class="cell-header-1 bg-color font-weight">Status</div>
-      <div
-        class="d-flex justify-content-center"
-        *ngFor="let veiculoData of veiculosData"
-      >
-        <span class="mt-2">{{ veiculoData.vehicledata_status }}</span>
+      <div class="col-1 cell-1">
+        <div class="cell-header-1 bg-color font-weight">Status</div>
+        <div
+          class="d-flex justify-content-center"
+          *ngFor="let veiculoData of veiculosData"
+        >
+          <span class="mt-2">{{ veiculoData.vehicledata_status }}</span>
+        </div>
       </div>
-    </div>
 
-    <div class="col-1 cell-1">
-      <div class="cell-header-1 bg-color font-weight">Lat.</div>
-      <div
-        class="d-flex justify-content-center"
-        *ngFor="let veiculoData of veiculosData"
-      >
-        <span class="mt-2">{{ veiculoData.vehicledata_lat }}</span>
+      <div class="col-1 cell-1">
+        <div class="cell-header-1 bg-color font-weight">Lat.</div>
+        <div
+          class="d-flex justify-content-center"
+          *ngFor="let veiculoData of veiculosData"
+        >
+          <span class="mt-2">{{ veiculoData.vehicledata_lat }}</span>
+        </div>
       </div>
-    </div>
 
-    <div class="col-1 cell-1">
-      <div class="cell-header-1 bg-color font-weight">Long.</div>
-      <div
-        class="d-flex justify-content-center"
-        *ngFor="let veiculoData of veiculosData"
-      >
-        <span class="mt-2">{{ veiculoData.vehicledata_long }}</span>
+      <div class="col-1 cell-1">
+        <div class="cell-header-1 bg-color font-weight">Long.</div>
+        <div
+          class="d-flex justify-content-center"
+          *ngFor="let veiculoData of veiculosData"
+        >
+          <span class="mt-2">{{ veiculoData.vehicledata_long }}</span>
+        </div>
       </div>
-    </div>
 
-    <div class="col-2 cell-1">
-      <div class="cell-header-1 bg-color font-weight">Status da Bateria</div>
-      <div
-        class="d-flex justify-content-center"
-        *ngFor="let veiculoData of veiculosData"
-      >
-        <span class="mt-2">{{ veiculoData.vehicledata_battery_status }}</span>
+      <div class="col-2 cell-1">
+        <div class="cell-header-1 bg-color font-weight">Status da Bateria</div>
+        <div
+          class="d-flex justify-content-center"
+          *ngFor="let veiculoData of veiculosData"
+        >
+          <span class="mt-2">{{ veiculoData.vehicledata_battery_status }}</span>
+        </div>
       </div>
-    </div>
 
-    <div class="col-2 cell-3">
-      <div class="cell-header-3 bg-color font-weight">Pressão dos Pneus</div>
-      <div
-        class="d-flex justify-content-center"
-        *ngFor="let veiculoData of veiculosData"
-      >
-        <span class="mt-2">{{ veiculoData.vehicledata_tire_pressure }}</span>
+      <div class="col-2 cell-3">
+        <div class="cell-header-3 bg-color font-weight">Pressão dos Pneus</div>
+        <div
+          class="d-flex justify-content-center"
+          *ngFor="let veiculoData of veiculosData"
+        >
+          <span class="mt-2">{{ veiculoData.vehicledata_tire_pressure }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -120,30 +124,51 @@
 <ng-template #elseblock>
   <div class="col-1 cell-1">
     <div class="cell-header-1 bg-color font-weight">Odômetro</div>
+    <div class="d-flex justify-content-center">
+      <span class="mt-2">-</span>
+    </div>
   </div>
 
   <div class="col-2 cell-1">
     <div class="cell-header-1 bg-color font-weight">Nível de Combustível</div>
+    <div class="d-flex justify-content-center">
+      <span class="mt-2">-</span>
+    </div>
   </div>
 
   <div class="col-1 cell-1">
     <div class="cell-header-1 bg-color font-weight">Status</div>
+    <div class="d-flex justify-content-center">
+      <span class="mt-2">-</span>
+    </div>
   </div>
 
   <div class="col-1 cell-1">
     <div class="cell-header-1 bg-color font-weight">Lat.</div>
+    <div class="d-flex justify-content-center">
+      <span class="mt-2">-</span>
+    </div>
   </div>
 
   <div class="col-1 cell-1">
     <div class="cell-header-1 bg-color font-weight">Long.</div>
+    <div class="d-flex justify-content-center">
+      <span class="mt-2">-</span>
+    </div>
   </div>
 
   <div class="col-2 cell-1">
     <div class="cell-header-1 bg-color font-weight">Status da Bateria</div>
+    <div class="d-flex justify-content-center">
+      <span class="mt-2">-</span>
+    </div>
   </div>
 
   <div class="col-2 cell-3">
     <div class="cell-header-3 bg-color font-weight">Pressão dos Pneus</div>
+    <div class="d-flex justify-content-center">
+      <span class="mt-2">-</span>
+    </div>
   </div>
 </ng-template>
 

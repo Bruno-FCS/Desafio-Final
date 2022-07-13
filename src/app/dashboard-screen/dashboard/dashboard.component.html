@@ -24,7 +24,7 @@
 
 <div class="container mt-3" *ngIf="veiculos$ | async as veiculos">
   <div class="row justify-content-center">
-    <app-cartao class="col-8 col-sm-6 col-lg-3 mb-3 mb-lg-0" [titulo]="'Veículo'">
+    <app-cartao class="col-10 col-sm-6 col-lg-3 mb-3 mb-lg-0" [titulo]="'Veículo'">
       <select
         class="form-control mt-3"
         type="number"
@@ -37,21 +37,21 @@
       </select>
     </app-cartao>
 
-    <app-cartao class="col-8 col-sm-6 col-lg-3 mb-3 mb-lg-0" [titulo]="'Total de Vendas'">
+    <app-cartao class="col-10 col-sm-6 col-lg-3 mb-3 mb-lg-0" [titulo]="'Total de Vendas'">
       <h2 class="text-info">
         {{ veiculoEscolhido?.vehicle_total_volume }}
       </h2>
       <p>Unid.</p>
     </app-cartao>
 
-    <app-cartao class="col-8 col-sm-6 col-lg-3 mb-3 mb-lg-0" [titulo]="'Conectados'">
+    <app-cartao class="col-10 col-sm-6 col-lg-3 mb-3 mb-lg-0" [titulo]="'Conectados'">
       <h2 class="text-info">
         {{ veiculoEscolhido?.vehicle_connected }}
       </h2>
       <p>Unid.</p>
     </app-cartao>
 
-    <app-cartao class="col-8 col-sm-6 col-lg-3 mb-3 mb-lg-0" [titulo]="'Update Software'">
+    <app-cartao class="col-10 col-sm-6 col-lg-3 mb-3 mb-lg-0" [titulo]="'Update Software'">
       <h2 class="text-info">
         {{ veiculoEscolhido?.vehicle_software_updates }}
       </h2>
@@ -62,7 +62,7 @@
 
 <div class="container mt-3 mb-3">
   <div class="row justify-content-center align-items-center">
-    <div class="col-8 col-sm-12 col-lg-6 mb-3 mb-lg-0">
+    <div class="col-10 col-sm-12 col-lg-6 mb-3 mb-lg-0">
       <img
         class="img-fluid"
         src="assets/img/{{ veiculoEscolhido?.vehicle_model }}.png"
@@ -70,7 +70,7 @@
       />
     </div>
 
-    <div class="col-8 col-sm-6 col-lg-3 mb-3 mb-sm-0">
+    <div class="col-10 col-sm-6 col-lg-3 mb-3 mb-sm-0">
       <div class="card">
         <div class="card-header card-color"><h5>Conectados %</h5></div>
         <div class="card-body">
@@ -80,7 +80,7 @@
       </div>
     </div>
 
-    <div class="col-8 col-sm-6 col-lg-3">
+    <div class="col-10 col-sm-6 col-lg-3">
       <div class="card">
         <div class="card-header card-color"><h5>Update Software %</h5></div>
         <div class="card-body">
@@ -93,8 +93,9 @@
 </div>
 
 <div class="container">
-  <div class="row justify-content-center align-items-center">
+  <div class="row">
     <app-tabela></app-tabela>
+    <app-tabela-vertical></app-tabela-vertical>
   </div>
 </div>
 
