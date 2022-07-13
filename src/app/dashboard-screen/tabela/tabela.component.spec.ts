@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TabelaComponent } from './tabela.component';
@@ -8,7 +9,10 @@ describe('TabelaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TabelaComponent ]
+      declarations: [ TabelaComponent ],
+      providers: [
+        { provide: HttpClient, useValue: HttpClient },
+      ]
     })
     .compileComponents();
   });

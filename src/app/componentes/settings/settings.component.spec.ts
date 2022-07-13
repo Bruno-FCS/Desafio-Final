@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
 import { SettingsComponent } from './settings.component';
 
@@ -8,9 +9,9 @@ describe('SettingsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SettingsComponent ]
-    })
-    .compileComponents();
+      declarations: [SettingsComponent],
+      providers: [{ provide: Router, useValue: Router }],
+    }).compileComponents();
   });
 
   beforeEach(() => {

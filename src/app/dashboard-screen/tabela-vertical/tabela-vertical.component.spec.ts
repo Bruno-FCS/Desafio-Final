@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TabelaVerticalComponent } from './tabela-vertical.component';
@@ -8,7 +9,10 @@ describe('TabelaVerticalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TabelaVerticalComponent ]
+      declarations: [ TabelaVerticalComponent ],
+      providers: [
+        { provide: HttpClient, useValue: HttpClient },
+      ]
     })
     .compileComponents();
   });

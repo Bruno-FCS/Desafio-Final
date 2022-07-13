@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder } from '@angular/forms';
 
 import { PasswordFormComponent } from './password-form.component';
 
@@ -8,9 +10,9 @@ describe('PasswordFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PasswordFormComponent ]
-    })
-    .compileComponents();
+      declarations: [PasswordFormComponent],
+      providers: [FormBuilder, { provide: HttpClient, useValue: HttpClient }],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder } from '@angular/forms';
 
 import { ModalDeletarComponent } from './modal-deletar.component';
 
@@ -8,9 +10,9 @@ describe('ModalDeletarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModalDeletarComponent ]
-    })
-    .compileComponents();
+      declarations: [ModalDeletarComponent],
+      providers: [FormBuilder, { provide: HttpClient, useValue: HttpClient }],
+    }).compileComponents();
   });
 
   beforeEach(() => {
