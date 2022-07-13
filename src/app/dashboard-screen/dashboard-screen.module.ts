@@ -13,6 +13,7 @@ import { ModalInserirComponent } from './modal-inserir/modal-inserir.component';
 import { MensagemModule } from '../componentes/mensagem/mensagem.module';
 import { ModalDeletarComponent } from './modal-deletar/modal-deletar.component';
 import { TabelaVerticalComponent } from './tabela-vertical/tabela-vertical.component';
+import { HeaderModule } from '../componentes/header/header.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { TabelaVerticalComponent } from './tabela-vertical/tabela-vertical.compo
     MensagemModule,
     FormsModule,
     ReactiveFormsModule,
+    HeaderModule
   ],
 })
 export class DashboardScreenModule {}

@@ -1,3 +1,4 @@
+import { HeaderModule } from './../componentes/header/header.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -19,6 +20,7 @@ import { PasswordFormComponent } from './password-form/password-form.component';
     SettingsModule,
     MensagemModule,
     ReactiveFormsModule,
+    HeaderModule
   ],
 })
 export class ProfileScreenModule {}

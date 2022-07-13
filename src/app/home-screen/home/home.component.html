@@ -1,27 +1,7 @@
-<nav class="navbar">
-  <img
-    src="../../../assets/img/menu-icon.png"
-    class="left-icon position-relative"
-    (click)="menu.abrirMenu()"
-    (keyup.space)="menu.abrirMenu()"
-  />
-
-  <img
-    class="img-settings"
-    src="../../../assets/img/ford.png"
-    alt="Logo da Ford"
-  />
-
-  <img
-    src="../../../assets/img/user-icon.png"
-    class="right-icon position-relative"
-    (click)="settings.abrirSettings()"
-    (keyup.space)="settings.abrirSettings()"
-  />
-</nav>
+<app-header></app-header>
 
 <div class="d-flex flex-row full-height">
-  <div class="d-flex col-md-12 align-items-center justify-content-center">
+  <div class="d-flex col-md-12 align-items-center justify-content-center z-index1">
     <img
       class="img-fluid d-sm-block"
       src="../../../assets/img/Ranger.png"
@@ -30,7 +10,7 @@
   </div>
 
   <div
-    class="position-absolute d-flex align-items-center justify-content-center full"
+    class="position-absolute d-flex align-items-center justify-content-center full z-index2"
   >
     <div class="card col-6 card-dimension">
       <div class="card-header text-align-center">
@@ -57,7 +37,4 @@
       </div>
     </div>
   </div>
-
-  <app-menu #menu></app-menu>
-  <app-settings #settings></app-settings>
 </div>
