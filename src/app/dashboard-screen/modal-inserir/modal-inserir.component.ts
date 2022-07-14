@@ -65,9 +65,7 @@ export class ModalInserirComponent implements OnInit {
           this.windowClosed.emit();
         },
         (error) => {
-          if (error.status == 400) {
-            this.error = true;
-          }
+          this.error = true;
         }
       );
     }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.brunofernandes.apispringboot.entities.User;
 import com.brunofernandes.apispringboot.entities.UserResponse;
 import com.brunofernandes.apispringboot.repositories.UserRepository;
+import com.brunofernandes.apispringboot.services.exceptions.AuthenticationException;
 import com.brunofernandes.apispringboot.services.exceptions.DatabaseException;
 import com.brunofernandes.apispringboot.services.exceptions.ResourceNotFoundException;
 
@@ -32,7 +33,7 @@ public class UserService {
 
 	public User findByNameAndPassword(String user_name, String user_password) {
 		Optional<User> obj = repository.findByNameAndPassword(user_name, user_password);
-		return obj.orElseThrow(() -> new ResourceNotFoundException(user_name));
+		return obj.orElseThrow(() -> new AuthenticationException());
 	}
 
 	public User insert(User obj) {

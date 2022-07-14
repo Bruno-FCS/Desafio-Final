@@ -12,8 +12,10 @@ module.exports = (app) => {
   });
 
   app.get("/vehiclesdata/:vehicledata_vin", (req, res) => {
+    const vehicledata_vin = req.params.vehicledata_vin;
     connection.query(
-      `SELECT * FROM Vehicle_Data WHERE vehicledata_vin = "${req.params.vehicledata_vin}"`,
+      "SELECT * FROM Vehicle_Data WHERE vehicledata_vin = ?",
+      [vehicledata_vin],
       (error, result) => {
         if (error) {
           res.status(400).json(error);
@@ -25,14 +27,18 @@ module.exports = (app) => {
   });
 
   app.get("/vehiclesdata/:vehicledata_id", (req, res) => {
+    const vehicledata_id = req.params.vehicledata_id;
     connection.query(
-      `SELECT * FROM Vehicle_Data WHERE vehicledata_id = "${req.params.vehicledata_id}"`,
+      "SELECT * FROM Vehicle_Data WHERE vehicledata_id = ?",
+      [vehicledata_id],
       (error, result) => {
         const vehicledata = result[0];
         if (error) {
           res.status(400).json(error);
-        } else {
+        } else if (result.length == 1) {
           res.status(200).json(vehicledata);
+        } else {
+          res.status(404).json("Invalid vehicledata id");
         }
       }
     );
@@ -96,7 +102,7 @@ module.exports = (app) => {
             }
           );
         } else {
-          res.status(400).json("VIN code invalid");
+          res.status(404).json("VIN code invalid");
         }
       }
     );
@@ -164,12 +170,12 @@ module.exports = (app) => {
               if (error) {
                 res.status(400).json(error);
               } else {
-                res.status(200).json({ vehicledata_id });
+                res.status(204).end();
               }
             }
           );
         } else {
-          res.status(400).json(error);
+          res.status(404).json("VIN code invalid");
         }
       }
     );
@@ -178,13 +184,25 @@ module.exports = (app) => {
   app.delete("/vehiclesdata/:vehicledata_id", (req, res) => {
     const vehicledata_id = parseInt(req.params.vehicledata_id);
     connection.query(
-      "DELETE FROM Vehicle_Data WHERE vehicledata_id = ?",
+      "SELECT * FROM Vehicle_Data WHERE vehicledata_id = ?",
       [vehicledata_id],
-      (error) => {
+      (error, result) => {
         if (error) {
           res.status(400).json(error);
+        } else if (result.length == 1) {
+          connection.query(
+            "DELETE FROM Vehicle_Data WHERE vehicledata_id = ?",
+            [vehicledata_id],
+            (error) => {
+              if (error) {
+                res.status(400).json(error);
+              } else {
+                res.status(204).end();
+              }
+            }
+          );
         } else {
-          res.status(200).json({ vehicledata_id });
+          res.status(404).json("Invalid vehicledata id");
         }
       }
     );

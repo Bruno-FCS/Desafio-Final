@@ -6,20 +6,24 @@ module.exports = (app) => {
       if (error) {
         res.status(400).json(error);
       } else {
-        res.status(200).json({vehicles: result});
+        res.status(200).json({ vehicles: result });
       }
     });
   });
 
   app.get("/vehicles/:vehicle_id", (req, res) => {
+    const vehicle_id = parseInt(req.params.vehicle_id);
     connection.query(
-      `SELECT * FROM Vehicle WHERE vehicle_id = "${req.params.vehicle_id}"`,
+      "SELECT * FROM Vehicle WHERE vehicle_id = ?",
+      [vehicle_id],
       (error, result) => {
         const vehicle = result[0];
         if (error) {
           res.status(400).json(error);
-        } else {
+        } else if (result.length == 1) {
           res.status(200).json(vehicle);
+        } else {
+          res.status(404).json("Invalid vehicle id");
         }
       }
     );
@@ -105,13 +109,25 @@ module.exports = (app) => {
   app.delete("/vehicles/:vehicle_id", (req, res) => {
     const vehicle_id = parseInt(req.params.vehicle_id);
     connection.query(
-      "DELETE FROM Vehicle WHERE vehicle_id = ?",
+      "SELECT * FROM Vehicle WHERE vehicle_id = ?",
       [vehicle_id],
-      (error) => {
+      (error, result) => {
         if (error) {
           res.status(400).json(error);
+        } else if (result.length == 1) {
+          connection.query(
+            "DELETE FROM Vehicle WHERE vehicle_id = ?",
+            [vehicle_id],
+            (error) => {
+              if (error) {
+                res.status(400).json(error);
+              } else {
+                res.status(204).end();
+              }
+            }
+          );
         } else {
-          res.status(200).json({ vehicle_id });
+          res.status(404).json("Invalid vehicle id");
         }
       }
     );

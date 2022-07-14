@@ -57,9 +57,7 @@ export class PasswordFormComponent implements OnInit {
           this.error = false;
         },
         (error) => {
-          if (error.status == 400) {
-            this.error = true;
-          }
+          this.error = true;
         }
       );
     }

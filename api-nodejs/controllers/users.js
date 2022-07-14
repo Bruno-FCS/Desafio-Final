@@ -23,8 +23,10 @@ module.exports = (app) => {
   });
 
   app.get("/users/:user_id", verifyJWT, (req, res) => {
+    const user_id = parseInt(req.params.user_id);
     connection.query(
-      `SELECT * FROM User WHERE user_id = "${req.params.user_id}"`,
+      "SELECT * FROM User WHERE user_id = ?",
+      [user_id],
       (error, result) => {
         const user = result[0];
         if (error) {
@@ -32,7 +34,7 @@ module.exports = (app) => {
         } else if (result.length == 1) {
           res.status(200).json(user);
         } else {
-          res.status(400).json("Invalid user id");
+          res.status(404).json("Invalid user id");
         }
       }
     );
@@ -81,10 +83,10 @@ module.exports = (app) => {
       [user_name, user_password],
       (error, result) => {
         if (error) {
-          res.status(400).json(error);
+          res.status(401).json(error);
         } else {
           if (result.length == 0) {
-            res.status(400).json("Username or password invalid");
+            res.status(401).json("Username or password invalid");
           } else {
             const token = jwt.sign(
               {
@@ -227,13 +229,25 @@ module.exports = (app) => {
   app.delete("/users/:user_id", (req, res) => {
     const user_id = parseInt(req.params.user_id);
     connection.query(
-      "DELETE FROM User WHERE user_id = ?",
+      "SELECT * FROM User WHERE user_id = ?",
       [user_id],
-      (error) => {
+      (error, result) => {
         if (error) {
           res.status(400).json(error);
+        } else if (result.length == 1) {
+          connection.query(
+            "DELETE FROM User WHERE user_id = ?",
+            [user_id],
+            (error) => {
+              if (error) {
+                res.status(400).json(error);
+              } else {
+                res.status(204).end();
+              }
+            }
+          );
         } else {
-          res.status(200).json({ user_id });
+          res.status(404).json("Invalid user id");
         }
       }
     );
