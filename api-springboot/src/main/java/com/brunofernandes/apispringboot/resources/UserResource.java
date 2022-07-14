@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -32,14 +33,18 @@ public class UserResource {
 	private TokenService tokenService;
 
 	@GetMapping
-	public ResponseEntity<List<User>> findAll() {
+	public ResponseEntity<List<User>> findAll(
+			@RequestHeader(value = "x-access-token", defaultValue = "") String token) {
 		List<User> list = service.findAll();
+		tokenService.verifyToken(token);
 		return ResponseEntity.ok().body(list);
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<User> findById(@PathVariable Long id) {
+	public ResponseEntity<User> findById(@PathVariable Long id,
+			@RequestHeader(value = "x-access-token", defaultValue = "") String token) {
 		User obj = service.findById(id);
+		tokenService.verifyToken(token);
 		return ResponseEntity.ok().body(obj);
 	}
 
@@ -68,9 +73,9 @@ public class UserResource {
 		return ResponseEntity.ok().header("x-access-token", token)
 				.header("Access-Control-Expose-Headers", "x-access-token").body(resp);
 	}
-	
+
 	@PutMapping(value = "/change-password/{id}")
-	public ResponseEntity<Void> changePassword(@PathVariable Long id, @RequestBody PasswordChange obj){
+	public ResponseEntity<Void> changePassword(@PathVariable Long id, @RequestBody PasswordChange obj) {
 		service.changePassword(id, obj.getUser_former_password(), obj.getUser_password());
 		return ResponseEntity.noContent().build();
 	}

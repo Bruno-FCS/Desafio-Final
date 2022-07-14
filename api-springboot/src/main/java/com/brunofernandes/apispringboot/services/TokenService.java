@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.brunofernandes.apispringboot.entities.UserResponse;
+import com.brunofernandes.apispringboot.services.exceptions.AuthenticationException;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -24,5 +25,14 @@ public class TokenService {
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY))
 				.signWith(SignatureAlgorithm.HS256, secret).compact();
+	}
+
+	public void verifyToken(String token) {
+		try {
+			Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
+		} catch (RuntimeException e) {
+			throw new AuthenticationException();
+		}
+
 	}
 }
