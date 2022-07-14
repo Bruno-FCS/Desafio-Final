@@ -4,7 +4,15 @@ const jwt = require("jsonwebtoken");
 const SECRET = "brunofernandes";
 
 module.exports = (app) => {
-  app.get("/users", (req, res) => {
+  function verifyJWT(req, res, next) {
+    const token = req.headers["x-access-token"];
+    jwt.verify(token, SECRET, (error) => {
+      if (error) return res.status(401).end();
+      next();
+    });
+  }
+
+  app.get("/users", verifyJWT, (req, res) => {
     connection.query("SELECT * FROM User", (error, result) => {
       if (error) {
         res.status(400).json(error);
@@ -14,15 +22,17 @@ module.exports = (app) => {
     });
   });
 
-  app.get("/users/:user_id", (req, res) => {
+  app.get("/users/:user_id", verifyJWT, (req, res) => {
     connection.query(
-      `SELECT * FROM User WHERE user_name = "${req.params.user_id}"`,
+      `SELECT * FROM User WHERE user_id = "${req.params.user_id}"`,
       (error, result) => {
         const user = result[0];
         if (error) {
           res.status(400).json(error);
-        } else {
+        } else if (result.length == 1) {
           res.status(200).json(user);
+        } else {
+          res.status(400).json("Invalid user id");
         }
       }
     );
