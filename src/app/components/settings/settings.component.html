@@ -1,0 +1,28 @@
+<div [ngClass]="{ 'active-settings': showSettings }">
+  <div class="settings-bar">
+    <i
+      class="fa fa-window-close menu-item"
+      (click)="openSettings()"
+      (keyup.space)="openSettings()"
+    ></i>
+    <ul class="list-unstyled list-group list-group-flush">
+      <li *ngIf="user$ | async as user">
+        <h3 class="cursor-default">{{ user.user_name }}</h3>
+      </li>
+      <li
+        class="list-group-item list-group-item-action menu-item"
+        [routerLink]="['/profile']"
+      >
+        Meu perfil
+      </li>
+      <li
+        class="list-group-item list-group-item-action menu-item"
+        (click)="logout()"
+      >
+        Logout
+      </li>
+    </ul>
+  </div>
+
+  <div class="overlay" (click)="openSettings()"></div>
+</div>

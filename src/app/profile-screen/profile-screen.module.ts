@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { HeaderModule } from '../componentes';
+import { HeaderModule } from '../components';
 import { ProfileScreenRoutingModule } from './profile-screen-routing.module';
 import { ProfileComponent } from './profile';
-import { MenuModule } from '../componentes';
-import { SettingsModule } from '../componentes';
-import { MensagemModule } from '../componentes';
+import { MenuModule } from '../components';
+import { SettingsModule } from '../components';
+import { MessageModule } from '../components';
 import { UpdateFormComponent } from './update-form';
 import { PasswordFormComponent } from './password-form';
 
@@ -18,7 +18,7 @@ import { PasswordFormComponent } from './password-form';
     ProfileScreenRoutingModule,
     MenuModule,
     SettingsModule,
-    MensagemModule,
+    MessageModule,
     ReactiveFormsModule,
     HeaderModule
   ],

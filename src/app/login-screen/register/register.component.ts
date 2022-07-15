@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { FormValidations } from '../../validators';
 import { RegisterService } from '../../services';
-import { Usuario } from '../../models';
+import { User } from '../../models';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.registerService.limparCadastro();
+    this.registerService.clearRegister();
 
     this.registerForm = this.formBuilder.group({
       user_name: [null, [Validators.required, Validators.minLength(5)]],
@@ -41,10 +41,10 @@ export class RegisterComponent implements OnInit {
 
   register() {
     if (this.registerForm.valid) {
-      const user = this.registerForm.getRawValue() as Usuario;
-      this.registerService.cadastrar(user).subscribe(
+      const user = this.registerForm.getRawValue() as User;
+      this.registerService.register(user).subscribe(
         () => {
-          this.registerService.setarCadastro();
+          this.registerService.setRegister();
           this.router.navigate(['login/register-success']);
         },
         (error) => {

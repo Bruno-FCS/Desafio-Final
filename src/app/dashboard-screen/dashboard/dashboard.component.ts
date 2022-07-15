@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 
-import { Veiculo } from '../../models';
-import { VeiculoService } from '../../services';
+import { Vehicle } from '../../models';
+import { VehicleService } from '../../services';
 
 declare var google: any;
 
@@ -13,44 +13,44 @@ declare var google: any;
 export class DashboardComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   sizeChange() {
-    this.exibirChart('chart_1', this.connectedDados);
-    this.exibirChart('chart_2', this.updatedDados);
+    this.showChart('chart_1', this.connectedData);
+    this.showChart('chart_2', this.updatedData);
   }
 
-  veiculos$ = this.veiculoService.buscaVeiculos();
-  veiculoId!: string;
-  veiculoEscolhido!: Veiculo;
+  vehicles$ = this.vehicleService.findVehicles();
+  vehicleId!: string;
+  chosenVehicle!: Vehicle;
 
-  connectedDados: any = [];
-  updatedDados: any = [];
+  connectedData: any = [];
+  updatedData: any = [];
 
   formatedConnectedRatio = 0;
   formatedUpdatedRatio = 0;
 
-  constructor(private veiculoService: VeiculoService) {}
+  constructor(private vehicleService: VehicleService) {}
 
   ngOnInit(): void {
-    this.enviaVeiculoId('1');
+    this.sendVehicleId('1');
   }
 
-  enviaVeiculoId(id: string) {
-    this.veiculoService.buscaVeiculoId(id).subscribe((veiculoEscolhido) => {
-      this.veiculoEscolhido = veiculoEscolhido;
+  sendVehicleId(id: string) {
+    this.vehicleService.findVehiclesById(id).subscribe((chosenVehicle) => {
+      this.chosenVehicle = chosenVehicle;
       const connectedRatio =
-        (this.veiculoEscolhido.vehicle_connected * 100) /
-        this.veiculoEscolhido.vehicle_total_volume;
+        (this.chosenVehicle.vehicle_connected * 100) /
+        this.chosenVehicle.vehicle_total_volume;
       this.formatedConnectedRatio = Math.round(connectedRatio * 10) / 10;
       const connectedRemainder = 100 - connectedRatio;
-      this.connectedDados = [
+      this.connectedData = [
         ['Conectados', connectedRatio],
         ['Não conectados', connectedRemainder],
       ];
       const updatedRatio =
-        (this.veiculoEscolhido.vehicle_software_updates * 100) /
-        this.veiculoEscolhido.vehicle_total_volume;
+        (this.chosenVehicle.vehicle_software_updates * 100) /
+        this.chosenVehicle.vehicle_total_volume;
       this.formatedUpdatedRatio = Math.round(updatedRatio * 10) / 10;
       const updatedRemainder = 100 - updatedRatio;
-      this.updatedDados = [
+      this.updatedData = [
         ['Atualizados', updatedRatio],
         ['Não atualizados', updatedRemainder],
       ];
@@ -63,33 +63,33 @@ export class DashboardComponent implements OnInit {
       google.charts.load('current', { packages: ['corechart'] });
       setTimeout(() => {
         google.charts.setOnLoadCallback(
-          this.exibirChart('chart_1', this.connectedDados)
+          this.showChart('chart_1', this.connectedData)
         );
         google.charts.setOnLoadCallback(
-          this.exibirChart('chart_2', this.updatedDados)
+          this.showChart('chart_2', this.updatedData)
         );
       }, 500);
     }
   }
 
-  exibirChart(id: string, dados: any): void {
+  showChart(id: string, data: any): void {
     const el = document.getElementById(id);
     const chart = new google.visualization.PieChart(el);
 
-    chart.draw(this.obterDataTable(dados), this.obterOpcoes());
+    chart.draw(this.getDataTable(data), this.getOptions());
   }
 
-  obterDataTable(dados: any): any {
-    const data = new google.visualization.DataTable();
+  getDataTable(data: any): any {
+    const dataTable = new google.visualization.DataTable();
 
-    data.addColumn('string', '');
-    data.addColumn('number', 'Ratio');
-    data.addRows(dados);
+    dataTable.addColumn('string', '');
+    dataTable.addColumn('number', 'Ratio');
+    dataTable.addRows(data);
 
-    return data;
+    return dataTable;
   }
 
-  obterOpcoes(): any {
+  getOptions(): any {
     return {
       height: 180,
       legend: 'none',

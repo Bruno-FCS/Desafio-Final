@@ -2,8 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ProfileService } from '../../services';
-import { Usuario } from '../../models';
-import { UsuarioService } from '../../services';
+import { User } from '../../models';
+import { UserService } from '../../services';
 
 @Component({
   selector: 'app-update-form',
@@ -11,7 +11,7 @@ import { UsuarioService } from '../../services';
   styleUrls: ['./update-form.component.css'],
 })
 export class UpdateFormComponent implements OnInit {
-  usuario$ = this.usuarioService.retornarUsuario();
+  user$ = this.userService.returnUser();
 
   updateForm!: FormGroup;
   error = false;
@@ -25,7 +25,7 @@ export class UpdateFormComponent implements OnInit {
   user_full_name!: string;
 
   constructor(
-    private usuarioService: UsuarioService,
+    private userService: UserService,
     private profileService: ProfileService,
     private formBuilder: FormBuilder
   ) {}
@@ -41,8 +41,8 @@ export class UpdateFormComponent implements OnInit {
 
   update() {
     if (this.updateForm.valid) {
-      const user = this.updateForm.getRawValue() as Usuario;
-      this.profileService.atualizarDados(user).subscribe(
+      const user = this.updateForm.getRawValue() as User;
+      this.profileService.updateData(user).subscribe(
         () => {
           this.updated = true;
           this.updatedEvent.emit(this.updated);

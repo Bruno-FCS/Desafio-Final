@@ -9,25 +9,25 @@
 
   <h4 class="text-center text-color">Bem vindo!</h4>
 
-  <app-mensagem
+  <app-message
     *ngIf="error == true"
-    mensagem="Usuário ou senha inválido"
-  ></app-mensagem>
+    message="Usuário ou senha inválido"
+  ></app-message>
 
-  <form class="form mt-3 form-width" (ngSubmit)="logar()" #loginForm="ngForm">
+  <form class="form mt-3 form-width" (ngSubmit)="login()" #loginForm="ngForm">
     <div class="form-group mb-3 field-width m-auto">
       <input
         class="form-control"
         placeholder="Insira seu usuário"
         [(ngModel)]="user_name"
         name="user_name"
-        #campoUsuario="ngModel"
+        #userField="ngModel"
         required
       />
-      <app-mensagem
-        *ngIf="campoUsuario.invalid && campoUsuario.touched"
-        mensagem="Campo usuário obrigatório"
-      ></app-mensagem>
+      <app-message
+        *ngIf="userField.invalid && userField.touched"
+        message="Campo usuário obrigatório"
+      ></app-message>
     </div>
 
     <div class="form-group mb-2 field-width m-auto">
@@ -37,13 +37,13 @@
         type="password"
         [(ngModel)]="user_password"
         name="user_password"
-        #campoSenha="ngModel"
+        #passwordField="ngModel"
         required
       />
-      <app-mensagem
-        *ngIf="campoSenha.invalid && campoSenha.touched"
-        mensagem="Campo senha obrigatório"
-      ></app-mensagem>
+      <app-message
+        *ngIf="passwordField.invalid && passwordField.touched"
+        message="Campo senha obrigatório"
+      ></app-message>
     </div>
 
     <div class="mb-2 margin">

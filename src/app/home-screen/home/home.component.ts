@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { UsuarioService } from '../../services';
+import { UserService } from '../../services';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +8,7 @@ import { UsuarioService } from '../../services';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  usuario$ = this.usuarioService.retornarUsuario();
+  user$ = this.userService.returnUser();
 
-  constructor(private usuarioService: UsuarioService) {}
+  constructor(private userService: UserService) {}
 }

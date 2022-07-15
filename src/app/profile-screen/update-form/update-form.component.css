@@ -1,25 +1,25 @@
-.input-field{
+.input-field {
   display: inline-block;
   width: 200px;
 }
 
-.input-container{
+.input-container {
   width: 400px;
 }
 
-form{
+form {
   border: 2px rgb(190, 190, 190) solid;
   border-radius: 10px;
   padding-top: 20px;
   padding-bottom: 20px;
 }
 
-@media screen and (max-width: 451px){
-  .input-field{
+@media screen and (max-width: 451px) {
+  .input-field {
     width: 150px;
   }
 
-  .input-container{
+  .input-container {
     width: 300px;
   }
 }

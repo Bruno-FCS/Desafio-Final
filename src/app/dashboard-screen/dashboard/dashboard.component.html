@@ -2,41 +2,50 @@
 
 <h2 class="mt-3 text-center text-color">Dashboard Ford</h2>
 
-<div class="container mt-3" *ngIf="veiculos$ | async as veiculos">
+<div class="container mt-3" *ngIf="vehicles$ | async as vehicles">
   <div class="row justify-content-center">
-    <app-cartao class="col-12 col-sm-6 col-lg-3 mb-3 mb-lg-0" [titulo]="'Veículo'">
+    <app-card class="col-12 col-sm-6 col-lg-3 mb-3 mb-lg-0" [title]="'Veículo'">
       <select
         class="form-control mt-3"
         type="number"
-        [(ngModel)]="veiculoId"
-        (ngModelChange)="enviaVeiculoId(veiculoId)"
+        [(ngModel)]="vehicleId"
+        (ngModelChange)="sendVehicleId(vehicleId)"
       >
-        <option *ngFor="let veiculo of veiculos" [ngValue]="veiculo.vehicle_id">
-          {{ veiculo.vehicle_model }}
+        <option *ngFor="let vehicle of vehicles" [ngValue]="vehicle.vehicle_id">
+          {{ vehicle.vehicle_model }}
         </option>
       </select>
-    </app-cartao>
+    </app-card>
 
-    <app-cartao class="col-12 col-sm-6 col-lg-3 mb-3 mb-lg-0" [titulo]="'Total de Vendas'">
+    <app-card
+      class="col-12 col-sm-6 col-lg-3 mb-3 mb-lg-0"
+      [title]="'Total de Vendas'"
+    >
       <h2 class="text-info">
-        {{ veiculoEscolhido?.vehicle_total_volume }}
+        {{ chosenVehicle?.vehicle_total_volume }}
       </h2>
       <p>Unid.</p>
-    </app-cartao>
+    </app-card>
 
-    <app-cartao class="col-12 col-sm-6 col-lg-3 mb-3 mb-lg-0" [titulo]="'Conectados'">
+    <app-card
+      class="col-12 col-sm-6 col-lg-3 mb-3 mb-lg-0"
+      [title]="'Conectados'"
+    >
       <h2 class="text-info">
-        {{ veiculoEscolhido?.vehicle_connected }}
+        {{ chosenVehicle?.vehicle_connected }}
       </h2>
       <p>Unid.</p>
-    </app-cartao>
+    </app-card>
 
-    <app-cartao class="col-12 col-sm-6 col-lg-3 mb-3 mb-lg-0" [titulo]="'Update Software'">
+    <app-card
+      class="col-12 col-sm-6 col-lg-3 mb-3 mb-lg-0"
+      [title]="'Update Software'"
+    >
       <h2 class="text-info">
-        {{ veiculoEscolhido?.vehicle_software_updates }}
+        {{ chosenVehicle?.vehicle_software_updates }}
       </h2>
       <p>Unid.</p>
-    </app-cartao>
+    </app-card>
   </div>
 </div>
 
@@ -45,7 +54,7 @@
     <div class="col-12 col-sm-12 col-lg-6 mb-3 mb-lg-0">
       <img
         class="img-fluid"
-        src="assets/img/{{ veiculoEscolhido?.vehicle_model }}.png"
+        src="assets/img/{{ chosenVehicle?.vehicle_model }}.png"
         alt="Imagem do veículo escolhido"
       />
     </div>
@@ -74,7 +83,7 @@
 
 <div class="container">
   <div class="row">
-    <app-tabela></app-tabela>
-    <app-tabela-vertical></app-tabela-vertical>
+    <app-horizontal-table></app-horizontal-table>
+    <app-vertical-table></app-vertical-table>
   </div>
 </div>

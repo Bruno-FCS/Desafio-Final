@@ -12,7 +12,7 @@ describe('SuccessGuard', () => {
       providers: [
         { provide: HttpClient, useValue: HttpClient },
         { provide: Router, useValue: Router },
-      ]
+      ],
     });
     guard = TestBed.inject(SuccessGuard);
   });

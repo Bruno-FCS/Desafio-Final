@@ -1,0 +1,186 @@
+<div class="col-2 cell-2">
+  <div class="bg-color cell-header-2 font-weight">
+    Código VIN
+    <button
+      (click)="insertModal.openInsertModal()"
+      (click)="updateVehicleDataSubject()"
+      (keyup.space)="insertModal.openInsertModal()"
+    >
+      <img
+        class="img-settings"
+        src="../../../assets/img/plus-icon.PNG"
+        alt="Ícone de adicionar"
+      />
+    </button>
+    <button
+      (click)="updateModal.openUpdateModal()"
+      (click)="updateVehicleDataSubject()"
+      (keyup.space)="updateModal.openUpdateModal()"
+    >
+      <img
+        class="img-settings"
+        src="../../../assets/img/write-icon.PNG"
+        alt="Ícone de editar"
+      />
+    </button>
+    <button
+      (click)="deleteModal.openDeleteModal()"
+      (click)="updateVehicleDataSubject()"
+      (keyup.space)="deleteModal.openDeleteModal()"
+    >
+      <img
+        class="img-settings"
+        src="../../../assets/img/trash-icon.PNG"
+        alt="Ícone de deletar"
+      />
+    </button>
+  </div>
+  <input
+    class="mt-2"
+    type="text"
+    [formControl]="inputTable"
+    [(ngModel)]="inputValue"
+  />
+</div>
+
+<div *ngIf="vehiclesData$ | async as vehiclesData; else elseblock">
+  <div *ngIf="inputValue.length == 20; else elseblock">
+    <div *ngIf="vehiclesData.length > 0; else elseblock">
+      <div class="col-1 cell-1">
+        <div class="cell-header-1 bg-color font-weight">Odômetro</div>
+        <div
+          class="d-flex justify-content-center"
+          *ngFor="let vehicleData of vehiclesData"
+        >
+          <span class="mt-2">{{ vehicleData.vehicledata_odometer }} Km</span>
+        </div>
+      </div>
+
+      <div class="col-2 cell-1">
+        <div class="cell-header-1 bg-color font-weight">
+          Nível de Combustível
+        </div>
+        <div
+          class="d-flex justify-content-center"
+          *ngFor="let vehicleData of vehiclesData"
+        >
+          <span class="mt-2">{{ vehicleData.vehicledata_fuel_level }}%</span>
+        </div>
+      </div>
+
+      <div class="col-1 cell-1">
+        <div class="cell-header-1 bg-color font-weight">Status</div>
+        <div
+          class="d-flex justify-content-center"
+          *ngFor="let vehicleData of vehiclesData"
+        >
+          <span class="mt-2">{{ vehicleData.vehicledata_status }}</span>
+        </div>
+      </div>
+
+      <div class="col-1 cell-1">
+        <div class="cell-header-1 bg-color font-weight">Lat.</div>
+        <div
+          class="d-flex justify-content-center"
+          *ngFor="let vehicleData of vehiclesData"
+        >
+          <span class="mt-2">{{ vehicleData.vehicledata_lat }}</span>
+        </div>
+      </div>
+
+      <div class="col-1 cell-1">
+        <div class="cell-header-1 bg-color font-weight">Long.</div>
+        <div
+          class="d-flex justify-content-center"
+          *ngFor="let vehicleData of vehiclesData"
+        >
+          <span class="mt-2">{{ vehicleData.vehicledata_long }}</span>
+        </div>
+      </div>
+
+      <div class="col-2 cell-1">
+        <div class="cell-header-1 bg-color font-weight">Status da Bateria</div>
+        <div
+          class="d-flex justify-content-center"
+          *ngFor="let vehicleData of vehiclesData"
+        >
+          <span class="mt-2">{{ vehicleData.vehicledata_battery_status }}</span>
+        </div>
+      </div>
+
+      <div class="col-2 cell-3">
+        <div class="cell-header-3 bg-color font-weight">Pressão dos Pneus</div>
+        <div
+          class="d-flex justify-content-center"
+          *ngFor="let vehicleData of vehiclesData"
+        >
+          <span class="mt-2">{{ vehicleData.vehicledata_tire_pressure }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #elseblock>
+  <div class="col-1 cell-1">
+    <div class="cell-header-1 bg-color font-weight">Odômetro</div>
+    <div class="d-flex justify-content-center">
+      <span class="mt-2">-</span>
+    </div>
+  </div>
+
+  <div class="col-2 cell-1">
+    <div class="cell-header-1 bg-color font-weight">Nível de Combustível</div>
+    <div class="d-flex justify-content-center">
+      <span class="mt-2">-</span>
+    </div>
+  </div>
+
+  <div class="col-1 cell-1">
+    <div class="cell-header-1 bg-color font-weight">Status</div>
+    <div class="d-flex justify-content-center">
+      <span class="mt-2">-</span>
+    </div>
+  </div>
+
+  <div class="col-1 cell-1">
+    <div class="cell-header-1 bg-color font-weight">Lat.</div>
+    <div class="d-flex justify-content-center">
+      <span class="mt-2">-</span>
+    </div>
+  </div>
+
+  <div class="col-1 cell-1">
+    <div class="cell-header-1 bg-color font-weight">Long.</div>
+    <div class="d-flex justify-content-center">
+      <span class="mt-2">-</span>
+    </div>
+  </div>
+
+  <div class="col-2 cell-1">
+    <div class="cell-header-1 bg-color font-weight">Status da Bateria</div>
+    <div class="d-flex justify-content-center">
+      <span class="mt-2">-</span>
+    </div>
+  </div>
+
+  <div class="col-2 cell-3">
+    <div class="cell-header-3 bg-color font-weight">Pressão dos Pneus</div>
+    <div class="d-flex justify-content-center">
+      <span class="mt-2">-</span>
+    </div>
+  </div>
+</ng-template>
+
+<app-insert-modal
+  (windowClosed)="updateSelection()"
+  #insertModal
+></app-insert-modal>
+<app-update-modal
+  (windowClosed)="updateSelection()"
+  #updateModal
+></app-update-modal>
+<app-delete-modal
+  (windowClosed)="updateSelection()"
+  #deleteModal
+></app-delete-modal>

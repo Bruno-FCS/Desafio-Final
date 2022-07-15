@@ -1,0 +1,24 @@
+<nav class="navbar">
+  <img
+    src="../../../assets/img/menu-icon.png"
+    class="left-icon position-relative"
+    (click)="menu.openMenu()"
+    (keyup.space)="menu.openMenu()"
+  />
+
+  <img
+    class="img-settings"
+    src="../../../assets/img/ford.png"
+    alt="Logo da Ford"
+  />
+
+  <img
+    src="../../../assets/img/user-icon.png"
+    class="right-icon position-relative"
+    (click)="settings.openSettings()"
+    (keyup.space)="settings.openSettings()"
+  />
+</nav>
+
+<app-menu #menu></app-menu>
+<app-settings #settings></app-settings>

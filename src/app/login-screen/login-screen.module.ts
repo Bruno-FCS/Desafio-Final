@@ -3,24 +3,29 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AutenticacaoModule } from '../autenticacao';
+import { AuthenticationModule } from '../authentication';
 import { LoginScreenRoutingModule } from './login-screen-routing.module';
 import { LoginScreenComponent } from './login-screen.component';
 import { LoginComponent } from './login';
-import { MensagemModule } from '../componentes';
+import { MessageModule } from '../components';
 import { RegisterComponent } from './register';
 import { SuccessComponent } from './success';
 
 @NgModule({
-  declarations: [LoginScreenComponent, LoginComponent, RegisterComponent, SuccessComponent],
+  declarations: [
+    LoginScreenComponent,
+    LoginComponent,
+    RegisterComponent,
+    SuccessComponent,
+  ],
   imports: [
     CommonModule,
     LoginScreenRoutingModule,
     FormsModule,
-    MensagemModule,
-    AutenticacaoModule,
+    MessageModule,
+    AuthenticationModule,
     ReactiveFormsModule,
-    NgxCaptchaModule
+    NgxCaptchaModule,
   ],
   exports: [LoginScreenComponent],
 })

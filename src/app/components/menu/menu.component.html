@@ -1,0 +1,30 @@
+<div [ngClass]="{ 'active-menu': showMenu }">
+  <div class="menu-bar">
+    <i
+      class="fa fa-window-close menu-item"
+      (click)="openMenu()"
+      (keyup.space)="openMenu()"
+    ></i>
+    <img
+      class="img-settings"
+      src="../../../assets/img/ford.png"
+      alt="Logo da Ford"
+    />
+    <ul class="list-unstyled list-group list-group-flush">
+      <li
+        class="list-group-item list-group-item-action menu-item"
+        [routerLink]="['/home']"
+      >
+        Home
+      </li>
+      <li
+        class="list-group-item list-group-item-action menu-item"
+        [routerLink]="['/dashboard']"
+      >
+        Dashborad
+      </li>
+    </ul>
+  </div>
+
+  <div class="overlay" (click)="openMenu()"></div>
+</div>

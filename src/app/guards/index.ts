@@ -1,3 +1,3 @@
-export * from './autenticacao.guard'
-export * from './login.guard'
-export * from './success.guard'
+export * from './authentication.guard';
+export * from './login.guard';
+export * from './success.guard';

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { environment } from '../../environments/environment';
-import { Usuario } from '../models';
+import { User } from '../models';
 
 const API = environment.apiURL;
 const KEY = 'success';
@@ -13,19 +13,19 @@ const KEY = 'success';
 export class RegisterService {
   constructor(private httpClient: HttpClient) {}
 
-  cadastrar(usuario: Usuario) {
-    return this.httpClient.post(`${API}/users`, usuario);
+  register(user: User) {
+    return this.httpClient.post(`${API}/users`, user);
   }
 
-  setarCadastro() {
+  setRegister() {
     localStorage.setItem(KEY, 'true');
   }
 
-  retornarCadastro() {
+  returnRegister() {
     return localStorage.getItem(KEY);
   }
 
-  limparCadastro() {
+  clearRegister() {
     localStorage.removeItem(KEY);
   }
 }

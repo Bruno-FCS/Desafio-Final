@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AutenticacaoService } from '../../services';
+import { AuthenticationService } from '../../services';
 import { RegisterService } from '../../services';
 
 @Component({
@@ -15,18 +15,18 @@ export class LoginComponent implements OnInit {
   error = false;
 
   constructor(
-    private autenticacaoService: AutenticacaoService,
+    private authenticationService: AuthenticationService,
     private registerService: RegisterService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.registerService.limparCadastro();
+    this.registerService.clearRegister();
   }
 
-  logar() {
-    this.autenticacaoService
-      .autenticar(this.user_name, this.user_password)
+  login() {
+    this.authenticationService
+      .authenticate(this.user_name, this.user_password)
       .subscribe(
         () => {
           this.router.navigate(['home']);

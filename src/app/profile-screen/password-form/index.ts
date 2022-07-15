@@ -1,1 +1,1 @@
-export * from './password-form.component'
+export * from './password-form.component';

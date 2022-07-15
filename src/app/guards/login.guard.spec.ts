@@ -8,9 +8,7 @@ describe('LoginGuard', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        { provide: Router, useValue: Router },
-      ]
+      providers: [{ provide: Router, useValue: Router }],
     });
     guard = TestBed.inject(LoginGuard);
   });

@@ -1,0 +1,62 @@
+.bg-color {
+  background-color: rgb(40, 97, 159);
+  color: white;
+}
+
+.font-weight {
+  font-weight: 500;
+}
+
+.cell-1 {
+  float: left;
+  text-align: center;
+  border-top: 1px rgb(220, 220, 220) solid;
+  border-bottom: 1px rgb(220, 220, 220) solid;
+  height: 78px;
+}
+
+.cell-2 {
+  float: left;
+  text-align: center;
+  border-top: 1px rgb(220, 220, 220) solid;
+  border-left: 1px rgb(220, 220, 220) solid;
+  border-bottom: 1px rgb(220, 220, 220) solid;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  height: 78px;
+}
+
+.cell-3 {
+  float: left;
+  text-align: center;
+  border-top: 1px rgb(220, 220, 220) solid;
+  border-right: 1px rgb(220, 220, 220) solid;
+  border-bottom: 1px rgb(220, 220, 220) solid;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  height: 78px;
+}
+
+.cell-header-1 {
+  height: 30px;
+}
+
+.cell-header-2 {
+  height: 30px;
+  border-top-left-radius: 3px;
+}
+
+.cell-header-3 {
+  height: 30px;
+  border-top-right-radius: 3px;
+}
+
+.img-settings {
+  width: 15px;
+  margin-bottom: 2px;
+}
+
+button {
+  border: none;
+  background-color: rgb(40, 97, 159);
+}

@@ -4,36 +4,36 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DashboardScreenRoutingModule } from './dashboard-screen-routing.module';
 import { DashboardComponent } from './dashboard';
-import { MenuModule } from '../componentes';
-import { SettingsModule } from '../componentes';
-import { CartaoComponent } from './cartao';
-import { TabelaComponent } from './tabela';
-import { ModalAtualizarComponent } from './modal-atualizar';
-import { ModalInserirComponent } from './modal-inserir';
-import { MensagemModule } from '../componentes';
-import { ModalDeletarComponent } from './modal-deletar';
-import { TabelaVerticalComponent } from './tabela-vertical';
-import { HeaderModule } from '../componentes';
+import { MenuModule } from '../components';
+import { SettingsModule } from '../components';
+import { CardComponent } from './card';
+import { HorizontalTableComponent } from './horizontal-table';
+import { UpdateModalComponent } from './update-modal';
+import { InsertModalComponent } from './insert-modal';
+import { MessageModule } from '../components';
+import { DeleteModalComponent } from './delete-modal';
+import { VerticalTableComponent } from './vertical-table';
+import { HeaderModule } from '../components';
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    CartaoComponent,
-    TabelaComponent,
-    ModalAtualizarComponent,
-    ModalInserirComponent,
-    ModalDeletarComponent,
-    TabelaVerticalComponent
+    CardComponent,
+    HorizontalTableComponent,
+    UpdateModalComponent,
+    InsertModalComponent,
+    DeleteModalComponent,
+    VerticalTableComponent,
   ],
   imports: [
     CommonModule,
     DashboardScreenRoutingModule,
     MenuModule,
     SettingsModule,
-    MensagemModule,
+    MessageModule,
     FormsModule,
     ReactiveFormsModule,
-    HeaderModule
+    HeaderModule,
   ],
 })
 export class DashboardScreenModule {}

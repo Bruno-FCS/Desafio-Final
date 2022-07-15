@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
-import { Usuario } from '../models';
-import { UsuarioService } from './usuario.service';
+import { User } from '../models';
+import { UserService } from './user.service';
 
 const API = environment.apiURL;
 
@@ -12,22 +12,27 @@ const API = environment.apiURL;
   providedIn: 'root',
 })
 export class ProfileService {
-  constructor(private httpClient: HttpClient, private usuarioService: UsuarioService) {}
+  constructor(
+    private httpClient: HttpClient,
+    private userService: UserService
+  ) {}
 
-  atualizarDados(usuario: Usuario): Observable<HttpResponse<any>> {
+  updateData(user: User): Observable<HttpResponse<any>> {
     return this.httpClient
-      .put(`${API}/users/${usuario.user_id}`, usuario, { observe: 'response' })
+      .put(`${API}/users/${user.user_id}`, user, { observe: 'response' })
       .pipe(
         tap((response) => {
-          const autenticacaoToken =
+          const authToken =
             response.headers.get('x-access-token') ?? '';
-          this.usuarioService.salvarToken(autenticacaoToken);
+          this.userService.saveToken(authToken);
         })
       );
   }
 
-  alterarSenha(usuario: Usuario){
-    return this.httpClient
-      .put(`${API}/users/change-password/${usuario.user_id}`, usuario)
+  changePassword(user: User) {
+    return this.httpClient.put(
+      `${API}/users/change-password/${user.user_id}`,
+      user
+    );
   }
 }

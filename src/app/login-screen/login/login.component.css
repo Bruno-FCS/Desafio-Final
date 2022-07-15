@@ -1,4 +1,4 @@
-.form-container{
+.form-container {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -7,26 +7,26 @@
   overflow-y: auto;
 }
 
-.form-width{
+.form-width {
   width: 380px;
 }
 
-.field-width{
+.field-width {
   width: 95%;
 }
 
-.img-width{
+.img-width {
   width: 300px;
 }
 
-.text-color{
+.text-color {
   color: rgb(40, 97, 159);
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-.margin{
+.margin {
   margin-left: 9.5px;
 }

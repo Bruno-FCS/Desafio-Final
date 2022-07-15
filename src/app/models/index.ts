@@ -1,3 +1,3 @@
-export * from './usuario'
-export * from './veiculo'
-export * from './veiculo-data'
+export * from './user';
+export * from './vehicle';
+export * from './vehicle-data';

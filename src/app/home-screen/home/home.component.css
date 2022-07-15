@@ -1,41 +1,41 @@
-*{
+* {
   box-sizing: border-box;
 }
 
-.full-height{
+.full-height {
   height: 90vh;
 }
 
-.full{
+.full {
   width: 100vw;
   height: 90vh;
 }
 
-.text-color{
+.text-color {
   color: rgb(40, 97, 159);
 }
 
-.card-dimension{
+.card-dimension {
   max-height: 70vh;
   background-color: rgba(255, 255, 255, 0.9);
 }
 
-.scroll{
+.scroll {
   overflow-y: auto;
 }
 
-.text-align-center{
+.text-align-center {
   text-align: center;
 }
 
-.text-align-justify{
+.text-align-justify {
   text-align: justify;
 }
 
-.z-index1{
+.z-index1 {
   z-index: 1;
 }
 
-.z-index2{
+.z-index2 {
   z-index: 2;
 }

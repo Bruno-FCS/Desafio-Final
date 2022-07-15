@@ -27,11 +27,11 @@ export class SuccessGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if(this.registerService.retornarCadastro() == 'true'){
+    if (this.registerService.returnRegister() == 'true') {
       return true;
     }
 
-    this.router.navigate(['/login'])
+    this.router.navigate(['/login']);
     return false;
   }
 }

@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { CanLoad, Route, Router, UrlSegment, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { UsuarioService } from '../services';
+import { UserService } from '../services';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginGuard implements CanLoad {
-  constructor(private usuarioService: UsuarioService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   canLoad(
     route: Route,
@@ -18,7 +18,7 @@ export class LoginGuard implements CanLoad {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.usuarioService.estaLogado()) {
+    if (this.userService.isLoggedIn()) {
       this.router.navigate(['home']);
       return false;
     }

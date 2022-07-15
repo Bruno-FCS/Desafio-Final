@@ -8,9 +8,7 @@ describe('RegisterService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        { provide: HttpClient, useValue: HttpClient },
-      ]
+      providers: [{ provide: HttpClient, useValue: HttpClient }],
     });
     service = TestBed.inject(RegisterService);
   });

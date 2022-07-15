@@ -1,0 +1,113 @@
+<div [ngClass]="{ 'active-modal': showDeleteModal }">
+  <div class="delete-modal">
+    <i
+      class="fa fa-window-close menu-item"
+      (click)="openDeleteModal()"
+      (keyup.space)="openDeleteModal()"
+    ></i>
+
+    <h2 class="text-color">Deletar dados do veículo</h2>
+
+    <h5 class="mt-3">Insira o código VIN do veículo que deseja deletar</h5>
+
+    <div class="d-flex justify-content-center">
+      <app-message
+        *ngIf="error == true"
+        message="Código VIN inválido"
+      ></app-message>
+    </div>
+
+    <div class="form-container">
+      <form
+        class="form mt-3 form-width"
+        [formGroup]="deleteForm"
+        *ngIf="vehicleData$ | async as vehicleData; else elseblock"
+        (ngSubmit)="delete()"
+      >
+        <div class="form-group mb-3 field-width m-auto">
+          <input
+            class="form-control"
+            placeholder="Código VIN"
+            formControlName="vehicledata_vin"
+            [ngModel]="vehicleData.vehicledata_vin"
+            readonly
+          />
+          <app-message
+            *ngIf="
+        deleteForm.get('vehicledata_vin')?.errors?.['required'] &&
+        deleteForm.get('vehicledata_vin')?.touched
+      "
+            message="Campo código VIN obrigatório"
+          ></app-message>
+          <app-message
+            *ngIf="
+        deleteForm.get('vehicledata_vin')?.errors?.['minlength'] &&
+        deleteForm.get('vehicledata_vin')?.touched
+      "
+            message="O código VIN deve possuir 20 caracteres"
+          ></app-message>
+          <app-message
+            *ngIf="
+        deleteForm.get('vehicledata_vin')?.errors?.['maxlength'] &&
+        deleteForm.get('vehicledata_vin')?.touched
+      "
+            message="O código VIN deve possuir 20 caracteres"
+          ></app-message>
+        </div>
+        <button
+          type="submit"
+          class="btn btn-secondary field-width margin"
+          [disabled]="deleteForm.invalid"
+        >
+          Deletar
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="overlay" (click)="openDeleteModal()"></div>
+</div>
+
+<ng-template #elseblock>
+  <form
+    class="form mt-3 form-width"
+    [formGroup]="deleteForm"
+    (ngSubmit)="delete()"
+  >
+    <div class="form-group mb-3 field-width m-auto">
+      <input
+        class="form-control"
+        placeholder="Código VIN"
+        formControlName="vehicledata_vin"
+      />
+      <app-message
+        *ngIf="
+  deleteForm.get('vehicledata_vin')?.errors?.['required'] &&
+  deleteForm.get('vehicledata_vin')?.touched
+"
+        message="Campo código VIN obrigatório"
+      ></app-message>
+      <app-message
+        *ngIf="
+  deleteForm.get('vehicledata_vin')?.errors?.['minlength'] &&
+  deleteForm.get('vehicledata_vin')?.touched
+"
+        message="O código VIN deve possuir 20 caracteres"
+      ></app-message>
+      <app-message
+        *ngIf="
+  deleteForm.get('vehicledata_vin')?.errors?.['maxlength'] &&
+  deleteForm.get('vehicledata_vin')?.touched
+"
+        message="O código VIN deve possuir 20 caracteres"
+      ></app-message>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-secondary field-width margin"
+      [disabled]="deleteForm.invalid"
+    >
+      Deletar
+    </button>
+  </form>
+</ng-template>

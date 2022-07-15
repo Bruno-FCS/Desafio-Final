@@ -1,0 +1,171 @@
+<div [ngClass]="{ 'active-modal': showInsertModal }">
+  <div class="insert-modal">
+    <i
+      class="fa fa-window-close menu-item"
+      (click)="openInsertModal()"
+      (keyup.space)="openInsertModal()"
+    ></i>
+
+    <h2 class="text-color">Inserir dados do veículo</h2>
+
+    <div class="d-flex justify-content-center">
+      <app-message
+        *ngIf="error == true"
+        message="Código VIN já cadastrado"
+      ></app-message>
+    </div>
+
+    <div class="form-container">
+      <form
+        class="form mt-3 form-width"
+        [formGroup]="insertForm"
+        *ngIf="insertForm"
+        (ngSubmit)="insert()"
+      >
+        <div class="form-group mb-3 field-width m-auto">
+          <input
+            class="form-control"
+            placeholder="Código VIN"
+            formControlName="vehicledata_vin"
+          />
+          <app-message
+            *ngIf="
+        insertForm.get('vehicledata_vin')?.errors?.['required'] &&
+        insertForm.get('vehicledata_vin')?.touched
+      "
+            message="Campo código VIN obrigatório"
+          ></app-message>
+          <app-message
+            *ngIf="
+        insertForm.get('vehicledata_vin')?.errors?.['minlength'] &&
+        insertForm.get('vehicledata_vin')?.touched
+      "
+            message="O código VIN deve possuir 20 caracteres"
+          ></app-message>
+          <app-message
+            *ngIf="
+        insertForm.get('vehicledata_vin')?.errors?.['maxlength'] &&
+        insertForm.get('vehicledata_vin')?.touched
+      "
+            message="O código VIN deve possuir 20 caracteres"
+          ></app-message>
+        </div>
+
+        <div class="form-group mb-3 field-width m-auto">
+          <input
+            class="form-control"
+            placeholder="Odômetro"
+            formControlName="vehicledata_odometer"
+          />
+          <app-message
+            *ngIf="
+              insertForm.get('vehicledata_odometer')?.errors &&
+              insertForm.get('vehicledata_odometer')?.touched
+            "
+            message="Campo odômetro obrigatório"
+          ></app-message>
+        </div>
+
+        <div class="form-group mb-3 field-width m-auto">
+          <input
+            class="form-control"
+            placeholder="Nível de Combustível"
+            formControlName="vehicledata_fuel_level"
+          />
+          <app-message
+            *ngIf="
+              insertForm.get('vehicledata_fuel_level')?.errors &&
+              insertForm.get('vehicledata_fuel_level')?.touched
+            "
+            message="Campo nível de combustível obrigatório"
+          ></app-message>
+        </div>
+
+        <div class="form-group mb-3 field-width m-auto">
+          <input
+            class="form-control"
+            placeholder="Status"
+            formControlName="vehicledata_status"
+          />
+          <app-message
+            *ngIf="
+              insertForm.get('vehicledata_status')?.errors &&
+              insertForm.get('vehicledata_status')?.touched
+            "
+            message="Campo status obrigatório"
+          ></app-message>
+        </div>
+
+        <div class="form-group mb-3 field-width m-auto">
+          <input
+            class="form-control"
+            placeholder="Latitude"
+            formControlName="vehicledata_lat"
+          />
+          <app-message
+            *ngIf="
+              insertForm.get('vehicledata_lat')?.errors &&
+              insertForm.get('vehicledata_lat')?.touched
+            "
+            message="Campo latitude obrigatório"
+          ></app-message>
+        </div>
+
+        <div class="form-group mb-3 field-width m-auto">
+          <input
+            class="form-control"
+            placeholder="Longitude"
+            formControlName="vehicledata_long"
+          />
+          <app-message
+            *ngIf="
+              insertForm.get('vehicledata_long')?.errors &&
+              insertForm.get('vehicledata_long')?.touched
+            "
+            message="Campo longitude obrigatório"
+          ></app-message>
+        </div>
+
+        <div class="form-group mb-3 field-width m-auto">
+          <input
+            class="form-control"
+            placeholder="Status da Bateria"
+            formControlName="vehicledata_battery_status"
+          />
+          <app-message
+            *ngIf="
+              insertForm.get('vehicledata_battery_status')?.errors &&
+              insertForm.get('vehicledata_battery_status')?.touched
+            "
+            message="Campo status da bateria obrigatório"
+          ></app-message>
+        </div>
+
+        <div class="form-group mb-3 field-width m-auto">
+          <input
+            class="form-control"
+            placeholder="Pressão dos pneus"
+            formControlName="vehicledata_tire_pressure"
+          />
+          <app-message
+            *ngIf="
+              insertForm.get('vehicledata_tire_pressure')?.errors &&
+              insertForm.get('vehicledata_tire_pressure')?.touched
+            "
+            message="Campo pressão dos pneus obrigatório"
+          ></app-message>
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-secondary field-width margin"
+          [disabled]="insertForm.invalid"
+        >
+          Inserir
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="overlay" (click)="openInsertModal()"></div>
+</div>

@@ -1,37 +1,37 @@
-*{
+* {
   box-sizing: border-box;
 }
 
-.text-color{
+.text-color {
   color: rgb(40, 97, 159);
 }
 
-.percentage{
+.percentage {
   text-align: center;
   font-size: 26px;
   font-weight: 600;
 }
 
-.chart{
+.chart {
   width: 100%;
 }
 
-.card-color{
+.card-color {
   background-color: rgb(40, 97, 159);
   color: white;
   text-align: center;
 }
 
-app-tabela-vertical{
+app-vertical-table {
   display: none;
 }
 
-@media screen and (max-width: 1400px){
-  app-tabela{
+@media screen and (max-width: 1400px) {
+  app-horizontal-table {
     display: none;
   }
 
-  app-tabela-vertical{
+  app-vertical-table {
     display: flex;
   }
 }

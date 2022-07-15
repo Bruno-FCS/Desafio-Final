@@ -1,0 +1,155 @@
+<div class="col-6">
+  <div class="col bg-color font-weight">
+    Código VIN
+    <button
+      (click)="insertModal.openInsertModal()"
+      (click)="updateVehicleDataSubject()"
+      (keyup.space)="insertModal.openInsertModal()"
+    >
+      <img
+        class="img-settings"
+        src="../../../assets/img/plus-icon.PNG"
+        alt="Ícone de adicionar"
+      />
+    </button>
+    <button
+      (click)="updateModal.openUpdateModal()"
+      (click)="updateVehicleDataSubject()"
+      (keyup.space)="updateModal.openUpdateModal()"
+    >
+      <img
+        class="img-settings"
+        src="../../../assets/img/write-icon.PNG"
+        alt="Ícone de editar"
+      />
+    </button>
+    <button
+      (click)="deleteModal.openDeleteModal()"
+      (click)="updateVehicleDataSubject()"
+      (keyup.space)="deleteModal.openDeleteModal()"
+    >
+      <img
+        class="img-settings"
+        src="../../../assets/img/trash-icon.PNG"
+        alt="Ícone de deletar"
+      />
+    </button>
+  </div>
+  <div class="col bg-color font-weight">Odômetro</div>
+  <div class="col bg-color font-weight">Nível de Combustível</div>
+  <div class="col bg-color font-weight">Status</div>
+  <div class="col bg-color font-weight">Lat.</div>
+  <div class="col bg-color font-weight">Long.</div>
+  <div class="col bg-color font-weight">Status da Bateria</div>
+  <div class="col bg-color font-weight">Pressão dos Pneus</div>
+</div>
+
+<div class="col-6">
+  <div class="col d-flex justify-content-center input-cell">
+    <input
+      class="mt-2 input-width"
+      type="text"
+      [formControl]="inputTable"
+      [(ngModel)]="inputValue"
+    />
+  </div>
+  <div *ngIf="vehiclesData$ | async as vehiclesData; else elseblock">
+    <div *ngIf="inputValue.length == 20; else elseblock">
+      <div *ngIf="vehiclesData.length > 0; else elseblock">
+        <div
+          class="col d-flex justify-content-center data-cell"
+          *ngFor="let vehicleData of vehiclesData"
+        >
+          <span class="mt-2 center-text"
+            >{{ vehicleData.vehicledata_odometer }} Km</span
+          >
+        </div>
+        <div
+          class="col d-flex justify-content-center data-cell"
+          *ngFor="let vehicleData of vehiclesData"
+        >
+          <span class="mt-2 center-text"
+            >{{ vehicleData.vehicledata_fuel_level }}%</span
+          >
+        </div>
+        <div
+          class="col d-flex justify-content-center data-cell"
+          *ngFor="let vehicleData of vehiclesData"
+        >
+          <span class="mt-2 center-text">{{
+            vehicleData.vehicledata_status
+          }}</span>
+        </div>
+        <div
+          class="col d-flex justify-content-center data-cell"
+          *ngFor="let vehicleData of vehiclesData"
+        >
+          <span class="mt-2 center-text">{{
+            vehicleData.vehicledata_lat
+          }}</span>
+        </div>
+        <div
+          class="col d-flex justify-content-center data-cell"
+          *ngFor="let vehicleData of vehiclesData"
+        >
+          <span class="mt-2 center-text">{{
+            vehicleData.vehicledata_long
+          }}</span>
+        </div>
+        <div
+          class="col d-flex justify-content-center data-cell"
+          *ngFor="let vehicleData of vehiclesData"
+        >
+          <span class="mt-2 center-text">{{
+            vehicleData.vehicledata_battery_status
+          }}</span>
+        </div>
+        <div
+          class="col d-flex justify-content-center data-cell"
+          *ngFor="let vehicleData of vehiclesData"
+        >
+          <span class="mt-2 center-text">{{
+            vehicleData.vehicledata_tire_pressure
+          }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #elseblock>
+  <div class="col d-flex justify-content-center data-cell">
+    <span class="mt-2 center-text">-</span>
+  </div>
+  <div class="col d-flex justify-content-center data-cell">
+    <span class="mt-2 center-text">-</span>
+  </div>
+  <div class="col d-flex justify-content-center data-cell">
+    <span class="mt-2 center-text">-</span>
+  </div>
+  <div class="col d-flex justify-content-center data-cell">
+    <span class="mt-2 center-text">-</span>
+  </div>
+  <div class="col d-flex justify-content-center data-cell">
+    <span class="mt-2 center-text">-</span>
+  </div>
+  <div class="col d-flex justify-content-center data-cell">
+    <span class="mt-2 center-text">-</span>
+  </div>
+  <div class="col d-flex justify-content-center data-cell">
+    <span class="mt-2 center-text">-</span>
+  </div>
+</ng-template>
+
+<app-insert-modal
+  (windowClosed)="updateSelection()"
+  #insertModal
+></app-insert-modal>
+<app-update-modal
+  (windowClosed)="updateSelection()"
+  #updateModal
+></app-update-modal>
+<app-delete-modal
+  (windowClosed)="updateSelection()"
+  #deleteModal
+></app-delete-modal>

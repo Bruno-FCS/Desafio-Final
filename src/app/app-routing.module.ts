@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AutenticacaoGuard } from './guards';
+import { AuthenticationGuard } from './guards';
 import { LoginGuard } from './guards';
 
 const routes: Routes = [
@@ -20,7 +20,7 @@ const routes: Routes = [
       import('./home-screen').then(
         (m) => m.HomeScreenModule
       ),
-    canLoad: [AutenticacaoGuard],
+    canLoad: [AuthenticationGuard],
   },
   {
     path: 'dashboard',
@@ -28,7 +28,7 @@ const routes: Routes = [
       import('./dashboard-screen').then(
         (m) => m.DashboardScreenModule
       ),
-    canLoad: [AutenticacaoGuard],
+    canLoad: [AuthenticationGuard],
   },
   {
     path: 'profile',
@@ -36,7 +36,7 @@ const routes: Routes = [
       import('./profile-screen').then(
         (m) => m.ProfileScreenModule
       ),
-    canLoad: [AutenticacaoGuard],
+    canLoad: [AuthenticationGuard],
   },
 ];
 

@@ -9,10 +9,10 @@
 
   <h4 class="text-center text-color">Faça seu registro!</h4>
 
-  <app-mensagem
+  <app-message
     *ngIf="error == true"
-    mensagem="Usuário ou e-mail já cadastrados"
-  ></app-mensagem>
+    message="Usuário ou e-mail já cadastrados"
+  ></app-message>
 
   <form
     class="form mt-3 form-width"
@@ -26,20 +26,20 @@
         placeholder="Usuário"
         formControlName="user_name"
       />
-      <app-mensagem
+      <app-message
         *ngIf="
         registerForm.get('user_name')?.errors?.['required'] &&
         registerForm.get('user_name')?.touched
       "
-        mensagem="Campo usuário obrigatório"
-      ></app-mensagem>
-      <app-mensagem
+        message="Campo usuário obrigatório"
+      ></app-message>
+      <app-message
         *ngIf="
         registerForm.get('user_name')?.errors?.['minlength'] &&
         registerForm.get('user_name')?.touched
       "
-        mensagem="Campo usuário deve ter ao menos 5 caracteres"
-      ></app-mensagem>
+        message="Campo usuário deve ter ao menos 5 caracteres"
+      ></app-message>
     </div>
 
     <div class="form-group mb-3 field-width m-auto">
@@ -48,20 +48,20 @@
         placeholder="E-mail"
         formControlName="user_email"
       />
-      <app-mensagem
+      <app-message
         *ngIf="
         registerForm.get('user_email')?.errors?.['required'] &&
         registerForm.get('user_email')?.touched
       "
-        mensagem="Campo e-mail obrigatório"
-      ></app-mensagem>
-      <app-mensagem
+        message="Campo e-mail obrigatório"
+      ></app-message>
+      <app-message
         *ngIf="
         registerForm.get('user_email')?.errors?.['email'] &&
         registerForm.get('user_email')?.touched
       "
-        mensagem="E-mail inválido"
-      ></app-mensagem>
+        message="E-mail inválido"
+      ></app-message>
     </div>
 
     <div class="form-group mb-3 field-width m-auto">
@@ -70,13 +70,13 @@
         placeholder="Nome completo"
         formControlName="user_full_name"
       />
-      <app-mensagem
+      <app-message
         *ngIf="
           registerForm.get('user_full_name')?.errors &&
           registerForm.get('user_full_name')?.touched
         "
-        mensagem="Campo nome completo obrigatório"
-      ></app-mensagem>
+        message="Campo nome completo obrigatório"
+      ></app-message>
     </div>
 
     <div class="form-group mb-3 field-width m-auto">
@@ -86,20 +86,20 @@
         type="password"
         formControlName="user_password"
       />
-      <app-mensagem
+      <app-message
         *ngIf="
         registerForm.get('user_password')?.errors?.['required'] &&
         registerForm.get('user_password')?.touched
       "
-        mensagem="Campo senha obrigatório"
-      ></app-mensagem>
-      <app-mensagem
+        message="Campo senha obrigatório"
+      ></app-message>
+      <app-message
         *ngIf="
         registerForm.get('user_password')?.errors?.['minlength'] &&
         registerForm.get('user_password')?.touched
       "
-        mensagem="Campo senha deve ter ao menos 6 caracteres"
-      ></app-mensagem>
+        message="Campo senha deve ter ao menos 6 caracteres"
+      ></app-message>
     </div>
 
     <div class="form-group mb-2 field-width m-auto">
@@ -109,12 +109,12 @@
         type="password"
         formControlName="user_password_confirm"
       />
-      <app-mensagem
+      <app-message
         *ngIf="
         registerForm.get('user_password_confirm')?.errors?.['equalsTo']
       "
-        mensagem="Senhas não coincidem"
-      ></app-mensagem>
+        message="Senhas não coincidem"
+      ></app-message>
     </div>
 
     <div class="form-group mb-2 field-width m-auto">

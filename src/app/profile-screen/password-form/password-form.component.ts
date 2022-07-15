@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { FormValidations } from '../../validators';
 import { ProfileService } from '../../services';
-import { Usuario } from '../../models';
-import { UsuarioService } from '../../services';
+import { User } from '../../models';
+import { UserService } from '../../services';
 
 @Component({
   selector: 'app-password-form',
@@ -12,7 +12,7 @@ import { UsuarioService } from '../../services';
   styleUrls: ['./password-form.component.css'],
 })
 export class PasswordFormComponent implements OnInit {
-  usuario$ = this.usuarioService.retornarUsuario();
+  user$ = this.userService.returnUser();
 
   passwordForm!: FormGroup;
   error = false;
@@ -26,7 +26,7 @@ export class PasswordFormComponent implements OnInit {
   user_password_confirm!: string;
 
   constructor(
-    private usuarioService: UsuarioService,
+    private userService: UserService,
     private profileService: ProfileService,
     private formBuilder: FormBuilder
   ) {}
@@ -48,8 +48,8 @@ export class PasswordFormComponent implements OnInit {
 
   changePassword() {
     if (this.passwordForm.valid) {
-      const user = this.passwordForm.getRawValue() as Usuario;
-      this.profileService.alterarSenha(user).subscribe(
+      const user = this.passwordForm.getRawValue() as User;
+      this.profileService.changePassword(user).subscribe(
         () => {
           this.changed = true;
           this.changedEvent.emit(this.changed);

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { HomeScreenRoutingModule } from './home-screen-routing.module';
 import { HomeComponent } from './home';
-import { HeaderModule } from '../componentes';
+import { HeaderModule } from '../components';
 
 @NgModule({
   declarations: [HomeComponent],
