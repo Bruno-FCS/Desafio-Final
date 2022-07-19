@@ -7,6 +7,7 @@ import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.brunofernandes.apispringboot.entities.User;
@@ -22,6 +23,9 @@ public class UserService {
 	@Autowired
 	private UserRepository repository;
 
+	@Autowired
+	private PasswordEncoder encoder;
+
 	public List<User> findAll() {
 		return repository.findAll();
 	}
@@ -32,8 +36,12 @@ public class UserService {
 	}
 
 	public User findByNameAndPassword(String user_name, String user_password) {
-		Optional<User> obj = repository.findByNameAndPassword(user_name, user_password);
-		return obj.orElseThrow(() -> new AuthenticationException());
+		Optional<User> obj = repository.findByName(user_name);
+		if (encoder.matches(user_password, obj.get().getUser_password())) {
+			return obj.orElseThrow(() -> new AuthenticationException());
+		} else {
+			throw new AuthenticationException();
+		}
 	}
 
 	public User insert(User obj) {
@@ -43,6 +51,7 @@ public class UserService {
 				throw new DatabaseException("Email or username already registered");
 			}
 		}
+		obj.setUser_password(encoder.encode(obj.getUser_password()));
 		return repository.save(obj);
 	}
 
@@ -94,13 +103,15 @@ public class UserService {
 		entity.setUser_full_name(obj.getUser_full_name());
 	}
 
-	public void changePassword(Long id, String user_former_password, String user_password) {
+	public void changePassword(Long user_id, String user_former_password, String user_password) {
 		try {
-			Optional<User> obj = repository.findByIdAndPassword(id, user_former_password);
-			if (!obj.isEmpty()) {
-				repository.updatePassword(id, user_password);
-			} else {
-				throw new DatabaseException("Invalid former password");
+			Optional<User> obj = repository.findById(user_id);
+			if (encoder.matches(user_former_password, obj.get().getUser_password())) {
+				if (!obj.isEmpty()) {
+					repository.updatePassword(user_id, encoder.encode(user_password));
+				} else {
+					throw new DatabaseException("Invalid former password");
+				}
 			}
 		} catch (EntityNotFoundException e) {
 			throw new DatabaseException("Invalid former password");
