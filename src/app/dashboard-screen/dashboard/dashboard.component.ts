@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit {
   constructor(private vehicleService: VehicleService) {}
 
   ngOnInit(): void {
-    this.sendVehicleId('1');
+    this.sendVehicleId('4');
   }
 
   sendVehicleId(id: string) {

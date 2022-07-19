@@ -14,7 +14,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Service
 public class TokenService {
 
-	private static final long JWT_TOKEN_VALIDITY = 24 * 60 * 60 * 1000;
+	@Value("${jwt.expiration}")
+	private static long JWT_TOKEN_VALIDITY;
 
 	@Value("${jwt.secret}")
 	private String secret;
