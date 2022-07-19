@@ -15,7 +15,7 @@ public class CorsConfig {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**").allowedMethods("GET", "POST", "PUT", "DELETE").allowedHeaders("*")
-						.allowedOrigins("https://desafio-final-frontend-spring.herokuapp.com");
+						.allowedOrigins("*");
 			}
 		};
 	}
